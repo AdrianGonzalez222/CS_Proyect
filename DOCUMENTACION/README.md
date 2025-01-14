@@ -1,2 +1,13 @@
 # CS_proyect
 Documentacion de nuestro Proyecto Final de Construccion de Software.
+
+Integrantes:
+> BALLESTEROS HOLGUIN DIANA ANDREA.
+> 
+> RUIZ CORREA NOELLY GISEL.
+> 
+> GONZALEZ ASTUDILLO ADRIAN ENRIQUE.
+> 
+> BERNARDI CORREA WALTER SLAETER.
+> 
+> GONZALEZ VERA HECTOR DAVID.
