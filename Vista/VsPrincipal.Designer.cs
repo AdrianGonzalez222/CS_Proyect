@@ -38,9 +38,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.buttonAcercaDe = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -183,7 +181,6 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
-            this.panel2.Controls.Add(this.buttonAcercaDe);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -210,28 +207,6 @@
             this.pictureBox2.TabIndex = 11;
             this.pictureBox2.TabStop = false;
             // 
-            // buttonAcercaDe
-            // 
-            this.buttonAcercaDe.BackColor = System.Drawing.Color.Transparent;
-            this.buttonAcercaDe.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonAcercaDe.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.buttonAcercaDe.FlatAppearance.BorderSize = 2;
-            this.buttonAcercaDe.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.buttonAcercaDe.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(111)))), ((int)(((byte)(111)))));
-            this.buttonAcercaDe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAcercaDe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAcercaDe.ForeColor = System.Drawing.Color.White;
-            this.buttonAcercaDe.Image = global::Vista.Properties.Resources.Img_RegistroUser;
-            this.buttonAcercaDe.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonAcercaDe.Location = new System.Drawing.Point(25, 388);
-            this.buttonAcercaDe.Name = "buttonAcercaDe";
-            this.buttonAcercaDe.Size = new System.Drawing.Size(143, 49);
-            this.buttonAcercaDe.TabIndex = 5;
-            this.buttonAcercaDe.Text = "Acerca de...";
-            this.buttonAcercaDe.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonAcercaDe.UseVisualStyleBackColor = false;
-            this.buttonAcercaDe.Click += new System.EventHandler(this.buttonAcercaDe_Click);
-            // 
             // VsPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -251,7 +226,6 @@
             this.Text = "Principal";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VsPrincipal_FormClosing);
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
@@ -270,7 +244,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button buttonAcercaDe;
     }
 }
 

@@ -17,7 +17,6 @@ namespace Vista
         private CtrMembresia ctrMembresia = new CtrMembresia();
         private VsConexion VsConn;
         private CtrCliente ctrCliente = new CtrCliente();
-        private CtrAutor ctrAutor = new CtrAutor();
         private CtrFactura ctrFactura = new CtrFactura();
 
         public VsPrincipal(VsConexion VsConn)
@@ -86,14 +85,6 @@ namespace Vista
         {
             VsConn.Close();
         }
-
-        private void buttonAcercaDe_Click(object sender, EventArgs e)
-        {
-            ctrAutor.GetTotal();
-            VsAutor vsAutor = new VsAutor();
-            vsAutor.ShowDialog();
-        }
-
 
         // FIN
     }

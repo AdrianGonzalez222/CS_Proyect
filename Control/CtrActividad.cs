@@ -9,6 +9,7 @@ using Modelo;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Serilog;
 
 namespace Control
 {
@@ -51,30 +52,43 @@ namespace Control
 
             if (fechaInicio.Date == fechaFin.Date)
             {
+                Log.Warning("FECHA INICIO NO PUEDE SER IGUAL A FECHA FIN.");
                 return "ERROR: FECHA INICIO NO PUEDE SER IGUAL A FECHA FIN.";
             }
             else if (horaInicio == horaFin)
             {
+                Log.Warning("HORA INICIO NO PUEDE SER IGUAL A HORA FIN.");
                 return "ERROR: HORA INICIO NO PUEDE SER IGUAL A HORA FIN.";
             }
             else if (fechaFin < fechaInicio)
             {
+                Log.Warning("FECHA FIN NO PUEDE SER ANTERIOR A FECHA INICIO.");
                 return "ERROR: FECHA FIN NO PUEDE SER ANTERIOR A FECHA INICIO.";
             }
             else if (ActividadExistente(sNombre))
             {
+                Log.Warning("ACTIVIDAD YA REGISTRADA CON ESE NOMBRE.");
                 return "ERROR: ACTIVIDAD YA REGISTRADA CON ESE NOMBRE.";
             }
             else if (string.IsNullOrEmpty(sNombre) || sNombre.Equals("") && string.IsNullOrEmpty(sDescripcion) || sDescripcion.Equals(""))
             {
+                Log.Warning("NO PUEDEN EXISTIR CAMPOS VACIOS.");
                 return "ERROR: NO PUEDEN EXISTIR CAMPOS VACIOS.";
             }
             else
             {
-                act = new Actividad(sNombre, sDescripcion, fechaInicio, fechaFin, horaInicio, horaFin);
-                //ListaActividad.Add(act);              
-                IngresarActividadBD(act); // BASE DE DATOS
-                msj = "ACTIVIDAD REGISTRADA CORRECTAMENTE" + Environment.NewLine + act.ToString();
+                try 
+                { 
+                    act = new Actividad(sNombre, sDescripcion, fechaInicio, fechaFin, horaInicio, horaFin);
+                    //ListaActividad.Add(act);              
+                    IngresarActividadBD(act); // BASE DE DATOS
+                    msj = "ACTIVIDAD REGISTRADA CORRECTAMENTE" + Environment.NewLine + act.ToString();
+                    Log.Information("ACTIVIDAD REGISTRADA CORRECTAMENTE: {act}", act);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error("ERROR INESPERADO: {ex}", ex);
+                }
             }
             return msj;
         }
@@ -90,11 +104,13 @@ namespace Control
                 if (msj[0] == '0')
                 {
                     MessageBox.Show("ERROR INESPERADO: " + msj);
+                    Log.Error("ERROR INESPERADO: {msj}", msj);
                 }
             }
             else if (msjBD[0] == '0')
             {
                 MessageBox.Show("ERROR: " + msjBD);
+                Log.Error("ERROR: {msjBD}", msjBD);
             }
             conn.CerrarConexion();
         }
@@ -104,31 +120,57 @@ namespace Control
         //
         public int GetTotal()
         {
-            ListaActividad = TablaConsultarActividadBD(1); // BASE DE DATOS
-            return ListaActividad.Count;
+            try 
+            { 
+                ListaActividad = TablaConsultarActividadBD(1); // BASE DE DATOS
+                return ListaActividad.Count;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("ERROR INESPERADO: {ex}", ex);
+                return 0;
+            }
+
         }
 
         public int GetTotalInactivas()
         {
-            ListaActividad = TablaConsultarActividadBD(2); // BASE DE DATOS
-            return ListaActividad.Count(act => act.Estado == 2);
+            try
+            {
+                ListaActividad = TablaConsultarActividadBD(2); // BASE DE DATOS
+                return ListaActividad.Count(act => act.Estado == 2);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("ERROR INESPERADO: {ex}", ex);
+                return 0;
+            }
         }
 
         public List<Actividad> TablaConsultarActividadBD(int estado)
         {
-            List<Actividad> actividades = new List<Actividad>();
-            string msjBD = conn.AbrirConexion();
+            try
+            {
+                List<Actividad> actividades = new List<Actividad>();
+                string msjBD = conn.AbrirConexion();
 
-            if (msjBD[0] == '1')
-            {
-                actividades = dtActividad.SelectActividades(conn.Connect, estado);
+                if (msjBD[0] == '1')
+                {
+                    actividades = dtActividad.SelectActividades(conn.Connect, estado);
+                }
+                else if (msjBD[0] == '0')
+                {
+                    MessageBox.Show("ERROR: " + msjBD);
+                    Log.Error("ERROR: {msjBD}", msjBD);
+                }
+                conn.CerrarConexion();
+                return actividades;
             }
-            else if (msjBD[0] == '0')
+            catch (Exception ex)
             {
-                MessageBox.Show("ERROR: " + msjBD);
+                Log.Error("ERROR INESPERADO: {ex}", ex);
+                return null;
             }
-            conn.CerrarConexion();
-            return actividades;
         }
 
 
@@ -170,63 +212,81 @@ namespace Control
         //
         public void InactivarActividad(DataGridView dgvActividad)
         {
-            if (dgvActividad.SelectedRows.Count > 0)
+            try
             {
-                int filaSeleccionada = dgvActividad.SelectedRows[0].Index; // OBTIENE INDICE DE FILA SELECCIONADA
-                
-                if (filaSeleccionada >= 0)
+                if (dgvActividad.SelectedRows.Count > 0)
                 {
-                    string nombreActividad = dgvActividad.Rows[filaSeleccionada].Cells["ClmNombre"].Value.ToString(); // OBTENER NOMBRE DE ACTIVIDAD
-                    Actividad actividad = ListaActividad.FirstOrDefault(a => a.Nombre == nombreActividad); // BUSCA ACTIVIDAD EN LISTA POR NOMBRE
-                    
-                    if (actividad != null)
+                    int filaSeleccionada = dgvActividad.SelectedRows[0].Index; // OBTIENE INDICE DE FILA SELECCIONADA
+
+                    if (filaSeleccionada >= 0)
                     {
-                        DialogResult resultado = MessageBox.Show("ESTAS SEGURO DE INACTIVAR ESTA ACTIVIDAD?", "CONFIRMACION", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        
-                        if (resultado == DialogResult.Yes)
+                        string nombreActividad = dgvActividad.Rows[filaSeleccionada].Cells["ClmNombre"].Value.ToString(); // OBTENER NOMBRE DE ACTIVIDAD
+                        Actividad actividad = ListaActividad.FirstOrDefault(a => a.Nombre == nombreActividad); // BUSCA ACTIVIDAD EN LISTA POR NOMBRE
+
+                        if (actividad != null)
                         {
-                            actividad.Estado = 2; // ESTADO 2 = INACTIVO
-                            EstadoActividadBD(actividad); // BASE DE DATOS
-                            TablaConsultarActividad(dgvActividad);
-                            MessageBox.Show("ACTIVIDAD INACTIVADA EXITOSAMENTE." + Environment.NewLine + actividad.ToString(), "EXITO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            DialogResult resultado = MessageBox.Show("ESTAS SEGURO DE INACTIVAR ESTA ACTIVIDAD?", "CONFIRMACION", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                            if (resultado == DialogResult.Yes)
+                            {
+                                actividad.Estado = 2; // ESTADO 2 = INACTIVO
+                                EstadoActividadBD(actividad); // BASE DE DATOS
+                                TablaConsultarActividad(dgvActividad);
+                                MessageBox.Show("ACTIVIDAD INACTIVADA EXITOSAMENTE." + Environment.NewLine + actividad.ToString(), "EXITO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                Log.Information("ACTIVIDAD INACTIVADA EXITOSAMENTE: {actividad}", actividad);
+                            }
                         }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("ERROR: SELECCIONA UNA FILA ANTES DE INACTIVAR UNA ACTIVIDAD.", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Log.Warning("ERROR: SELECCIONA UNA FILA ANTES DE INACTIVAR UNA ACTIVIDAD.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("ERROR: SELECCIONA UNA FILA ANTES DE INACTIVAR UNA ACTIVIDAD.", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Log.Error("ERROR INESPERADO: {ex}", ex);
             }
         }
 
         public void RestaurarActividad(DataGridView dgvActividad)
         {
-            if (dgvActividad.SelectedRows.Count > 0)
+            try
             {
-                int filaSeleccionada = dgvActividad.SelectedRows[0].Index; // OBTIENE EL ÍNDICE DE LA FILA SELECCIONADA
-
-                if (filaSeleccionada >= 0)
+                if (dgvActividad.SelectedRows.Count > 0)
                 {
-                    string nombreActividad = dgvActividad.Rows[filaSeleccionada].Cells["ClmNombre"].Value.ToString(); // OBTIENE EL NOMBRE DE LA ACTIVIDAD DE LA FILA SELECCIONADA
-                    Actividad actividad = ListaActividad.FirstOrDefault(a => a.Nombre == nombreActividad);// BUSCA ACTIVIDAD EN LISTA POR NOMBRE
+                    int filaSeleccionada = dgvActividad.SelectedRows[0].Index; // OBTIENE EL ÍNDICE DE LA FILA SELECCIONADA
 
-                    if (actividad != null)
+                    if (filaSeleccionada >= 0)
                     {
-                        DialogResult resultado = MessageBox.Show("ESTAS SEGURO DE RESTAURAR ESTA ACTIVIDAD?", "CONFIRMACION", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        string nombreActividad = dgvActividad.Rows[filaSeleccionada].Cells["ClmNombre"].Value.ToString(); // OBTIENE EL NOMBRE DE LA ACTIVIDAD DE LA FILA SELECCIONADA
+                        Actividad actividad = ListaActividad.FirstOrDefault(a => a.Nombre == nombreActividad);// BUSCA ACTIVIDAD EN LISTA POR NOMBRE
 
-                        if (resultado == DialogResult.Yes)
+                        if (actividad != null)
                         {
-                            actividad.Estado = 1; // CAMBIA EL ESTADO A ACTIVO
-                            EstadoActividadBD(actividad); // BASE DE DATOS
-                            TablaConsultarActividadPapelera(dgvActividad);
-                            MessageBox.Show("ACTIVIDAD RESTAURADA EXITOSAMENTE." + Environment.NewLine + actividad.ToString(), "EXITO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            DialogResult resultado = MessageBox.Show("ESTAS SEGURO DE RESTAURAR ESTA ACTIVIDAD?", "CONFIRMACION", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                            if (resultado == DialogResult.Yes)
+                            {
+                                actividad.Estado = 1; // CAMBIA EL ESTADO A ACTIVO
+                                EstadoActividadBD(actividad); // BASE DE DATOS
+                                TablaConsultarActividadPapelera(dgvActividad);
+                                MessageBox.Show("ACTIVIDAD RESTAURADA EXITOSAMENTE." + Environment.NewLine + actividad.ToString(), "EXITO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                Log.Information("ACTIVIDAD RESTAURADA EXITOSAMENTE: {actividad}", actividad);
+                            }
                         }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("ERROR: SELECCIONA UNA FILA ANTES DE RESTAURAR UNA ACTIVIDAD.", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Log.Warning("ERROR: SELECCIONA UNA FILA ANTES DE RESTAURAR UNA ACTIVIDAD.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("ERROR: SELECCIONA UNA FILA ANTES DE RESTAURAR UNA ACTIVIDAD.", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Log.Error("ERROR INESPERADO: {ex}", ex);
             }
         }
 
@@ -241,11 +301,13 @@ namespace Control
                 if (msj[0] == '0')
                 {
                     MessageBox.Show("ERROR INESPERADO: " + msj);
+                    Log.Error("ERROR INESPERADO: {msj}", msj);
                 }
             }
             else if (msjBD[0] == '0')
             {
                 MessageBox.Show("ERROR: " + msjBD);
+                Log.Error("ERROR: {msjBD}", msjBD);
             }
             conn.CerrarConexion();
         }
@@ -264,18 +326,22 @@ namespace Control
 
             if (string.IsNullOrEmpty(sNombre) || string.IsNullOrEmpty(sDescripcion))
             {
+                Log.Warning("NO PUEDEN EXISTIR CAMPOS VACIOS.");
                 return "ERROR: NO PUEDEN EXISTIR CAMPOS VACIOS.";
             }
             else if (fechaInicio.Date == fechaFin.Date)
             {
+                Log.Warning("FECHA INICIO NO PUEDE SER IGUAL A FECHA FIN.");
                 return "ERROR: FECHA INICIO NO PUEDE SER IGUAL A FECHA FIN.";
             }
             else if (horaInicio == horaFin)
             {
+                Log.Warning("HORA INICIO NO PUEDE SER IGUAL A HORA FIN.");
                 return "ERROR: HORA INICIO NO PUEDE SER IGUAL A HORA FIN.";
             }
             else if (fechaFin < fechaInicio)
             {
+                Log.Warning("FECHA FIN NO PUEDE SER ANTERIOR A FECHA INICIO.");
                 return "ERROR: FECHA FIN NO PUEDE SER ANTERIOR A FECHA INICIO.";
             }
             else
@@ -287,6 +353,7 @@ namespace Control
                     {
                         if (ListaActividad.Any(atv => atv.Nombre == sNombre)) // BUSCAR SI NOMBRE NUEVO YA EXISTE
                         {
+                            Log.Warning("YA EXISTE UNA ACTIVIDAD CON EL NUEVO NOMBRE.");
                             return "ERROR: YA EXISTE UNA ACTIVIDAD CON EL NUEVO NOMBRE.";
                         }
                         actividadExistente.Nombre = sNombre; // ASIGNAR NOMBRE NUEVO
@@ -299,12 +366,21 @@ namespace Control
                     actividadExistente.HoraInicio = horaInicio;
                     actividadExistente.HoraFin = horaFin;
 
-                    EditarActividadBD(actividadExistente, sNombreOriginal); // BASE DE DATOS
-                    msj = "ACTIVIDAD EDITADA CORRECTAMENTE" + Environment.NewLine + actividadExistente.ToString();
+                    try
+                    {
+                        EditarActividadBD(actividadExistente, sNombreOriginal); // BASE DE DATOS
+                        msj = "ACTIVIDAD EDITADA CORRECTAMENTE" + Environment.NewLine + actividadExistente.ToString();
+                        Log.Information("ACTIVIDAD EDITADA CORRECTAMENTE: {actividadExistente}", actividadExistente);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error("ERROR INESPERADO: {ex}", ex);
+                    }
                 }
                 else
                 {
                     msj = "ERROR: NO SE PUDO ENCONTRAR LA ACTIVIDAD A EDITAR.";
+                    Log.Warning("ERROR: NO SE PUDO ENCONTRAR LA ACTIVIDAD A EDITAR.");
                 }
             }
             return msj;
@@ -321,11 +397,13 @@ namespace Control
                 if (msj[0] == '0')
                 {
                     MessageBox.Show("ERROR INESPERADO: " + msj);
+                    Log.Error("ERROR INESPERADO: {msj}", msj);
                 }
             }
             else if (msjBD[0] == '0')
             {
                 MessageBox.Show("ERROR: " + msjBD);
+                Log.Error("ERROR: {msjBD}", msjBD);
             }
             conn.CerrarConexion();
         }
@@ -335,38 +413,47 @@ namespace Control
         //
         public void RemoverActividad(DataGridView dgvActividad)
         {
-            if (dgvActividad.SelectedRows.Count > 0)
+            try
             {
-                int filaSeleccionada = dgvActividad.SelectedRows[0].Index; // OBTIENE EL ÍNDICE DE LA FILA SELECCIONADA
-
-                if (filaSeleccionada >= 0)
+                if (dgvActividad.SelectedRows.Count > 0)
                 {
-                    string nombreActividad = dgvActividad.Rows[filaSeleccionada].Cells["ClmNombre"].Value.ToString(); // OBTIENE EL NOMBRE DE LA ACTIVIDAD DE LA FILA SELECCIONADA
-                    Actividad actividad = ListaActividad.FirstOrDefault(a => a.Nombre == nombreActividad); // BUSCA ACTIVIDAD EN LISTA POR NOMBRE
+                    int filaSeleccionada = dgvActividad.SelectedRows[0].Index; // OBTIENE EL ÍNDICE DE LA FILA SELECCIONADA
 
-                    if (actividad != null)
+                    if (filaSeleccionada >= 0)
                     {
-                        DialogResult resultado = MessageBox.Show("ESTAS SEGURO DE ELIMINAR ESTA ACTIVIDAD?", "CONFIRMACION", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                        string nombreActividad = dgvActividad.Rows[filaSeleccionada].Cells["ClmNombre"].Value.ToString(); // OBTIENE EL NOMBRE DE LA ACTIVIDAD DE LA FILA SELECCIONADA
+                        Actividad actividad = ListaActividad.FirstOrDefault(a => a.Nombre == nombreActividad); // BUSCA ACTIVIDAD EN LISTA POR NOMBRE
 
-                        if (resultado == DialogResult.Yes)
+                        if (actividad != null)
                         {
-                            //ListaActividad.Remove(actividad);
-                            RemoverActividadBD(actividad); // BASE DE DATOS
-                            TablaConsultarActividadPapelera(dgvActividad);
+                            DialogResult resultado = MessageBox.Show("ESTAS SEGURO DE ELIMINAR ESTA ACTIVIDAD?", "CONFIRMACION", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
 
-                            for (int i = filaSeleccionada; i < dgvActividad.Rows.Count; i++)
+                            if (resultado == DialogResult.Yes)
                             {
-                                dgvActividad.Rows[i].Cells["ClmNumero"].Value = i + 1;
+                                //ListaActividad.Remove(actividad);
+                                RemoverActividadBD(actividad); // BASE DE DATOS
+                                TablaConsultarActividadPapelera(dgvActividad);
+
+                                for (int i = filaSeleccionada; i < dgvActividad.Rows.Count; i++)
+                                {
+                                    dgvActividad.Rows[i].Cells["ClmNumero"].Value = i + 1;
+                                }
+                                MessageBox.Show("ACTIVIDAD ELIMINADA CORRECTAMENTE." + Environment.NewLine + actividad.ToString(), "EXITO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                Log.Information("ACTIVIDAD ELIMINADA CORRECTAMENTE: {actividad}", actividad);
                             }
-                            MessageBox.Show("ACTIVIDAD ELIMINADA CORRECTAMENTE." + Environment.NewLine + actividad.ToString(), "EXITO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("ERROR: SELECCIONA UNA FILA ANTES DE ELIMINAR  UNA ACTIVIDAD.", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Log.Warning("ERROR: SELECCIONA UNA FILA ANTES DE ELIMINAR UNA ACTIVIDAD.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("ERROR: SELECCIONA UNA FILA ANTES DE ELIMINAR  UNA ACTIVIDAD.", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+                Log.Error("ERROR INESPERADO: {ex}", ex);
+            }        
         }
 
         public void RemoverActividadBD(Actividad act)
@@ -380,11 +467,13 @@ namespace Control
                 if (msj[0] == '0')
                 {
                     MessageBox.Show("ERROR INESPERADO: " + msj);
+                    Log.Error("ERROR INESPERADO: {msj}", msj);
                 }
             }
             else if (msjBD[0] == '0')
             {
                 MessageBox.Show("ERROR: " + msjBD);
+                Log.Error("ERROR: {msjBD}", msjBD);
             }
             conn.CerrarConexion();
         }
@@ -394,50 +483,64 @@ namespace Control
         //
         public void TablaConsultarActividadNombreDescripcion(DataGridView dgvActividad, string filtro = "", bool buscarPorNombre = true)
         {
-            int i = 0;
-            dgvActividad.Rows.Clear(); // LIMPIA FILAS SI LAS HAY
-
-            foreach (Actividad x in ListaActividad)
+            try
             {
-                if (x.Estado == 1 &&
-                    (string.IsNullOrEmpty(filtro) ||
-                    (buscarPorNombre && x.Nombre.Contains(filtro)) ||
-                    (!buscarPorNombre && x.Descripcion.Contains(filtro))))
+                int i = 0;
+                dgvActividad.Rows.Clear(); // LIMPIA FILAS SI LAS HAY
+
+                foreach (Actividad x in ListaActividad)
                 {
-                    i = dgvActividad.Rows.Add();
-                    dgvActividad.Rows[i].Cells["ClmNumero"].Value = i + 1;
-                    dgvActividad.Rows[i].Cells["ClmEstado"].Value = x.Estado;
-                    dgvActividad.Rows[i].Cells["ClmNombre"].Value = x.Nombre;
-                    dgvActividad.Rows[i].Cells["ClmDescripcion"].Value = x.Descripcion;
-                    dgvActividad.Rows[i].Cells["ClmFechaInicio"].Value = x.FechaInicio.ToString("d");
-                    dgvActividad.Rows[i].Cells["ClmFechaFin"].Value = x.FechaFin.ToString("d");
-                    dgvActividad.Rows[i].Cells["ClmHoraInicio"].Value = x.HoraInicio.ToString(@"hh\:mm");
-                    dgvActividad.Rows[i].Cells["ClmHoraFin"].Value = x.HoraFin.ToString(@"hh\:mm");
+                    if (x.Estado == 1 &&
+                        (string.IsNullOrEmpty(filtro) ||
+                        (buscarPorNombre && x.Nombre.Contains(filtro)) ||
+                        (!buscarPorNombre && x.Descripcion.Contains(filtro))))
+                    {
+                        i = dgvActividad.Rows.Add();
+                        dgvActividad.Rows[i].Cells["ClmNumero"].Value = i + 1;
+                        dgvActividad.Rows[i].Cells["ClmEstado"].Value = x.Estado;
+                        dgvActividad.Rows[i].Cells["ClmNombre"].Value = x.Nombre;
+                        dgvActividad.Rows[i].Cells["ClmDescripcion"].Value = x.Descripcion;
+                        dgvActividad.Rows[i].Cells["ClmFechaInicio"].Value = x.FechaInicio.ToString("d");
+                        dgvActividad.Rows[i].Cells["ClmFechaFin"].Value = x.FechaFin.ToString("d");
+                        dgvActividad.Rows[i].Cells["ClmHoraInicio"].Value = x.HoraInicio.ToString(@"hh\:mm");
+                        dgvActividad.Rows[i].Cells["ClmHoraFin"].Value = x.HoraFin.ToString(@"hh\:mm");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("ERROR INESPERADO: {ex}", ex);
             }
         }
       
         public void TablaConsultarActividadNombreDescripcionPapelera(DataGridView dgvActividad, string filtro = "", bool buscarPorNombre = true)
         {
-            int i = 0;
-            dgvActividad.Rows.Clear(); // LIMPIA FILAS SI LAS HAY
-            foreach (Actividad x in ListaActividad)
+            try
             {
-                if (x.Estado == 2 &&
-                    (string.IsNullOrEmpty(filtro) ||
-                    (buscarPorNombre && x.Nombre.Contains(filtro)) ||
-                    (!buscarPorNombre && x.Descripcion.Contains(filtro))))
+                int i = 0;
+                dgvActividad.Rows.Clear(); // LIMPIA FILAS SI LAS HAY
+                foreach (Actividad x in ListaActividad)
                 {
-                    i = dgvActividad.Rows.Add();
-                    dgvActividad.Rows[i].Cells["ClmNumero"].Value = i + 1;
-                    dgvActividad.Rows[i].Cells["ClmEstado"].Value = x.Estado;
-                    dgvActividad.Rows[i].Cells["ClmNombre"].Value = x.Nombre;
-                    dgvActividad.Rows[i].Cells["ClmDescripcion"].Value = x.Descripcion;
-                    dgvActividad.Rows[i].Cells["ClmFechaInicio"].Value = x.FechaInicio.ToString("d");
-                    dgvActividad.Rows[i].Cells["ClmFechaFin"].Value = x.FechaFin.ToString("d");
-                    dgvActividad.Rows[i].Cells["ClmHoraInicio"].Value = x.HoraInicio.ToString(@"hh\:mm");
-                    dgvActividad.Rows[i].Cells["ClmHoraFin"].Value = x.HoraFin.ToString(@"hh\:mm");
+                    if (x.Estado == 2 &&
+                        (string.IsNullOrEmpty(filtro) ||
+                        (buscarPorNombre && x.Nombre.Contains(filtro)) ||
+                        (!buscarPorNombre && x.Descripcion.Contains(filtro))))
+                    {
+                        i = dgvActividad.Rows.Add();
+                        dgvActividad.Rows[i].Cells["ClmNumero"].Value = i + 1;
+                        dgvActividad.Rows[i].Cells["ClmEstado"].Value = x.Estado;
+                        dgvActividad.Rows[i].Cells["ClmNombre"].Value = x.Nombre;
+                        dgvActividad.Rows[i].Cells["ClmDescripcion"].Value = x.Descripcion;
+                        dgvActividad.Rows[i].Cells["ClmFechaInicio"].Value = x.FechaInicio.ToString("d");
+                        dgvActividad.Rows[i].Cells["ClmFechaFin"].Value = x.FechaFin.ToString("d");
+                        dgvActividad.Rows[i].Cells["ClmHoraInicio"].Value = x.HoraInicio.ToString(@"hh\:mm");
+                        dgvActividad.Rows[i].Cells["ClmHoraFin"].Value = x.HoraFin.ToString(@"hh\:mm");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("ERROR INESPERADO: {ex}", ex);
             }
         }
 
@@ -458,48 +561,62 @@ namespace Control
 
         public void TablaConsultarActividad(DataGridView dgvActividad)
         {
-            int i = 0;
-            dgvActividad.Rows.Clear(); // LIMPIA FILAS SI LAS HAY          
-            //TablaConsultarActividadBD(1); // BASE DE DATOS
-            //TablaConsultarActividadBD();
-
-            foreach (Actividad x in ListaActividad)
+            try
             {
-                if (x.Estado == 1)
+                int i = 0;
+                dgvActividad.Rows.Clear(); // LIMPIA FILAS SI LAS HAY          
+                //TablaConsultarActividadBD(1); // BASE DE DATOS
+                //TablaConsultarActividadBD();
+
+                foreach (Actividad x in ListaActividad)
                 {
-                    i = dgvActividad.Rows.Add();
-                    dgvActividad.Rows[i].Cells["ClmNumero"].Value = i + 1;
-                    dgvActividad.Rows[i].Cells["ClmEstado"].Value = x.Estado;
-                    dgvActividad.Rows[i].Cells["ClmNombre"].Value = x.Nombre;
-                    dgvActividad.Rows[i].Cells["ClmDescripcion"].Value = x.Descripcion;
-                    dgvActividad.Rows[i].Cells["ClmFechaInicio"].Value = x.FechaInicio.ToString("d");
-                    dgvActividad.Rows[i].Cells["ClmFechaFin"].Value = x.FechaFin.ToString("d");
-                    dgvActividad.Rows[i].Cells["ClmHoraInicio"].Value = x.HoraInicio.ToString(@"hh\:mm");
-                    dgvActividad.Rows[i].Cells["ClmHoraFin"].Value = x.HoraFin.ToString(@"hh\:mm");
+                    if (x.Estado == 1)
+                    {
+                        i = dgvActividad.Rows.Add();
+                        dgvActividad.Rows[i].Cells["ClmNumero"].Value = i + 1;
+                        dgvActividad.Rows[i].Cells["ClmEstado"].Value = x.Estado;
+                        dgvActividad.Rows[i].Cells["ClmNombre"].Value = x.Nombre;
+                        dgvActividad.Rows[i].Cells["ClmDescripcion"].Value = x.Descripcion;
+                        dgvActividad.Rows[i].Cells["ClmFechaInicio"].Value = x.FechaInicio.ToString("d");
+                        dgvActividad.Rows[i].Cells["ClmFechaFin"].Value = x.FechaFin.ToString("d");
+                        dgvActividad.Rows[i].Cells["ClmHoraInicio"].Value = x.HoraInicio.ToString(@"hh\:mm");
+                        dgvActividad.Rows[i].Cells["ClmHoraFin"].Value = x.HoraFin.ToString(@"hh\:mm");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("ERROR INESPERADO: {ex}", ex);
             }
         }
 
         public void TablaConsultarActividadPapelera(DataGridView dgvActividad)
         {
-            int i = 0;
-            dgvActividad.Rows.Clear(); // LIMPIA FILAS SI LAS HAY
-            //TablaConsultarActividadBD(2); // BASE DE DATOS
-
-            foreach (Actividad x in ListaActividad)
+            try
             {
-                if (x.Estado == 2)
+                int i = 0;
+                dgvActividad.Rows.Clear(); // LIMPIA FILAS SI LAS HAY
+                                           //TablaConsultarActividadBD(2); // BASE DE DATOS
+
+                foreach (Actividad x in ListaActividad)
                 {
-                    i = dgvActividad.Rows.Add();
-                    dgvActividad.Rows[i].Cells["ClmNumero"].Value = i + 1;
-                    dgvActividad.Rows[i].Cells["ClmEstado"].Value = x.Estado;
-                    dgvActividad.Rows[i].Cells["ClmNombre"].Value = x.Nombre;
-                    dgvActividad.Rows[i].Cells["ClmDescripcion"].Value = x.Descripcion;
-                    dgvActividad.Rows[i].Cells["ClmFechaInicio"].Value = x.FechaInicio.ToString("d");
-                    dgvActividad.Rows[i].Cells["ClmFechaFin"].Value = x.FechaFin.ToString("d");
-                    dgvActividad.Rows[i].Cells["ClmHoraInicio"].Value = x.HoraInicio.ToString(@"hh\:mm");
-                    dgvActividad.Rows[i].Cells["ClmHoraFin"].Value = x.HoraFin.ToString(@"hh\:mm");
+                    if (x.Estado == 2)
+                    {
+                        i = dgvActividad.Rows.Add();
+                        dgvActividad.Rows[i].Cells["ClmNumero"].Value = i + 1;
+                        dgvActividad.Rows[i].Cells["ClmEstado"].Value = x.Estado;
+                        dgvActividad.Rows[i].Cells["ClmNombre"].Value = x.Nombre;
+                        dgvActividad.Rows[i].Cells["ClmDescripcion"].Value = x.Descripcion;
+                        dgvActividad.Rows[i].Cells["ClmFechaInicio"].Value = x.FechaInicio.ToString("d");
+                        dgvActividad.Rows[i].Cells["ClmFechaFin"].Value = x.FechaFin.ToString("d");
+                        dgvActividad.Rows[i].Cells["ClmHoraInicio"].Value = x.HoraInicio.ToString(@"hh\:mm");
+                        dgvActividad.Rows[i].Cells["ClmHoraFin"].Value = x.HoraFin.ToString(@"hh\:mm");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("ERROR INESPERADO: {ex}", ex);
             }
         }
 
@@ -533,13 +650,20 @@ namespace Control
         //
         public void AbrirPDF()
         {
-            if (File.Exists("REPORTE-PDF-ACTIVIDADES.pdf")) // Verificar si el archivo PDF existe antes de intentar abrirlo
+            try
             {
-                System.Diagnostics.Process.Start("REPORTE-PDF-ACTIVIDADES.pdf"); // Abrir el archivo PDF con el visor de PDF predeterminado del sistema
+                if (File.Exists("REPORTE-PDF-ACTIVIDADES.pdf")) // Verificar si el archivo PDF existe antes de intentar abrirlo
+                {
+                    System.Diagnostics.Process.Start("REPORTE-PDF-ACTIVIDADES.pdf"); // Abrir el archivo PDF con el visor de PDF predeterminado del sistema
+                }
+                else
+                {
+                    MessageBox.Show("ARCHIVO PDF NO ENCONTRADO.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("ARCHIVO PDF NO ENCONTRADO.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Error("ERROR INESPERADO: {ex}", ex);
             }
         }
 
@@ -611,10 +735,12 @@ namespace Control
                 pdf.Close();
 
                 MessageBox.Show("PDF GENERADO EXITOSAMENTE.", "EXITO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Log.Information("PDF GENERADO EXITOSAMENTE.");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("ERROR AL GENERAR PDF: " + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Error("ERROR AL GENERAR PDF: {ex}", ex);
             }
             finally
             {
@@ -624,13 +750,20 @@ namespace Control
 
         public void AbrirPDF_Off()
         {
-            if (File.Exists("REPORTE-PDF-ACTIVIDADES-OFF.pdf")) // Verificar si el archivo PDF existe antes de intentar abrirlo
-            {
-                System.Diagnostics.Process.Start("REPORTE-PDF-ACTIVIDADES-OFF.pdf"); // Abrir el archivo PDF con el visor de PDF predeterminado del sistema
+            try
+            { 
+                if (File.Exists("REPORTE-PDF-ACTIVIDADES-OFF.pdf")) // Verificar si el archivo PDF existe antes de intentar abrirlo
+                {
+                    System.Diagnostics.Process.Start("REPORTE-PDF-ACTIVIDADES-OFF.pdf"); // Abrir el archivo PDF con el visor de PDF predeterminado del sistema
+                }
+                else
+                {
+                    MessageBox.Show("ARCHIVO PDF NO ENCONTRADO.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("ARCHIVO PDF NO ENCONTRADO.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Error("ERROR INESPERADO: {ex}", ex);
             }
         }
 
@@ -702,10 +835,12 @@ namespace Control
                 pdf.Close();
 
                 MessageBox.Show("PDF GENERADO EXITOSAMENTE.", "EXITO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Log.Information("PDF GENERADO EXITOSAMENTE.");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("ERROR AL GENERAR PDF: " + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Error("ERROR AL GENERAR PDF: {ex}", ex);
             }
             finally
             {
