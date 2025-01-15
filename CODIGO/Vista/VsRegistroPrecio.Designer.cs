@@ -87,7 +87,6 @@
             this.dgvRegistroPrecio.RowTemplate.Height = 24;
             this.dgvRegistroPrecio.Size = new System.Drawing.Size(933, 227);
             this.dgvRegistroPrecio.TabIndex = 0;
-            this.dgvRegistroPrecio.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistroPrecio_CellContentClick);
             // 
             // clmNroFactRegistro
             // 
@@ -221,7 +220,6 @@
             this.cmbiNFORME.Name = "cmbiNFORME";
             this.cmbiNFORME.Size = new System.Drawing.Size(121, 24);
             this.cmbiNFORME.TabIndex = 4;
-            this.cmbiNFORME.SelectedIndexChanged += new System.EventHandler(this.cmbiNFORME_SelectedIndexChanged);
             // 
             // txtTotalFacturas
             // 
@@ -230,7 +228,6 @@
             this.txtTotalFacturas.ReadOnly = true;
             this.txtTotalFacturas.Size = new System.Drawing.Size(100, 22);
             this.txtTotalFacturas.TabIndex = 9;
-            this.txtTotalFacturas.TextChanged += new System.EventHandler(this.txtTotalFacturas_TextChanged);
             // 
             // txtTotalConDescuento
             // 
@@ -239,7 +236,6 @@
             this.txtTotalConDescuento.ReadOnly = true;
             this.txtTotalConDescuento.Size = new System.Drawing.Size(100, 22);
             this.txtTotalConDescuento.TabIndex = 10;
-            this.txtTotalConDescuento.TextChanged += new System.EventHandler(this.txtTotalConDescuento_TextChanged);
             // 
             // txtTotalSinDescuento
             // 
@@ -248,7 +244,6 @@
             this.txtTotalSinDescuento.ReadOnly = true;
             this.txtTotalSinDescuento.Size = new System.Drawing.Size(100, 22);
             this.txtTotalSinDescuento.TabIndex = 11;
-            this.txtTotalSinDescuento.TextChanged += new System.EventHandler(this.txtTotalSinDescuento_TextChanged);
             // 
             // label6
             // 
@@ -260,7 +255,6 @@
             this.label6.Size = new System.Drawing.Size(184, 17);
             this.label6.TabIndex = 12;
             this.label6.Text = "MOSTRAR INFORME DE FACTURAS:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label2
             // 
@@ -313,7 +307,6 @@
             this.txtMontoTotal.ReadOnly = true;
             this.txtMontoTotal.Size = new System.Drawing.Size(132, 22);
             this.txtMontoTotal.TabIndex = 17;
-            this.txtMontoTotal.TextChanged += new System.EventHandler(this.txtMontoTotal_TextChanged);
             // 
             // btnInformePDF
             // 
@@ -332,7 +325,6 @@
             this.dtInicoInforme.Name = "dtInicoInforme";
             this.dtInicoInforme.Size = new System.Drawing.Size(140, 22);
             this.dtInicoInforme.TabIndex = 19;
-            this.dtInicoInforme.ValueChanged += new System.EventHandler(this.dtInicoInforme_ValueChanged);
             // 
             // label1
             // 
@@ -363,7 +355,6 @@
             this.dtFinInforme.Name = "dtFinInforme";
             this.dtFinInforme.Size = new System.Drawing.Size(140, 22);
             this.dtFinInforme.TabIndex = 22;
-            this.dtFinInforme.ValueChanged += new System.EventHandler(this.dtFinInforme_ValueChanged);
             // 
             // btnMostrarInforme
             // 

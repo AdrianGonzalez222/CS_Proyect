@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Dato;
 using Modelo;
@@ -13,7 +11,6 @@ using Serilog;
 
 namespace Control
 {
-    // GONZALEZ ASTUDILLO ADRIAN
     public class CtrActividad
     {
         Conexion conn = new Conexion();
@@ -24,18 +21,6 @@ namespace Control
 
         public DateTime FechaActual { get => fechaActual; set => fechaActual = value; }
         public static List<Actividad> ListaActividad { get => listaActividad; set => listaActividad = value; }
-
-
-        //public CtrActividad()
-        //{
-        //    if (ListaActividad.Count == 0)
-        //    {
-        //        ListaActividad.Add(new Actividad("ACTIVIDAD 1", "PESAS", DateTime.Now, DateTime.Now.AddDays(1), new TimeSpan(9, 0, 0), new TimeSpan(12, 0, 0)));
-        //        ListaActividad.Add(new Actividad("ACTIVIDAD 2", "MANCUERNAS", DateTime.Now.AddDays(2), DateTime.Now.AddDays(3), new TimeSpan(10, 0, 0), new TimeSpan(13, 0, 0)));
-        //        ListaActividad.Add(new Actividad("ACTIVIDAD 3", "FLEXIONES", DateTime.Now.AddDays(4), DateTime.Now.AddDays(5), new TimeSpan(11, 0, 0), new TimeSpan(14, 0, 0)));
-        //    }
-        //}
-    
 
         //
         // INGRESAR LIST - BD
@@ -79,8 +64,7 @@ namespace Control
             {
                 try 
                 { 
-                    act = new Actividad(sNombre, sDescripcion, fechaInicio, fechaFin, horaInicio, horaFin);
-                    //ListaActividad.Add(act);              
+                    act = new Actividad(sNombre, sDescripcion, fechaInicio, fechaFin, horaInicio, horaFin);           
                     IngresarActividadBD(act); // BASE DE DATOS
                     msj = "ACTIVIDAD REGISTRADA CORRECTAMENTE" + Environment.NewLine + act.ToString();
                     Log.Information("ACTIVIDAD REGISTRADA CORRECTAMENTE: {act}", act);
@@ -88,6 +72,7 @@ namespace Control
                 catch (Exception ex)
                 {
                     Log.Error("ERROR INESPERADO: {ex}", ex);
+                    return "ERROR INESPERADO: " + ex.Message;
                 }
             }
             return msj;
@@ -172,40 +157,6 @@ namespace Control
                 return null;
             }
         }
-
-
-        //// 1
-        //public void TablaConsultarActividadBD(int estado)
-        //{
-        //    string msjBD = conn.AbrirConexion();
-
-        //    if (msjBD[0] == '1')
-        //    {
-        //        ListaActividad = dtActividad.SelectActividades(conn.Connect, estado);
-        //    }
-        //    else if (msjBD[0] == '0')
-        //    {
-        //        MessageBox.Show("ERROR: " + msjBD);
-        //    }
-        //    conn.CerrarConexion();
-        //}
-
-        //// 2
-        //public void TablaConsultarActividadBD()
-        //{
-        //    string msjBD = conn.AbrirConexion();
-
-        //    if (msjBD[0] == '1')
-        //    {
-        //        ListaActividad = dtActividad.SelectActividades(conn.Connect);
-        //    }
-        //    else if (msjBD[0] == '0')
-        //    {
-        //        MessageBox.Show("ERROR: " + msjBD);
-        //    }
-        //    conn.CerrarConexion();
-        //}
-
 
         //
         // CAMBIAR ESTADO - BD
@@ -430,7 +381,6 @@ namespace Control
 
                             if (resultado == DialogResult.Yes)
                             {
-                                //ListaActividad.Remove(actividad);
                                 RemoverActividadBD(actividad); // BASE DE DATOS
                                 TablaConsultarActividadPapelera(dgvActividad);
 
@@ -565,8 +515,6 @@ namespace Control
             {
                 int i = 0;
                 dgvActividad.Rows.Clear(); // LIMPIA FILAS SI LAS HAY          
-                //TablaConsultarActividadBD(1); // BASE DE DATOS
-                //TablaConsultarActividadBD();
 
                 foreach (Actividad x in ListaActividad)
                 {
@@ -596,7 +544,6 @@ namespace Control
             {
                 int i = 0;
                 dgvActividad.Rows.Clear(); // LIMPIA FILAS SI LAS HAY
-                                           //TablaConsultarActividadBD(2); // BASE DE DATOS
 
                 foreach (Actividad x in ListaActividad)
                 {
@@ -622,7 +569,6 @@ namespace Control
 
         public void PresentarDatosActividad(TextBox textNombre, TextBox textDescripcion, DateTimePicker dtpFechaInicio, DateTimePicker dtpFechaFin, DateTimePicker dtpHoraInicio, DateTimePicker dtpHoraFin, string nombreActividad)
         {
-            //Actividad actividadSeleccionada = ExtraerNombreActividad(nombreActividad);
             Actividad actividadSeleccionada = listaActividad.Find(a => a.Nombre == nombreActividad);
             if (actividadSeleccionada != null)
             {
@@ -848,14 +794,5 @@ namespace Control
             }
         }
 
-        //
-        // METODOS SIN USO ACTUAL
-        //
-        public Actividad ExtraerNombreActividad(string nombreActividad)
-        {
-            return listaActividad.Find(a => a.Nombre == nombreActividad);
-        }
-
-    // FIN
     }
 }

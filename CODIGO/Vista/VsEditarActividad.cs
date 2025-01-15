@@ -1,17 +1,9 @@
 ﻿using Control;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Vista
 {
-    // GONZALEZ ASTUDILLO ADRIAN
     public partial class VsEditarActividad : Form
     {
         private Validacion val = new Validacion();
@@ -75,6 +67,5 @@ namespace Vista
             val.ConvertirMayuscula(textBox);
         }
 
-        // FIN
     }
 }

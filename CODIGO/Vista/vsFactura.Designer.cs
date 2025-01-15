@@ -204,7 +204,6 @@
             this.lblCedulaFact.Size = new System.Drawing.Size(56, 16);
             this.lblCedulaFact.TabIndex = 29;
             this.lblCedulaFact.Text = "_______";
-            this.lblCedulaFact.Click += new System.EventHandler(this.label13_Click);
             // 
             // lblNombreFact
             // 
@@ -216,7 +215,6 @@
             this.lblNombreFact.Size = new System.Drawing.Size(56, 16);
             this.lblNombreFact.TabIndex = 30;
             this.lblNombreFact.Text = "_______";
-            this.lblNombreFact.Click += new System.EventHandler(this.lblNombreFact_Click);
             // 
             // lblApellidoFact
             // 
@@ -227,7 +225,6 @@
             this.lblApellidoFact.Size = new System.Drawing.Size(56, 16);
             this.lblApellidoFact.TabIndex = 31;
             this.lblApellidoFact.Text = "_______";
-            this.lblApellidoFact.Click += new System.EventHandler(this.lblApellidoFact_Click);
             // 
             // lblTelefonoFact
             // 
@@ -238,7 +235,6 @@
             this.lblTelefonoFact.Size = new System.Drawing.Size(56, 16);
             this.lblTelefonoFact.TabIndex = 32;
             this.lblTelefonoFact.Text = "_______";
-            this.lblTelefonoFact.Click += new System.EventHandler(this.lblTelefonoFact_Click);
             // 
             // lblDireccionFact
             // 
@@ -249,7 +245,6 @@
             this.lblDireccionFact.Size = new System.Drawing.Size(56, 16);
             this.lblDireccionFact.TabIndex = 33;
             this.lblDireccionFact.Text = "_______";
-            this.lblDireccionFact.Click += new System.EventHandler(this.lblDireccionFact_Click);
             // 
             // lblComprobanteFact
             // 
@@ -260,7 +255,6 @@
             this.lblComprobanteFact.Size = new System.Drawing.Size(56, 16);
             this.lblComprobanteFact.TabIndex = 35;
             this.lblComprobanteFact.Text = "_______";
-            this.lblComprobanteFact.Click += new System.EventHandler(this.lblComprobanteFact_Click);
             // 
             // lblPromocionFact
             // 
@@ -271,7 +265,6 @@
             this.lblPromocionFact.Size = new System.Drawing.Size(56, 16);
             this.lblPromocionFact.TabIndex = 37;
             this.lblPromocionFact.Text = "_______";
-            this.lblPromocionFact.Click += new System.EventHandler(this.lblPromocionFact_Click);
             // 
             // label11
             // 
@@ -293,7 +286,6 @@
             this.lblEstudianteFact.Size = new System.Drawing.Size(56, 16);
             this.lblEstudianteFact.TabIndex = 39;
             this.lblEstudianteFact.Text = "_______";
-            this.lblEstudianteFact.Click += new System.EventHandler(this.lblEstudianteFact_Click);
             // 
             // label5
             // 
@@ -315,7 +307,6 @@
             this.lblPlanFact.Size = new System.Drawing.Size(56, 16);
             this.lblPlanFact.TabIndex = 41;
             this.lblPlanFact.Text = "_______";
-            this.lblPlanFact.Click += new System.EventHandler(this.lblPlanFact_Click);
             // 
             // lblNumFactura
             // 
@@ -326,7 +317,6 @@
             this.lblNumFactura.Size = new System.Drawing.Size(56, 16);
             this.lblNumFactura.TabIndex = 42;
             this.lblNumFactura.Text = "_______";
-            this.lblNumFactura.Click += new System.EventHandler(this.lblNumFactura_Click);
             // 
             // lblFechaNacimientoFact
             // 
@@ -337,7 +327,6 @@
             this.lblFechaNacimientoFact.Size = new System.Drawing.Size(56, 16);
             this.lblFechaNacimientoFact.TabIndex = 43;
             this.lblFechaNacimientoFact.Text = "_______";
-            this.lblFechaNacimientoFact.Click += new System.EventHandler(this.lblFechaNacimientoFact_Click);
             // 
             // pictureBox1
             // 
@@ -359,7 +348,6 @@
             this.lblFechaInicioFact.Size = new System.Drawing.Size(56, 16);
             this.lblFechaInicioFact.TabIndex = 46;
             this.lblFechaInicioFact.Text = "_______";
-            this.lblFechaInicioFact.Click += new System.EventHandler(this.lblFechaInicioFact_Click);
             // 
             // label13
             // 
@@ -372,7 +360,6 @@
             this.label13.Size = new System.Drawing.Size(258, 31);
             this.label13.TabIndex = 60;
             this.label13.Text = "DATOS DE LA FACTURA";
-            this.label13.Click += new System.EventHandler(this.label13_Click_1);
             // 
             // label
             // 
@@ -394,7 +381,6 @@
             this.lblFechaFinFact.Size = new System.Drawing.Size(56, 16);
             this.lblFechaFinFact.TabIndex = 62;
             this.lblFechaFinFact.Text = "_______";
-            this.lblFechaFinFact.Click += new System.EventHandler(this.lblFechaFinFact_Click);
             // 
             // label14
             // 
@@ -469,7 +455,6 @@
             this.lblTotalFact.Size = new System.Drawing.Size(10, 16);
             this.lblTotalFact.TabIndex = 69;
             this.lblTotalFact.Text = ".";
-            this.lblTotalFact.Click += new System.EventHandler(this.lblTotalFact_Click_1);
             // 
             // VsFactura
             // 
@@ -517,7 +502,6 @@
             this.Name = "VsFactura";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Datos Factura";
-            this.Load += new System.EventHandler(this.VsFactura_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

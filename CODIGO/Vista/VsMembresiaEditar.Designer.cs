@@ -71,7 +71,6 @@
             this.labelTituloEditar.Size = new System.Drawing.Size(267, 41);
             this.labelTituloEditar.TabIndex = 1;
             this.labelTituloEditar.Text = "Membresía Editar";
-            this.labelTituloEditar.Click += new System.EventHandler(this.labelTitulo_Click);
             // 
             // label2
             // 
@@ -162,7 +161,6 @@
             this.txtBoxME.Name = "txtBoxME";
             this.txtBoxME.Size = new System.Drawing.Size(200, 20);
             this.txtBoxME.TabIndex = 12;
-            this.txtBoxME.TextChanged += new System.EventHandler(this.txtBoxME_TextChanged);
             // 
             // txtBoxDPE
             // 
@@ -171,7 +169,6 @@
             this.txtBoxDPE.Name = "txtBoxDPE";
             this.txtBoxDPE.Size = new System.Drawing.Size(200, 74);
             this.txtBoxDPE.TabIndex = 16;
-            this.txtBoxDPE.TextChanged += new System.EventHandler(this.txtBoxDPE_TextChanged);
             // 
             // txtBoxDE
             // 
@@ -179,7 +176,6 @@
             this.txtBoxDE.Name = "txtBoxDE";
             this.txtBoxDE.Size = new System.Drawing.Size(75, 20);
             this.txtBoxDE.TabIndex = 17;
-            this.txtBoxDE.TextChanged += new System.EventHandler(this.txtBoxDE_TextChanged);
             this.txtBoxDE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxDE_KeyPress);
             // 
             // dateTPFIE
@@ -213,7 +209,6 @@
             this.txtBoxPME.Name = "txtBoxPME";
             this.txtBoxPME.Size = new System.Drawing.Size(75, 20);
             this.txtBoxPME.TabIndex = 23;
-            this.txtBoxPME.TextChanged += new System.EventHandler(this.txtBoxPME_TextChanged);
             this.txtBoxPME.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxPME_KeyPress);
             // 
             // comboBoxPE
@@ -421,7 +416,6 @@
             this.Controls.Add(this.labelTituloEditar);
             this.Name = "VsMembresiaEditar";
             this.Text = "VsMembresiaEditar";
-            this.Load += new System.EventHandler(this.VsMembresiaEditar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

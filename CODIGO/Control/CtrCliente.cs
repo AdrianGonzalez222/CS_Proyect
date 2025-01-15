@@ -2,16 +2,13 @@
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Runtime.Remoting.Lifetime;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Dato;
-using Microsoft.Win32.SafeHandles;
 using Modelo;
+using Serilog;
+
 namespace Control
 {
     public class CtrCliente
@@ -22,26 +19,23 @@ namespace Control
 
         public static List<Cliente> ListaCli { get => listaCli; set => listaCli = value; }
         
-
         public int GetTotal()
         {
             ListaCli = ConsultarTablaCliBD();
             return listaCli.Count;
         }
 
-
         public string IngresarCli(string rCedula, string rNombre, string rApellido,string rFechaNacimiento, string rTelefono, string rEstado, string rDireccion)
-        {
-            
+        {           
             String msg = "ERROR: SE ESPERABA DATOS CORRECTOS!!";
             Validacion v = new Validacion();
             DateTime hoy = DateTime.Now;
             Cliente cli = null;
             DateTime fechaNac = v.ConvertirDateTime(rFechaNacimiento);
 
-                cli = new Cliente(rCedula, rNombre, rApellido, fechaNac, rTelefono, rDireccion, rEstado);
-                IngresarClienteBD(cli);
-                msg = cli.ToString() + "\n CLIENTE REGISTRADO EXITOSAMENTE!!";
+            cli = new Cliente(rCedula, rNombre, rApellido, fechaNac, rTelefono, rDireccion, rEstado);
+            IngresarClienteBD(cli);
+            msg = cli.ToString() + "\n CLIENTE REGISTRADO EXITOSAMENTE!!";
 
             return msg;
         }
@@ -65,17 +59,19 @@ namespace Control
         {
             string msg = string.Empty;
             string msgBD = conn.AbrirConexion();
+
             if (msgBD[0] == '1')
             {
                 msg = dtCliente.InsertarCliente(cliente, conn.Connect);
                 if (msg[0] == '0')
                 {
+                    Log.Error("ERROR INESPERADO: " + msg);
                     MessageBox.Show("ERROR INESPERADO: " + msg);
-                }
-                
+                }               
             }
             else if (msgBD[0] == '0')
             {
+                Log.Error("ERROR: " + msgBD);
                 MessageBox.Show("ERROR: " + msgBD);
             }
             conn.CerrarConexion();
@@ -91,7 +87,6 @@ namespace Control
                 }
             }
             return false;
-
         }
 
         public List<Cliente> ConsultarTablaCliBD()
@@ -105,8 +100,10 @@ namespace Control
             }
             else if (msgBD[0] == '0')
             {
+                Log.Error("ERROR: " + msgBD);
                 MessageBox.Show("ERROR: " + msgBD);
             }
+
             conn.CerrarConexion();
             return clientes;
         }
@@ -117,25 +114,24 @@ namespace Control
             dgvClientes.Rows.Clear(); // Limpiar filas si las hay 
             foreach (Cliente x in ListaCli )
             {
-                    i = dgvClientes.Rows.Add();
-                    dgvClientes.Rows[i].Cells["clmEstado"].Value = x.Estado;
-                    dgvClientes.Rows[i].Cells["clmCedula"].Value = x.Cedula;
-                    dgvClientes.Rows[i].Cells["clmNombre"].Value = x.Nombre;
-                    dgvClientes.Rows[i].Cells["clmApellido"].Value = x.Apellido;
-                    dgvClientes.Rows[i].Cells["clmTelefono"].Value = x.Telefono;
-                    dgvClientes.Rows[i].Cells["clmDireccion"].Value = x.Direccion;
-                    dgvClientes.Rows[i].Cells["clmDate"].Value = x.FechaNacimiento.ToString("d");
-                    if (x is ClienteEstudiante clienteEstudiante)
-                    {
+                i = dgvClientes.Rows.Add();
+                dgvClientes.Rows[i].Cells["clmEstado"].Value = x.Estado;
+                dgvClientes.Rows[i].Cells["clmCedula"].Value = x.Cedula;
+                dgvClientes.Rows[i].Cells["clmNombre"].Value = x.Nombre;
+                dgvClientes.Rows[i].Cells["clmApellido"].Value = x.Apellido;
+                dgvClientes.Rows[i].Cells["clmTelefono"].Value = x.Telefono;
+                dgvClientes.Rows[i].Cells["clmDireccion"].Value = x.Direccion;
+                dgvClientes.Rows[i].Cells["clmDate"].Value = x.FechaNacimiento.ToString("d");
 
-                        dgvClientes.Rows[i].Cells["clmComprobanteEst"].Value = clienteEstudiante.Comprobante;
-                    }
-                    else
-                    {
-                        dgvClientes.Rows[i].Cells["clmComprobanteEst"].Value = ObtenerComprobanteActualizado(x.Cedula);
-                    }   
+                if (x is ClienteEstudiante clienteEstudiante)
+                {
+                    dgvClientes.Rows[i].Cells["clmComprobanteEst"].Value = clienteEstudiante.Comprobante;
+                }
+                else
+                {
+                    dgvClientes.Rows[i].Cells["clmComprobanteEst"].Value = ObtenerComprobanteActualizado(x.Cedula);
+                }
             }
-
         }
 
         public string ObtenerComprobanteActualizado(string cedula)
@@ -150,6 +146,7 @@ namespace Control
                     }
                 }
             }
+
             return "SIN COMPROBANTE";
         }
 
@@ -165,25 +162,30 @@ namespace Control
             if (string.IsNullOrEmpty(aCedula) || string.IsNullOrEmpty(aNombre) || string.IsNullOrEmpty(aApellido) ||
                 string.IsNullOrEmpty(aFechaNacimiento) || string.IsNullOrEmpty(aTelefono) || string.IsNullOrEmpty(aDireccion))
             {
+                Log.Warning("ERROR: NO PUEDEN EXISTIR CAMPOS VACIOS");
                 return "ERROR: NO PUEDEN EXISTIR CAMPOS VACIOS";
             }
             else if (fechaNac >= fechaActual)
             {
+                Log.Warning("ERROR: INGRESE FECHA DE NACIMIENTO VALIDA");
                 return "ERROR: INGRESE FECHA DE NACIMIENTO VALIDA";
             }
             else if (fechaNac >= fechaLimite)
             {
+                Log.Warning("ERROR: LA FECHA DE NACIMIENTO INVALIDA");
                 return "ERROR: LA FECHA DE NACIMIENTO INVALIDA";
             }
 
             Cliente clienteExistente = ListaCli.FirstOrDefault(c => c.Cedula == aCedulaOrg);
             if (clienteExistente == null)
             {
+                Log.Warning("ERROR: NO SE ENCONTRO EL CLIENTE");
                 return "ERROR: NO SE ENCONTRO EL CLIENTE";
             }
 
             if (ListaCli.Any(cli => cli.Cedula == aCedula && cli.Cedula != aCedulaOrg))
             {
+                Log.Warning("ERROR: YA EXISTE UN CLIENTE CON ESA CEDULA");
                 return "ERROR: YA EXISTE UN CLIENTE CON ESA CEDULA.";
             }
 
@@ -224,63 +226,7 @@ namespace Control
             EditarCliBD(clienteExistente, aCedulaOrg);
             return "CLIENTE EDITADO CORRECTAMENTE";
         }
-
-        //public string EditarCli(string aCedulaOrg, string aCedula, string aNombre, string aApellido, string aFechaNacimiento, string aTelefono, string aDireccion, string aEstado)
-        //{
-        //    string msg = "ERROR: SE ESPERABA DATOS CORRECTOS!!";
-        //    Validacion v = new Validacion();
-        //    DateTime fechaNac = v.ConvertirDateTime(aFechaNacimiento);
-        //    DateTime fechaLimite = new DateTime(2014, 12, 31); // Fecha límite: 1 de enero de 2014
-        //    DateTime fechaActual = DateTime.Now;
-
-        //    // Validaciones
-        //    if (string.IsNullOrEmpty(aCedula) || string.IsNullOrEmpty(aNombre) || string.IsNullOrEmpty(aApellido) ||
-        //        string.IsNullOrEmpty(aFechaNacimiento) || string.IsNullOrEmpty(aTelefono) || string.IsNullOrEmpty(aDireccion))
-        //    {
-        //        return "ERROR: NO PUEDEN EXISTIR CAMPOS VACIOS";
-        //    }
-        //    else if (fechaNac >= fechaActual)
-        //    {
-        //        return "ERROR: INGRESE FECHA DE NACIIENTO VALIDA";
-        //    }
-        //    else if (fechaNac >= fechaLimite)
-        //    {
-        //        return "ERROR: LA FECHA DE NACIMIENTO INVALIDA";
-        //    }
-
-        //    foreach (Cliente clienteExistente in ListaCli)
-        //    {
-        //        if (clienteExistente.Cedula == aCedulaOrg)
-        //        {
-        //            if (clienteExistente.Cedula != aCedula)
-        //            {
-        //                if (ListaCli.Any(cli => cli.Cedula == aCedula))
-        //                {
-        //                    return "ERROR: YA EXISTE UN CLIENTE CON ESA CEDULA.";
-        //                }
-        //                clienteExistente.Cedula = aCedula;
-        //            }
-        //            clienteExistente.Nombre = aNombre;
-        //            clienteExistente.Apellido = aApellido;
-        //            clienteExistente.FechaNacimiento = fechaNac;
-        //            clienteExistente.Telefono = aTelefono;
-        //            clienteExistente.Direccion = aDireccion;
-        //            clienteExistente.Estado = aEstado;
-
-        //            EditarCliBD(clienteExistente, aCedulaOrg);
-        //            msg = "CLIENTE EDITADO CORRECTAMENTE";
-        //            break;
-        //        }
-        //    }
-
-        //    if (msg == "ERROR: SE ESPERABA DATOS CORRECTOS!!")
-        //    {
-        //        msg = "ERROR: NO SE ENCONTRO EL CLIENTE";
-        //    }
-
-        //    return msg;
-        //}
-
+   
         public void EditarCliBD(Cliente cli, string CedulaOrg)
         {
             string msj = string.Empty;
@@ -291,11 +237,13 @@ namespace Control
                 msj = dtCliente.UpdateCliente(cli, conn.Connect, CedulaOrg);
                 if (msj[0] == '0')
                 {
+                    Log.Error("ERROR INESPERADO: " + msj);
                     MessageBox.Show("ERROR INESPERADO: " + msj);
                 }
             }
             else if (msjBD[0] == '0')
             {
+                Log.Error("ERROR: " + msjBD);
                 MessageBox.Show("ERROR: " + msjBD);
             }
             conn.CerrarConexion();
@@ -303,7 +251,6 @@ namespace Control
 
         public void BuscarCliente(DataGridView dgvClientes, string filtroPorCedula = "", string filtroPorNombre = "")
         {
-
             if (string.IsNullOrEmpty(filtroPorCedula) && string.IsNullOrEmpty(filtroPorNombre))
             {
                 MessageBox.Show("ERROR: DEBE INGRESAR AL MENOS UN CAMPO PARA LA BÚSQUEDA (CÉDULA O NOMBRE).", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -312,6 +259,7 @@ namespace Control
 
             int i = 0;
             dgvClientes.Rows.Clear(); // Limpiar filas si las hay 
+
             foreach (Cliente x in ListaCli)
             {
                 bool coincideCedula = string.IsNullOrEmpty(filtroPorCedula) || x.Cedula.IndexOf(filtroPorCedula, StringComparison.OrdinalIgnoreCase) >= 0;
@@ -345,18 +293,19 @@ namespace Control
             }
         }
 
-
         public void InactivarCliente(string cedula, DataGridView dgvCliente)
         {
-                DialogResult resultado = MessageBox.Show("¿DESEA INACTIVAR A ESTE CLIENTE?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if(resultado == DialogResult.Yes)
+            DialogResult resultado = MessageBox.Show("¿DESEA INACTIVAR A ESTE CLIENTE?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            
+            if (resultado == DialogResult.Yes)
+            {
+                var cliente = ListaCli.FirstOrDefault(cli => cli.Cedula == cedula);
+
+                if (cliente != null)
                 {
-                    var cliente = ListaCli.FirstOrDefault(cli => cli.Cedula == cedula);
-                    if (cliente != null)
-                    {
-                        cliente.Estado = "INACTIVO";
-                        InactivarClienteBD(cliente);
-                    }
+                    cliente.Estado = "INACTIVO";
+                    InactivarClienteBD(cliente);
+                }
             }
         }
 
@@ -370,19 +319,23 @@ namespace Control
                 msg = dtCliente.UpdateEstadoCliente(cli, conn.Connect);
                 if (msg[0] == '0')
                 {
+                    Log.Error("ERROR INESPERADO: " + msg);
                     MessageBox.Show("ERROR INESPERADO: " + msg);
                 }
             }
             else if (msgBD[0] == '0')
             {
+                Log.Error("ERROR: " + msgBD);
                 MessageBox.Show("ERROR: " + msgBD);
             }
+
             conn.CerrarConexion();
         }
 
         public void MostrarDatosCliente(string cedulaCliente, TextBox txtCedula, TextBox txtNombre, TextBox txtApellido, DateTimePicker dtpDate, TextBox txtTelefono, TextBox txtDireccion, TextBox txtComprobante, ComboBox cmbEstado, ComboBox cmbEstudiante)
         {
             Cliente clienteSeleccionado = ConseguirDatosGrid(cedulaCliente);
+
             if(clienteSeleccionado != null) 
             {
                 txtCedula.Text = clienteSeleccionado.Cedula;
@@ -393,33 +346,27 @@ namespace Control
                 txtDireccion.Text = clienteSeleccionado.Direccion;
                 cmbEstado.SelectedItem = clienteSeleccionado.Estado;
 
-
                 if (clienteSeleccionado is ClienteEstudiante clienteEstudiante)
                 {
                     txtComprobante.Text = clienteEstudiante.Comprobante;
-                    cmbEstudiante.SelectedItem = "SI";
-                    
+                    cmbEstudiante.SelectedItem = "SI";                    
                 }
                 else
                 {
                     txtComprobante.Text = ObtenerComprobanteActualizado(clienteSeleccionado.Cedula);
                     cmbEstudiante.SelectedItem = "NO";
                 }
-
             }
-
         }
+
         public Cliente ConseguirDatosGrid(string cedulaCliente)
         {
             return ListaCli.Find(cli => cli.Cedula == cedulaCliente);
         }
 
-
-
         //
         //CONTROL PDF
         //
-
         public void AbrirPDF()
         {
             if (File.Exists("reporteCliente.pdf"))
@@ -480,6 +427,7 @@ namespace Control
             }
             catch (Exception ex)
             {
+                Log.Error("ERROR AL GENERAR PDF: {ex}", ex);
                 MessageBox.Show($"Error al generar el PDF: {ex.Message}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
@@ -488,7 +436,6 @@ namespace Control
                 stream?.Close();
             }
         }
-
 
     }   
 }

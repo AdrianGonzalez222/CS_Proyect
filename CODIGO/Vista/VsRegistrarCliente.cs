@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Control;
 
@@ -15,7 +8,7 @@ namespace Vista
     {
         private CtrCliente ctrCli = new Control.CtrCliente();
         private Validacion v = new Validacion();
-        //private bool edicion = false;
+
         public VsRegistrarCliente()
         {
             InitializeComponent();
@@ -45,6 +38,7 @@ namespace Vista
             DateTime fechaActual = DateTime.Now;
             DateTime fechaLimite = new DateTime(2014,12,31);
             bool camposValidos = false;
+
             do
             {
                 string rCedula = txtCedula.Text.Trim(), rTelefono = txtTelefono.Text.Trim();
@@ -77,7 +71,6 @@ namespace Vista
                     break;
                 }
                 
-
                 // Ingresar datos del cliente
                 if (esEstudiante.Equals("SI"))
                 {
@@ -90,9 +83,7 @@ namespace Vista
 
                 MessageBox.Show(msg);
                 this.Close();
-
                 camposValidos = true;
-
             } while (!camposValidos);
         }
 
@@ -100,37 +91,46 @@ namespace Vista
         {
             this.Close();
         }
+
         private void txtCedula_TextChanged(object sender, EventArgs e)
         {
             v.ValidarNumero(sender, e);
         }
+
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
             v.ConvertirMayuscula(txtNombre);
         }
+
         private void txtApellido_TextChanged(object sender, EventArgs e)
         {
             v.ConvertirMayuscula(txtApellido);
         }
+
         private void txtTelefono_TextChanged(object sender, EventArgs e)
         {
             v.ValidarNumero(sender, e);
         }
+
         private void txtDireccion_TextChanged(object sender, EventArgs e)
         {
             v.ConvertirMayuscula(txtDireccion);
         }
+
         private void txtComprobante_TextChanged(object sender, EventArgs e)
         {
             v.ConvertirMayuscula(txtComprobante);
         }
+
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             v.ValidarLetra(sender, e);
         }
+
         private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
         {
             v.ValidarLetra(sender, e);
         }
+
     }
 }

@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Modelo
 {
-
     public class Cliente
     {
-        String cedula;
-        String nombre;
-        String apellido;
-        DateTime fechaNacimiento;
-        String telefono;
-        String direccion;
-        String estado;
+        protected String cedula;
+        protected String nombre;
+        protected String apellido;
+        protected DateTime fechaNacimiento;
+        protected String telefono;
+        protected String direccion;
+        protected String estado;
 
         public string Cedula { get => cedula; set => cedula = value; }
         public string Nombre { get => nombre; set => nombre = value; }

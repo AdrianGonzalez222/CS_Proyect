@@ -1,17 +1,9 @@
 ﻿using Control;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Vista
 {
-    // GONZALEZ ASTUDILLO ADRIAN
     public partial class VsConsultarActividad : Form
     {
         private CtrActividad ctrActividad = new CtrActividad();
@@ -79,6 +71,5 @@ namespace Vista
             }
         }
 
-        // FIN
     }
 }

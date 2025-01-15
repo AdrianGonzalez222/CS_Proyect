@@ -1,28 +1,20 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace Modelo
 {
     public class Membresia
     {
-        string plan;
-        DateTime fechaInicio;
-        DateTime fechaFin;
-        string promocion;
-        int descuento;
-        string detallePromocion;
-        double precio;
-        int idCliente;
-        int estado;
-
-
-
-        Cliente cliente;
-        public Cliente Cliente { get => cliente; set => cliente = value; }
+        protected string plan;
+        protected DateTime fechaInicio;
+        protected DateTime fechaFin;
+        protected string promocion;
+        protected int descuento;
+        protected string detallePromocion;
+        protected double precio;
+        protected int idCliente;
+        protected int estado;
+        protected Cliente cliente;
+       
         public Membresia() { }
 
         public Membresia(string plan, DateTime fechaInicio, DateTime fechaFin, string promocion, string detallePromocion, int descuento, double precio, int idCliente)
@@ -47,6 +39,7 @@ namespace Modelo
         public double Precio { get => precio; set => precio = value; }
         public int IdCliente { get => idCliente; set => idCliente = value; }
         public int Estado { get => estado; set => estado = value; }
+        public Cliente Cliente { get => cliente; set => cliente = value; }
 
         public override string ToString()
         {
@@ -58,5 +51,6 @@ namespace Modelo
                    ">DESCUENTO: " + descuento.ToString() + Environment.NewLine +
                    ">PRECIO: " + precio.ToString() + Environment.NewLine;
         }
+
     }
 }

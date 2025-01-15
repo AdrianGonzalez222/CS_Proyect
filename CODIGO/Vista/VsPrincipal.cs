@@ -1,13 +1,5 @@
 ﻿using Control;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Vista
@@ -46,13 +38,6 @@ namespace Vista
             }
         }
 
-
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            VsFactura facto = new VsFactura();
-            facto.ShowDialog();
-        }
-
         private void buttonGestionActividad_Click(object sender, EventArgs e)
         {
             VsActividad vActividad = new VsActividad(); vActividad.ShowDialog();
@@ -69,16 +54,13 @@ namespace Vista
             {
                 MessageBox.Show("ERROR: NO EXISTEN MEMBRESIA REGISTRADAS.", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            //VsMembresiaConsulta consultaMembresia = new VsMembresiaConsulta();
-            //consultaMembresia.ShowDialog();
         }
 
         private void btnVerRegistroFact_Click(object sender, EventArgs e)
         {
-                ctrFactura.GetTotal();
-                VsConsultarFactura vRegistroFact = new VsConsultarFactura(); 
-                vRegistroFact.ShowDialog();
-            
+            ctrFactura.GetTotal();
+            VsConsultarFactura vRegistroFact = new VsConsultarFactura();
+            vRegistroFact.ShowDialog();
         }
 
         private void VsPrincipal_FormClosing(object sender, FormClosingEventArgs e)
@@ -86,6 +68,5 @@ namespace Vista
             VsConn.Close();
         }
 
-        // FIN
     }
 }

@@ -18,7 +18,7 @@ namespace Vista
             // Configuración de Serilog
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Console()
-                .WriteTo.File("C:/REPOSITORIO/logs/log.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.File("C:/Logs_CS_Proyect/log.txt", rollingInterval: RollingInterval.Day)
                 .CreateLogger();
 
             try

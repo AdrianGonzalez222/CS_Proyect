@@ -215,7 +215,6 @@
             this.lblTPM.Size = new System.Drawing.Size(292, 34);
             this.lblTPM.TabIndex = 22;
             this.lblTPM.Text = "PAPELERA DE MEMBRESIA";
-            this.lblTPM.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnActivarM
             // 

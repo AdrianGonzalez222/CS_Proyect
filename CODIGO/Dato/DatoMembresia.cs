@@ -1,11 +1,8 @@
 ﻿using Modelo;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dato
 {
@@ -22,6 +19,7 @@ namespace Dato
             }
             Console.WriteLine("COMANDO SQL: " + sqlWithValues);
         }
+
         //
         // INSERTS
         //
@@ -31,8 +29,7 @@ namespace Dato
             string x = "";
             string precio = mem.Precio.ToString().Replace(",", ".");
             string comando = "INSERT INTO Membresia (planMembresia, fechaInicio, fechaFin, promocion, descuento, detallePromocion, precio, idCliente, estado) \n" +
-                             "VALUES (@plan, @fechaInicio, @fechaFin, @promocion, @descuento, @detallePromocion, @precio, @idCliente, @estado); \n";
-            //"VALUES ('"+ mem.Plan + "', '"+ mem.FechaInicio + "', '"+ mem.FechaFin + "', '"+mem.Promocion+"', "+mem.Descuento+", '"+mem.DetallePromocion+"','"+mem.CedulaCliente+"', "+precio +"); \n";  
+                             "VALUES (@plan, @fechaInicio, @fechaFin, @promocion, @descuento, @detallePromocion, @precio, @idCliente, @estado); \n"; 
             Console.WriteLine(comando);
 
             try
@@ -51,14 +48,15 @@ namespace Dato
                 cmd.Parameters.AddWithValue("@idCliente", mem.IdCliente);
                 cmd.Parameters.AddWithValue("@estado", mem.Estado);
 
-
                 ImprimirSQL(comando);
                 cmd.ExecuteNonQuery();
                 x = "1";
             }
             catch (SqlException ex)
             {
-                x = "0" + ex.Message; Console.WriteLine(x);
+                x = "0" + ex.Message;
+                Log.Warning("ERROR: " + ex.Message); 
+                Console.WriteLine(x);
             }
             return x;
         }
@@ -95,9 +93,9 @@ namespace Dato
                     membresia.Promocion = reader["promocion"].ToString();
                     membresia.Descuento = Convert.ToInt32(reader["descuento"]);
                     membresia.DetallePromocion = reader["detallePromocion"].ToString();
-                    //membresia.CedulaCliente = reader["cedulaCliente"].ToString();
                     membresia.Precio = Convert.ToDouble(reader["precio"]);
                     membresia.Estado = Convert.ToInt32(reader["estado"]);
+
                     // Crear una nueva instancia de Cliente y asignar propiedades
                     Cliente cliente = new Cliente
                     {
@@ -108,19 +106,16 @@ namespace Dato
 
                     // Asignar la instancia de Cliente a la Membresia
                     membresia.Cliente = cliente;
-
                     membresias.Add(membresia);
                 }
             }
             catch (SqlException ex)
             {
+                Log.Warning("ERROR: " + ex.Message);
                 Console.WriteLine(ex.Message);
             }
             return membresias;
         }
-
-
-
 
         public string SelectCliente(SqlConnection conn, string cedula)
         {
@@ -175,6 +170,7 @@ namespace Dato
             }
             catch (SqlException ex)
             {
+                Log.Warning("ERROR: " + ex.Message);
                 Console.WriteLine(ex.Message);
             }
             return idCliente;
@@ -206,12 +202,11 @@ namespace Dato
             }
             catch (SqlException ex)
             {
+                Log.Warning("ERROR: " + ex.Message);
                 Console.WriteLine(ex.Message);
             }
             return cedula;
         }
-
-
 
         public string UpdateCamposMembresia(Membresia mem, SqlConnection conn, string SNombrePlan)
         {
@@ -249,10 +244,13 @@ namespace Dato
             }
             catch (SqlException ex)
             {
-                x = "0" + ex.Message; Console.WriteLine(x);
+                x = "0" + ex.Message;
+                Log.Warning("ERROR: " + ex.Message);
+                Console.WriteLine(x);
             }
             return x;
         }
+
         public string UpdateEstadoMembresia(Membresia mem, SqlConnection conn)
         {
             Console.WriteLine("-----UPDATE ESTADO MEMBRESIA-----");
@@ -276,10 +274,13 @@ namespace Dato
             }
             catch (SqlException ex)
             {
-                x = "0" + ex.Message; Console.WriteLine(x);
+                x = "0" + ex.Message;
+                Log.Warning("ERROR: " + ex.Message);
+                Console.WriteLine(x);
             }
             return x;
         }
+
         public string DeleteMembresia(Membresia mem, SqlConnection conn)
         {
             Console.WriteLine("-----DELETE MEMBRESIA-----");
@@ -300,10 +301,12 @@ namespace Dato
             }
             catch (SqlException ex)
             {
-                x = "0" + ex.Message; Console.WriteLine(x);
+                x = "0" + ex.Message;
+                Log.Warning("ERROR: " + ex.Message);
+                Console.WriteLine(x);
             }
             return x;
         }
-        // FIN
+
     }
 }

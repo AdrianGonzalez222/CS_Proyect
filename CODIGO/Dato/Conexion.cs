@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Serilog;
+using System;
 using System.Configuration;
 using System.Data.SqlClient;
 
@@ -19,13 +16,13 @@ namespace Dato
         {
             try
             {
-                connect = new SqlConnection();
-                connect.ConnectionString = cadena;
+                connect = new SqlConnection(cadena);
                 connect.Open();
                 return "1";
             }
             catch (Exception ex)
             {
+                Log.Warning("ERROR: " + ex.Message);
                 Console.WriteLine("ERROR: " + ex.Message);
                 return "0" + ex.Message;
             }
@@ -40,11 +37,11 @@ namespace Dato
             }
             catch (Exception ex)
             {
+                Log.Warning("ERROR: " + ex.Message);
                 Console.WriteLine("ERROR: " + ex.Message);
                 return "0" + ex.Message;
             }
         }
-
 
     }
 }

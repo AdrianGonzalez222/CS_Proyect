@@ -104,7 +104,6 @@
             this.dgvMembresia.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvMembresia.Size = new System.Drawing.Size(844, 279);
             this.dgvMembresia.TabIndex = 3;
-            this.dgvMembresia.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMembresia_CellContentClick);
             // 
             // label1
             // 
@@ -355,7 +354,6 @@
             this.Controls.Add(this.dgvMembresia);
             this.Name = "VsMembresiaConsulta";
             this.Text = "VsMembresiaConsulta";
-            this.Load += new System.EventHandler(this.VsMembresiaConsulta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMembresia)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

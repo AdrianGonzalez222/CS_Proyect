@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Modelo;
+using Serilog;
 
 namespace Dato
 {
-    // GONZALEZ ASTUDILLO ADRIAN
     public class DatoActividad
     {
         SqlCommand cmd = new SqlCommand();
@@ -53,7 +50,9 @@ namespace Dato
             }
             catch (SqlException ex)
             {
-                x = "0" + ex.Message; Console.WriteLine(x);
+                x = "0" + ex.Message;
+                Log.Warning("ERROR: " + ex.Message);
+                Console.WriteLine(x);
             }
             return x;
         }
@@ -96,44 +95,11 @@ namespace Dato
             }
             catch (SqlException ex)
             {
+                Log.Warning("ERROR: " + ex.Message);
                 Console.WriteLine(ex.Message);
             }
             return actividades;
         }
-
-        //public List<Actividad> SelectActividades(SqlConnection conn)
-        //{
-        //    List<Actividad> actividades = new List<Actividad>();
-        //    SqlDataReader reader = null; // TABLA VIRTUAL
-        //    Actividad actividad = null;
-        //    string comando = "SELECT estado, nombre, descripcion, fechaInicio, fechaFin, horaInicio, horaFin FROM Actividad; \n";
-
-        //    try
-        //    {
-        //        cmd.Connection = conn;
-        //        cmd.CommandText = comando;
-        //        reader = cmd.ExecuteReader();
-
-        //        while (reader.Read())
-        //        {
-        //            actividad = new Actividad();
-        //            actividad.Estado = Convert.ToInt32(reader["estado"]);
-        //            actividad.Nombre = reader["nombre"].ToString();
-        //            actividad.Descripcion = reader["descripcion"].ToString();
-        //            actividad.FechaInicio = Convert.ToDateTime(reader["fechaInicio"]);
-        //            actividad.FechaFin = Convert.ToDateTime(reader["fechaFin"]);
-        //            actividad.HoraInicio = TimeSpan.Parse(reader["horaInicio"].ToString());
-        //            actividad.HoraFin = TimeSpan.Parse(reader["horaFin"].ToString());
-
-        //            actividades.Add(actividad);
-        //        }
-        //    }
-        //    catch(SqlException ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //    }
-        //    return actividades;
-        //}
 
         //
         // UPDATES
@@ -171,7 +137,9 @@ namespace Dato
             }
             catch (SqlException ex)
             {
-                x = "0" + ex.Message; Console.WriteLine(x);
+                x = "0" + ex.Message;
+                Log.Warning("ERROR: " + ex.Message);
+                Console.WriteLine(x);
             }
             return x;
         }
@@ -199,7 +167,9 @@ namespace Dato
             }
             catch (SqlException ex)
             {
-                x = "0" + ex.Message; Console.WriteLine(x);
+                x = "0" + ex.Message;
+                Log.Warning("ERROR: " + ex.Message);
+                Console.WriteLine(x);
             }
             return x;
         }
@@ -227,12 +197,12 @@ namespace Dato
             }
             catch (SqlException ex)
             {
-                x = "0" + ex.Message; Console.WriteLine(x);
+                x = "0" + ex.Message;
+                Log.Warning("ERROR: " + ex.Message);
+                Console.WriteLine(x);
             }
             return x;
         }
         
-
-    // FIN
     }
 }

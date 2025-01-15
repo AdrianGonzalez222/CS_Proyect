@@ -1,15 +1,6 @@
 ﻿using Control;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using Vista;
 
 namespace Vista
 {
@@ -23,14 +14,10 @@ namespace Vista
 
         public bool Cambios { get => cambios; set => cambios = value; }
 
-        //string celular, direccion, comprobante;
-
-
         public VsMembresia(string cedulaCliente)
         {
             InitializeComponent();
             ctrMen.MostrarDatosClienteMem(cedulaCliente, lblCedulaM, lblNombreM, lblApellidoM, lblEstudianteM, CelularInvisible, ComprobanteInvisible, FechaNacInvisible, DireccionInvisible);
-
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -57,12 +44,10 @@ namespace Vista
             v.ValidarNumerosPorcentaje(sender, e);
         }
 
- 
         private void txtBoxDP_KeyPress(object sender, KeyPressEventArgs e)
         {
             v.ValidarLetra(sender, e);
         }
-
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
@@ -76,13 +61,14 @@ namespace Vista
             string cedulaCliente = lblCedulaM.Text;
             string precio   = txtBoxPreM.Text;
 
-
             msj = ctrMen.IngresarMembresia(plan, FI, FF, promocion, descuento, detallePromocion, cedulaCliente, precio);
+
             if (msj.Contains("ERROR"))
             {
                 MessageBox.Show(msj, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Detener la ejecución si hay un error
             }
+
             MessageBox.Show(msj);
             VsFactura vFactura = new VsFactura();
             vFactura.lblCedulaFact.Text = this.lblCedulaM.Text;
@@ -99,7 +85,6 @@ namespace Vista
             vFactura.lblFechaFinFact.Text = this.dateTPFF.Text;
             vFactura.lblPrecioFact.Text = this.txtBoxPreM.Text;
             vFactura.lblDescuentoFact.Text = this.txtBoxD.Text;
-
             vFactura.Show();
             this.Close();
 
@@ -114,61 +99,11 @@ namespace Vista
                 txtBoxD.Text = "";
                 txtBoxDP.Text = "";
             }
-        }
-
-        private void btnAnular_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelC_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CelularInvisible_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblApellidoM_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblEstudianteM_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DireccionInvisible_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTPFI_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTPFF_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblNombreM_Click(object sender, EventArgs e)
-        {
-
-        }
+        }     
 
         private void btnCM_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void txtBoxPreM_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void txtBoxPreM_KeyPress(object sender, KeyPressEventArgs e)
@@ -176,14 +111,5 @@ namespace Vista
             v.ValidarNumeroPrecio(sender, e);
         }
 
-        private void lblCedulaM_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void VsMembresia_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

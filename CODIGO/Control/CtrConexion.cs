@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Dato;
 using Modelo;
+using Serilog;
 
 namespace Control
 {
@@ -29,11 +26,11 @@ namespace Control
             else if (msj[0] == '0')
             {
                 MsjConexion = "ERROR: " + msj;
+                Log.Warning("ERROR: " + msj);
                 MessageBox.Show(MsjConexion, "ERROR DE CONEXION", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             conn.CerrarConexion();
         }
-
 
     }
 }

@@ -1,18 +1,14 @@
 ﻿using Modelo;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dato
 {
     public class DatoFactura
     {
         SqlCommand cmd = new SqlCommand();
-
 
         public void ImprimirSQL(string sentencia)
         {
@@ -30,9 +26,6 @@ namespace Dato
             }
             Console.WriteLine("COMANDO SQL: " + sqlWithValues);
         }
-
-
-
 
         public string InsertFactura(Factura fact, SqlConnection conn)
         {
@@ -64,13 +57,12 @@ namespace Dato
             }
             catch (SqlException ex)
             {
-                x = "0" + ex.Message; Console.WriteLine(x);
+                x = "0" + ex.Message;
+                Log.Warning("ERROR: " + ex.Message);
+                Console.WriteLine(x);
             }
             return x;
         }
-
-
-
 
         //
         // SELECTS
@@ -93,10 +85,6 @@ namespace Dato
             {
                 cmd.Connection = conn;
                 cmd.CommandText = comando;
-
-                //cmd.Parameters.Clear(); // LIMPIA PARAMETROS UTILIZADOS
-                //cmd.Parameters.AddWithValue("@estadoFact", estadofact);
-
                 ImprimirSQL(comando);
                 reader = cmd.ExecuteReader();
 
@@ -112,8 +100,6 @@ namespace Dato
                     factdat.estadofact = reader["estadoFact"].ToString();
                     factdat.motivoinactivacion = reader["motivoInactivacion"].ToString();
 
-
-
                     // Crear una nueva instancia de Cliente y asignar propiedades
                     Cliente cliente = new Cliente
                     {
@@ -125,10 +111,6 @@ namespace Dato
 
                     // Asignar la instancia de Cliente a la Factura
                     factdat.Cliente = cliente;
-
-
-
-
                     // Crear una nueva instancia de Membresia y asignar propiedades
                     Membresia membresia = new Membresia
                     {
@@ -142,18 +124,16 @@ namespace Dato
 
                     // Asignar la instancia de Membresia a la Factura
                     factdat.Membresia = membresia;
-
                     facturas.Add(factdat);
                 }
             }
             catch (SqlException ex)
             {
+                Log.Warning("ERROR: " + ex.Message);
                 Console.WriteLine(ex.Message);
             }
             return facturas;
         }
-
-
 
         //INNER CLIENTE
         public string SelectCliente(SqlConnection conn, string cedula)
@@ -209,12 +189,11 @@ namespace Dato
             }
             catch (SqlException ex)
             {
+                Log.Warning("ERROR: " + ex.Message);
                 Console.WriteLine(ex.Message);
             }
             return idCliente;
         }
-
-
 
         //INNER MEMBRESIA
         public string SelectMembresia(SqlConnection conn, string planMembresia)
@@ -247,21 +226,16 @@ namespace Dato
                     mem.Descuento = Convert.ToInt32(reader["descuento"]);
                     mem.DetallePromocion = reader["detallePromocion"].ToString();                  
                     mem.Precio = Convert.ToDouble(reader["precio"]);
-  
                 }
 
             }
             catch (SqlException ex)
             {
+                Log.Warning("ERROR: " + ex.Message);
                 Console.WriteLine(ex.Message);
             }
             return idMembresia;
         }
-
-
-
-
-
 
         //aqui poner el motivo inac
         public string UpdateEstadoFactura(Factura fact, SqlConnection conn)
@@ -289,9 +263,12 @@ namespace Dato
             }
             catch (SqlException ex)
             {
-                x = "0" + ex.Message; Console.WriteLine(x);
+                x = "0" + ex.Message; 
+                Log.Warning("ERROR: " + ex.Message);
+                Console.WriteLine(x);
             }
             return x;
         }
+
     }
 }

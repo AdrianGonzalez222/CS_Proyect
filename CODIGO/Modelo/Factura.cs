@@ -1,29 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Modelo
 {
     public class Factura
     {
-
-        int numfactura;
-        string serie;
-        string preciofact;
-        string descuentofact;
-        string iva;
-        string total;
+        protected int numfactura;
+        protected string serie;
+        protected string preciofact;
+        protected string descuentofact;
+        protected string iva;
+        protected string total;
         public string estadofact;
         public string motivoinactivacion;
-        int idCliente;
-        int idMembresia;
-        int idActividad;
-        Membresia membresia;
-        Cliente cliente;
-
-
+        protected int idCliente;
+        protected int idMembresia;
+        protected int idActividad;
+        protected Membresia membresia;
+        protected Cliente cliente;
 
         public Factura()
         {
@@ -35,10 +28,9 @@ namespace Modelo
             total = string.Empty;
             motivoinactivacion = string.Empty;
             Estadofact = "ACTIVO";
-
         }
 
-        public Factura(int numfactura, string serie, string preciofact, string descuentofact, string iva, string total/*, string estadofact*/, string motivoinactivacion, int idCliente, int idMembresia/*, int idActividad*/)
+        public Factura(int numfactura, string serie, string preciofact, string descuentofact, string iva, string total, string motivoinactivacion, int idCliente, int idMembresia)
         {
             this.numfactura = numfactura;
             this.serie = serie;
@@ -50,12 +42,10 @@ namespace Modelo
             this.motivoinactivacion = motivoinactivacion;
             this.idCliente = idCliente;
             this.idMembresia = idMembresia;
-            //this.idActividad = idActividad;
         }
 
         public string Motivoinactivacion { get => motivoinactivacion; set => motivoinactivacion = value; }
         public string Estadofact { get => estadofact; set => estadofact = value; }
-
         public int Numfactura { get => numfactura; set => numfactura = value; }
         public string Preciofact { get => preciofact; set => preciofact = value; }
         public string Descuentofact { get => descuentofact; set => descuentofact = value; }
@@ -67,5 +57,21 @@ namespace Modelo
         public int IdActividad { get => idActividad; set => idActividad = value; }
         public Membresia Membresia { get => membresia; set => membresia = value; }
         public Cliente Cliente { get => cliente; set => cliente = value; }
+
+        public override string ToString()
+        {
+            return "-> NUMERO DE FACTURA: " + numfactura + Environment.NewLine +
+                   "-> SERIE: " + serie + Environment.NewLine +
+                   "-> PRECIO: " + preciofact + Environment.NewLine +
+                   "-> DESCUENTO: " + descuentofact + Environment.NewLine +
+                   "-> IVA: " + iva + Environment.NewLine +
+                   "-> TOTAL: " + total + Environment.NewLine +
+                   "-> ESTADO: " + estadofact + Environment.NewLine +
+                   "-> MOTIVO DE INACTIVACION: " + motivoinactivacion + Environment.NewLine +
+                   "-> ID CLIENTE: " + idCliente + Environment.NewLine +
+                   "-> ID MEMBRESÍA: " + idMembresia + Environment.NewLine +
+                   "-> ID ACTIVIDAD: " + idActividad + Environment.NewLine;
+        }
+
     }
 }

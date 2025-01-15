@@ -84,7 +84,6 @@
             this.lblNombreMT.Size = new System.Drawing.Size(42, 13);
             this.lblNombreMT.TabIndex = 1;
             this.lblNombreMT.Text = "Nombre:";
-            this.lblNombreMT.Click += new System.EventHandler(this.labelC_Click);
             // 
             // labelM
             // 
@@ -187,7 +186,6 @@
             this.dateTPFI.Name = "dateTPFI";
             this.dateTPFI.Size = new System.Drawing.Size(200, 21);
             this.dateTPFI.TabIndex = 12;
-            this.dateTPFI.ValueChanged += new System.EventHandler(this.dateTPFI_ValueChanged);
             // 
             // dateTPFF
             // 
@@ -196,7 +194,6 @@
             this.dateTPFF.Name = "dateTPFF";
             this.dateTPFF.Size = new System.Drawing.Size(200, 21);
             this.dateTPFF.TabIndex = 13;
-            this.dateTPFF.ValueChanged += new System.EventHandler(this.dateTPFF_ValueChanged);
             // 
             // comboBoxP
             // 
@@ -254,7 +251,6 @@
             this.lblNombreM.Size = new System.Drawing.Size(31, 13);
             this.lblNombreM.TabIndex = 19;
             this.lblNombreM.Text = "____";
-            this.lblNombreM.Click += new System.EventHandler(this.lblNombreM_Click);
             // 
             // lblCedulaM
             // 
@@ -266,7 +262,6 @@
             this.lblCedulaM.Size = new System.Drawing.Size(31, 13);
             this.lblCedulaM.TabIndex = 20;
             this.lblCedulaM.Text = "____";
-            this.lblCedulaM.Click += new System.EventHandler(this.lblCedulaM_Click);
             // 
             // lblApellidoM
             // 
@@ -278,7 +273,6 @@
             this.lblApellidoM.Size = new System.Drawing.Size(31, 13);
             this.lblApellidoM.TabIndex = 21;
             this.lblApellidoM.Text = "____";
-            this.lblApellidoM.Click += new System.EventHandler(this.lblApellidoM_Click);
             // 
             // lblApllidoMT
             // 
@@ -312,7 +306,6 @@
             this.lblEstudianteM.Size = new System.Drawing.Size(31, 13);
             this.lblEstudianteM.TabIndex = 24;
             this.lblEstudianteM.Text = "____";
-            this.lblEstudianteM.Click += new System.EventHandler(this.lblEstudianteM_Click);
             // 
             // CelularInvisible
             // 
@@ -324,7 +317,6 @@
             this.CelularInvisible.Size = new System.Drawing.Size(10, 13);
             this.CelularInvisible.TabIndex = 25;
             this.CelularInvisible.Text = ".";
-            this.CelularInvisible.Click += new System.EventHandler(this.CelularInvisible_Click);
             // 
             // ComprobanteInvisible
             // 
@@ -358,7 +350,6 @@
             this.DireccionInvisible.Size = new System.Drawing.Size(10, 13);
             this.DireccionInvisible.TabIndex = 28;
             this.DireccionInvisible.Text = ".";
-            this.DireccionInvisible.Click += new System.EventHandler(this.DireccionInvisible_Click);
             // 
             // lblPreM
             // 
@@ -379,7 +370,6 @@
             this.txtBoxPreM.Name = "txtBoxPreM";
             this.txtBoxPreM.Size = new System.Drawing.Size(75, 21);
             this.txtBoxPreM.TabIndex = 30;
-            this.txtBoxPreM.TextChanged += new System.EventHandler(this.txtBoxPreM_TextChanged);
             this.txtBoxPreM.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxPreM_KeyPress);
             // 
             // btnCM
@@ -472,7 +462,6 @@
             this.Controls.Add(this.labelTitulo);
             this.Name = "VsMembresia";
             this.Text = "Modulo Membresia";
-            this.Load += new System.EventHandler(this.VsMembresia_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
