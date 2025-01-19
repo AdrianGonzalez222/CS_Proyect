@@ -9,11 +9,16 @@ using Serilog;
 
 namespace Control
 {
+    /// <summary>
+    /// Clase que maneja la validación de datos de entrada y conversiones de tipos de datos.    
+    /// </summary>
     public class Validacion
     {
-        //
-        // CONVERSIONES
-        //
+        /// <summary>
+        /// Convierte un string a entero.
+        /// </summary>
+        /// <param name="dato">El dato a convertir.</param>
+        /// <returns>El valor entero convertido o -1 en caso de error.</returns>
         public int ConvertirEntero(String dato) // STRING a ENTERO
         {
             int valor = -1;
@@ -43,6 +48,11 @@ namespace Control
             return valor;
         }
 
+        /// <summary>
+        /// Convierte un string a double.
+        /// </summary>
+        /// <param name="dato">El dato a convertir.</param>
+        /// <returns>El valor double convertido o -1 en caso de error.</returns>
         public double ConvertirDouble(string dato) // STRING a DOUBLE 1
         {
             double valor = -1;
@@ -72,6 +82,11 @@ namespace Control
             return valor;
         }
 
+        /// <summary>
+        /// Convierte un string a TimeSpan.
+        /// </summary>
+        /// <param name="dato">El dato a convertir.</param>
+        /// <returns>El valor TimeSpan convertido o TimeSpan.MinValue en caso de error.</returns>
         public TimeSpan ConvertirTimeSpan(string dato) // STRING a TIMESPAN
         {
             TimeSpan valor = TimeSpan.MinValue;
@@ -95,6 +110,11 @@ namespace Control
             return valor;
         }
 
+        /// <summary>
+        /// Convierte un string a DateTime.
+        /// </summary>
+        /// <param name="dato">El dato a convertir.</param>
+        /// <returns>El valor DateTime convertido o DateTime.MinValue en caso de error.</returns>
         public DateTime ConvertirDateTime(string dato) // STRING a DATETIME
         {
             DateTime valor = DateTime.MinValue;
@@ -120,6 +140,10 @@ namespace Control
             return valor;
         }
 
+        /// <summary>
+        /// Convierte el texto ingresado en un TextBox a mayúsculas.
+        /// </summary>
+        /// <param name="textBox">El TextBox cuyo texto se convertirá a mayúsculas.</param>
         public void ConvertirMayuscula(TextBox textBox)
         {
             int cursorPosicion = textBox.SelectionStart;
@@ -127,6 +151,10 @@ namespace Control
             textBox.SelectionStart = cursorPosicion;
         }
 
+        /// <summary>
+        /// Convierte el texto ingresado en un RichTextBox a mayúsculas.
+        /// </summary>
+        /// <param name="richTextBox">El RichTextBox cuyo texto se convertirá a mayúsculas.</param>
         public void ConvertirMayusculaRich(RichTextBox richTextBox)
         {
             int cursorPosicion = richTextBox.SelectionStart;
@@ -134,9 +162,11 @@ namespace Control
             richTextBox.SelectionStart = cursorPosicion;
         }
 
-        //
-        // VALIDACIONES
-        //
+        /// <summary>
+        /// Valida que solo se ingresen letras (y espacios) en un control.
+        /// </summary>
+        /// <param name="sender">El objeto que generó el evento.</param>
+        /// <param name="e">Argumentos del evento de tipo KeyPressEventArgs.</param>
         public void ValidarLetra(object sender, KeyPressEventArgs e) // ENTRADA DE SOLO LETRAS
         {
             char letra = e.KeyChar;
@@ -147,6 +177,11 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Valida que solo se ingresen números en un control.
+        /// </summary>
+        /// <param name="sender">El objeto que generó el evento.</param>
+        /// <param name="e">Argumentos del evento de tipo KeyEventArgs.</param>
         public void ValidarNumero(object sender, EventArgs e)
         {
             TextBox txt = sender as TextBox;
@@ -161,7 +196,12 @@ namespace Control
                 txt.SelectionStart = txt.Text.Length;
             }
         }
-       
+
+        /// <summary>
+        /// Valida que solo se ingresen caracteres permitidos en un control.
+        /// </summary>
+        /// <param name="sender">El objeto que generó el evento.</param>
+        /// <param name="e">Argumentos del evento de tipo KeyPressEventArgs.</param>
         public void ValidarCaracterEspecial(object sender, KeyPressEventArgs e) // ENTRADA DE CARACTERES DEFINIDOS
         {
             char letra = e.KeyChar;
@@ -172,10 +212,15 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Valida que solo se ingresen números o un porcentaje válido (máximo 100%) en un control.
+        /// </summary>
+        /// <param name="sender">El objeto que generó el evento.</param>
+        /// <param name="e">Argumentos del evento de tipo KeyPressEventArgs.</param>
         public void ValidarNumerosPorcentaje(object sender, KeyPressEventArgs e)
         {
             char letra = e.KeyChar;
-            TextBox textBox = sender as TextBox; // Suponiendo que estás trabajando con un control TextBox
+            TextBox textBox = sender as TextBox; 
             // Obtener el texto actual del TextBox y combinarlo con el carácter que se está ingresando
             string textoActual = textBox.Text.Substring(0, textBox.SelectionStart) + letra + textBox.Text.Substring(textBox.SelectionStart + textBox.SelectionLength);
 
@@ -186,10 +231,15 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Valida que solo se ingresen números y un formato de precio válido (con hasta dos decimales) en un control.
+        /// </summary>
+        /// <param name="sender">El objeto que generó el evento.</param>
+        /// <param name="e">Argumentos del evento de tipo KeyPressEventArgs.</param>
         public void ValidarNumeroPrecio(object sender, KeyPressEventArgs e)
         {
             char letra = e.KeyChar;
-            TextBox textBox = sender as TextBox; // Suponiendo que estás trabajando con un control TextBox
+            TextBox textBox = sender as TextBox; 
             // Obtener el texto actual del TextBox y combinarlo con el carácter que se está ingresando
             string textoActual = textBox.Text.Substring(0, textBox.SelectionStart) + letra + textBox.Text.Substring(textBox.SelectionStart + textBox.SelectionLength);
 

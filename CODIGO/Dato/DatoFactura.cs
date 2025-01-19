@@ -6,6 +6,20 @@ using System.Data.SqlClient;
 
 namespace Dato
 {
+    /// <summary>
+    /// Clase que maneja las operaciones CRUD para la entidad Factura en la base de datos.
+    /// <list type="bullet">
+    /// <item>
+    /// <term>InsertFactura</term> <see cref="InsertFactura"/>
+    /// </item>
+    /// <item>
+    /// <term>SelectFact</term> <see cref="SelectFact"/>
+    /// </item>
+    /// <item>
+    /// <term>UpdateEstadoFactura</term> <see cref="UpdateEstadoFactura"/>
+    /// </item>
+    /// </list>
+    /// </summary>
     public class DatoFactura
     {
         SqlCommand cmd = new SqlCommand();
@@ -27,6 +41,12 @@ namespace Dato
             Console.WriteLine("COMANDO SQL: " + sqlWithValues);
         }
 
+        /// <summary>
+        /// Inserta una nueva factura en la base de datos.
+        /// </summary>
+        /// <param name="fact">Factura a insertar.</param>
+        /// <param name="conn">Conexión a la base de datos.</param>
+        /// <returns>Mensaje indicando el éxito o fracaso de la operación.</returns>
         public string InsertFactura(Factura fact, SqlConnection conn)
         {
             Console.WriteLine("-----INSERT FACTURA-----");
@@ -64,9 +84,11 @@ namespace Dato
             return x;
         }
 
-        //
-        // SELECTS
-        //
+        /// <summary>
+        /// Selecciona todas las facturas de la base de datos.
+        /// </summary>
+        /// <param name="conn">Conexión a la base de datos.</param>
+        /// <returns>Lista de facturas con sus datos relacionados de cliente y membresía.</returns>
         public List<Factura> SelectFact(SqlConnection conn)
         {
             Console.WriteLine("-----SELECT Factura-----");
@@ -135,7 +157,11 @@ namespace Dato
             return facturas;
         }
 
-        //INNER CLIENTE
+        /// <summary>
+        /// Selecciona todas las facturas de la base de datos.
+        /// </summary>
+        /// <param name="conn">Conexión a la base de datos.</param>
+        /// <returns>Lista de facturas con sus datos relacionados de cliente y membresía.</returns>
         public string SelectCliente(SqlConnection conn, string cedula)
         {
             Console.WriteLine("-----SELECT CLIENTE-----");
@@ -195,7 +221,12 @@ namespace Dato
             return idCliente;
         }
 
-        //INNER MEMBRESIA
+        /// <summary>
+        /// Selecciona una membresía específica por su plan.
+        /// </summary>
+        /// <param name="conn">Conexión a la base de datos.</param>
+        /// <param name="planMembresia">Plan de membresía a seleccionar.</param>
+        /// <returns>El ID de la membresía encontrada.</returns>
         public string SelectMembresia(SqlConnection conn, string planMembresia)
         {
             Console.WriteLine("-----SELECT MEMBRESIA-----");
@@ -237,7 +268,12 @@ namespace Dato
             return idMembresia;
         }
 
-        //aqui poner el motivo inac
+        /// <summary>
+        /// Actualiza el estado de una factura en la base de datos.
+        /// </summary>
+        /// <param name="fact">Factura con el nuevo estado.</param>
+        /// <param name="conn">Conexión a la base de datos.</param>
+        /// <returns>Mensaje indicando el éxito o fracaso de la operación.</returns>
         public string UpdateEstadoFactura(Factura fact, SqlConnection conn)
         {
             Console.WriteLine("-----UPDATE ESTADO Factura-----");

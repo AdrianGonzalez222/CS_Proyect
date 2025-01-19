@@ -6,6 +6,23 @@ using Serilog;
 
 namespace Dato
 {
+    /// <summary>
+    /// Clase que maneja las operaciones CRUD para la entidad Cliente en la base de datos.
+    /// <list type="bullet">
+    /// <item>
+    /// <term>InsertarCliente</term> <see cref="InsertarCliente"/>
+    /// </item>
+    /// <item>
+    /// <term>SeleccionarCliente</term> <see cref="SeleccionarCliente"/>
+    /// </item>
+    /// <item>
+    /// <term>UpdateCliente</term> <see cref="UpdateCliente"/>
+    /// </item>
+    /// <item>
+    /// <term>UpdateEstadoCliente</term> <see cref="UpdateEstadoCliente"/>
+    /// </item>
+    /// </list>
+    /// </summary>
     public class DatoCliente
     {
         SqlCommand cmd = new SqlCommand();
@@ -20,9 +37,12 @@ namespace Dato
             Console.WriteLine("COMANDO SQL: " + sqlWithValues);
         }
 
-        //
-        //INSERT
-        //
+        /// <summary>
+        /// Inserta un nuevo cliente en la base de datos.
+        /// </summary>
+        /// <param name="cli">Objeto cliente a insertar.</param>
+        /// <param name="conn">Conexión a la base de datos.</param>
+        /// <returns>Mensaje indicando el éxito o fracaso de la operación.</returns>
         public string InsertarCliente(Cliente cli, SqlConnection conn)
         {
             Console.WriteLine("-----INSERT CLIENTE-----");
@@ -68,9 +88,11 @@ namespace Dato
             return x;
         }
 
-        //
-        //SELECT
-        //
+        /// <summary>
+        /// Selecciona todos los clientes de la base de datos.
+        /// </summary>
+        /// <param name="cn">Conexión a la base de datos.</param>
+        /// <returns>Lista de objetos Cliente con los datos de la base de datos.</returns>
         public List<Cliente> SeleccionarCliente(SqlConnection cn)
         {
             Console.WriteLine("-----SELECT CLIENTE-----");
@@ -129,9 +151,13 @@ namespace Dato
             return clientes;
         }
 
-        //
-        // UPDATE
-        //
+        /// <summary>
+        /// Actualiza la información de un cliente en la base de datos.
+        /// </summary>
+        /// <param name="cli">Cliente con la nueva información.</param>
+        /// <param name="cn">Conexión a la base de datos.</param>
+        /// <param name="uCedulaOrg">Cédula inicial del cliente para hacer la actualización.</param>
+        /// <returns>Mensaje indicando el éxito o fracaso de la operación.</returns>
         public string UpdateCliente(Cliente cli, SqlConnection cn, string uCedulaOrg)
         {
             Console.WriteLine("-----UPDATE CLIENTES-----");
@@ -189,9 +215,12 @@ namespace Dato
             return x;
         }
 
-        //
-        // DELETE
-        //
+        /// <summary>
+        /// Actualiza el estado de un cliente en la base de datos.
+        /// </summary>
+        /// <param name="cli">Cliente con el nuevo estado.</param>
+        /// <param name="conn">Conexión a la base de datos.</param>
+        /// <returns>Mensaje indicando el éxito o fracaso de la operación.</returns>
         public string UpdateEstadoCliente(Cliente cli, SqlConnection conn)
         {
             Console.WriteLine("-----UPDATE ESTADO CLIENTE-----");

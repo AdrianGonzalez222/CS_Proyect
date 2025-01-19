@@ -6,10 +6,31 @@ using Serilog;
 
 namespace Dato
 {
+    /// <summary>
+    /// Clase que maneja las operaciones CRUD para la entidad Actividad en la base de datos.
+    /// <list type="bullet">
+    /// <item>
+    /// <term>InsertActividad</term> <see cref="InsertActividad"/>
+    /// </item>
+    /// <item>
+    /// <term>SelectActividades</term> <see cref="SelectActividades"/>
+    /// </item>
+    /// <item>
+    /// <term>UpdateCamposActividad</term> <see cref="UpdateCamposActividad"/>
+    /// </item>
+    /// <item>
+    /// <term>DeleteActividad</term> <see cref="DeleteActividad"/>
+    /// </item>
+    /// </list>
+    /// </summary>
     public class DatoActividad
     {
         SqlCommand cmd = new SqlCommand();
 
+        /// <summary>
+        /// Imprime la consulta SQL con sus parámetros reemplazados por los valores actuales.
+        /// </summary>
+        /// <param name="sentencia">La sentencia SQL con parámetros.</param>
         public void ImprimirSQL(string sentencia)
         {
             string sqlWithValues = sentencia;
@@ -20,9 +41,12 @@ namespace Dato
             Console.WriteLine("COMANDO SQL: " + sqlWithValues);
         }
 
-        //
-        // INSERTS
-        //
+        /// <summary>
+        /// Inserta una nueva actividad en la base de datos.
+        /// </summary>
+        /// <param name="act">El objeto Actividad con los datos a insertar.</param>
+        /// <param name="conn">La conexión a la base de datos.</param>
+        /// <returns>Un string que indica el resultado de la operación ("1" para éxito, "0" en caso de error).</returns>
         public string InsertActividad(Actividad act, SqlConnection conn)
         {
             Console.WriteLine("-----INSERT ACTIVIDAD-----");
@@ -56,10 +80,13 @@ namespace Dato
             }
             return x;
         }
-        
-        //
-        // SELECTS
-        //
+
+        /// <summary>
+        /// Obtiene una lista de actividades desde la base de datos según el estado proporcionado.
+        /// </summary>
+        /// <param name="conn">La conexión a la base de datos.</param>
+        /// <param name="estado">El estado de las actividades a buscar.</param>
+        /// <returns>Una lista de actividades que cumplen con el estado especificado.</returns>
         public List<Actividad> SelectActividades(SqlConnection conn, int estado)
         {
             Console.WriteLine("-----SELECT ACTIVIDAD-----");
@@ -101,9 +128,13 @@ namespace Dato
             return actividades;
         }
 
-        //
-        // UPDATES
-        //
+        /// <summary>
+        /// Actualiza los campos de una actividad específica.
+        /// </summary>
+        /// <param name="act">El objeto Actividad con los nuevos valores.</param>
+        /// <param name="conn">La conexión a la base de datos.</param>
+        /// <param name="sNombreOriginal">El nombre original de la actividad a actualizar.</param>
+        /// <returns>Un string que indica el resultado de la operación ("1" para éxito, "0" en caso de error).</returns>
         public string UpdateCamposActividad(Actividad act, SqlConnection conn, string sNombreOriginal)
         {
             Console.WriteLine("-----UPDATE CAMPOS ACTIVIDAD-----");
@@ -144,6 +175,12 @@ namespace Dato
             return x;
         }
 
+        /// <summary>
+        /// Actualiza el estado de una actividad en la base de datos.
+        /// </summary>
+        /// <param name="act">El objeto Actividad con el estado actualizado.</param>
+        /// <param name="conn">La conexión a la base de datos.</param>
+        /// <returns>Un string que indica el resultado de la operación ("1" para éxito, "0" en caso de error).</returns>
         public string UpdateEstadoActividad(Actividad act, SqlConnection conn)
         {
             Console.WriteLine("-----UPDATE ESTADO ACTIVIDAD-----");
@@ -174,9 +211,12 @@ namespace Dato
             return x;
         }
 
-        //
-        // DELETES
-        //
+        /// <summary>
+        /// Elimina una actividad de la base de datos según su nombre.
+        /// </summary>
+        /// <param name="act">El objeto Actividad con el nombre de la actividad a eliminar.</param>
+        /// <param name="conn">La conexión a la base de datos.</param>
+        /// <returns>Un string que indica el resultado de la operación ("1" para éxito, "0" en caso de error).</returns>
         public string DeleteActividad(Actividad act, SqlConnection conn)
         {
             Console.WriteLine("-----DELETE ACTIVIDAD-----");

@@ -6,6 +6,23 @@ using System.Data.SqlClient;
 
 namespace Dato
 {
+    /// <summary>
+    /// Clase que maneja las operaciones CRUD para la entidad Membresía en la base de datos.
+    /// <list type="bullet">
+    /// <item>
+    /// <term>InsertMembresia</term> <see cref="InsertMembresia"/>
+    /// </item>
+    /// <item>
+    /// <term>SelectMembresias</term> <see cref="SelectMembresias"/>
+    /// </item>
+    /// <item>
+    /// <term>UpdateCamposMembresia</term> <see cref="UpdateCamposMembresia"/>
+    /// </item>
+    /// <item>
+    /// <term>UpdateEstadoMembresia</term> <see cref="UpdateEstadoMembresia"/>
+    /// </item>
+    /// </list>
+    /// </summary>
     public class DatoMembresia
     {
         SqlCommand cmd = new SqlCommand();
@@ -20,9 +37,12 @@ namespace Dato
             Console.WriteLine("COMANDO SQL: " + sqlWithValues);
         }
 
-        //
-        // INSERTS
-        //
+        /// <summary>
+        /// Inserta una nueva membresía en la base de datos.
+        /// </summary>
+        /// <param name="mem">Membresía a insertar.</param>
+        /// <param name="conn">Conexión a la base de datos.</param>
+        /// <returns>Mensaje indicando el éxito o fracaso de la operación.</returns>
         public string InsertMembresia(Membresia mem, SqlConnection conn)
         {
             Console.WriteLine("-----INSERT MEMBRESIA-----");
@@ -61,6 +81,12 @@ namespace Dato
             return x;
         }
 
+        /// <summary>
+        /// Obtiene todas las membresías con un estado específico.
+        /// </summary>
+        /// <param name="conn">Conexión a la base de datos.</param>
+        /// <param name="estado">Estado de las membresías a seleccionar.</param>
+        /// <returns>Lista de membresías con los datos de cliente relacionados.</returns>
         public List<Membresia> SelectMembresias(SqlConnection conn, int estado)
         {
             Console.WriteLine("-----SELECT MEMBRESIA-----");
@@ -117,6 +143,12 @@ namespace Dato
             return membresias;
         }
 
+        /// <summary>
+        /// Obtiene el ID de un cliente mediante su cédula.
+        /// </summary>
+        /// <param name="conn">Conexión a la base de datos.</param>
+        /// <param name="cedula">Cédula del cliente.</param>
+        /// <returns>El ID del cliente encontrado.</returns>
         public string SelectCliente(SqlConnection conn, string cedula)
         {
             Console.WriteLine("-----SELECT MEMBRESIA-----");
@@ -176,6 +208,12 @@ namespace Dato
             return idCliente;
         }
 
+        /// <summary>
+        /// Obtiene la cédula de un cliente mediante su ID de cliente.
+        /// </summary>
+        /// <param name="conn">Conexión a la base de datos.</param>
+        /// <param name="idCliente">ID del cliente.</param>
+        /// <returns>La cédula del cliente.</returns>
         public string SelectCedulaCliente(SqlConnection conn, string idCliente)
         {
             Console.WriteLine("-----SELECT MEMBRESIA-----");
@@ -208,6 +246,13 @@ namespace Dato
             return cedula;
         }
 
+        /// <summary>
+        /// Actualiza los campos de una membresía en la base de datos.
+        /// </summary>
+        /// <param name="mem">Membresía con los nuevos datos.</param>
+        /// <param name="conn">Conexión a la base de datos.</param>
+        /// <param name="SNombrePlan">Nombre del plan de membresía a actualizar.</param>
+        /// <returns>Mensaje indicando el éxito o fracaso de la operación.</returns>
         public string UpdateCamposMembresia(Membresia mem, SqlConnection conn, string SNombrePlan)
         {
             Console.WriteLine("-----UPDATE CAMPOS MEMBRESIA-----");
@@ -251,6 +296,12 @@ namespace Dato
             return x;
         }
 
+        /// <summary>
+        /// Actualiza el estado de una membresía en la base de datos.
+        /// </summary>
+        /// <param name="mem">Membresía con el nuevo estado.</param>
+        /// <param name="conn">Conexión a la base de datos.</param>
+        /// <returns>Mensaje indicando el éxito o fracaso de la operación.</returns>
         public string UpdateEstadoMembresia(Membresia mem, SqlConnection conn)
         {
             Console.WriteLine("-----UPDATE ESTADO MEMBRESIA-----");
@@ -266,33 +317,6 @@ namespace Dato
 
                 cmd.Parameters.Clear(); // LIMPIA PARAMETROS UTILIZADOS
                 cmd.Parameters.AddWithValue("@estado", mem.Estado);
-                cmd.Parameters.AddWithValue("@plan", mem.Plan);
-
-                ImprimirSQL(comando);
-                cmd.ExecuteNonQuery();
-                x = "1";
-            }
-            catch (SqlException ex)
-            {
-                x = "0" + ex.Message;
-                Log.Warning("ERROR: " + ex.Message);
-                Console.WriteLine(x);
-            }
-            return x;
-        }
-
-        public string DeleteMembresia(Membresia mem, SqlConnection conn)
-        {
-            Console.WriteLine("-----DELETE MEMBRESIA-----");
-            string x = "";
-            string comando = "DELETE FROM Membresia WHERE planMembresia = @plan; \n";
-
-            try
-            {
-                cmd.Connection = conn;
-                cmd.CommandText = comando;
-
-                cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@plan", mem.Plan);
 
                 ImprimirSQL(comando);

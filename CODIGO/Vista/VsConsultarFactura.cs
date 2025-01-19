@@ -67,23 +67,6 @@ namespace Vista
             vRegistroPrecio.ShowDialog();
         }
 
-        private void btnActivarFact_Click(object sender, EventArgs e)
-        {
-            if (dgvRegistroFact.SelectedRows.Count > 0)
-            {
-                var filaSeleccionada = dgvRegistroFact.SelectedRows[0];
-                var serie = (string)filaSeleccionada.Cells["FacturaRegistroFact"].Value;
-
-                ctrfacto.ActivarFactura(serie, filaSeleccionada, dgvRegistroFact);
-                ctrfacto.LlenarDataFact(dgvRegistroFact);
-                richTextBox1.Clear();
-            }
-            else
-            {
-                MessageBox.Show("ERROR: SELECCIONA UNA FILA ANTES DE ACTIVAR.", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
         private void buttonGenerarPDF_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show("DESEA GENERAR REPORTE PDF DE FACTURAS?", "CONFIRMACION", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

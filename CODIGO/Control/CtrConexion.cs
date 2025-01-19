@@ -6,6 +6,14 @@ using Serilog;
 
 namespace Control
 {
+    /// <summary>
+    /// Clase encargada de gestionar la conexión a la base de datos al iniciar el sistema.
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Conectar</term> <see cref="Conectar"/>
+    /// </item>
+    /// </list>
+    /// </summary>
     public class CtrConexion
     {
         Conexion conn = new Conexion();
@@ -13,6 +21,9 @@ namespace Control
 
         public string MsjConexion { get => msjConexion; set => msjConexion = value; }
 
+        /// <summary>
+        /// Método encargado de establecer la conexión y mostrar el estado de la misma.
+        /// </summary>
         public void Conectar()
         {
             Console.WriteLine("-----CONEXION-----");

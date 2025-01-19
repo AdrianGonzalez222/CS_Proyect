@@ -11,6 +11,9 @@ using Serilog;
 
 namespace Control
 {
+    /// <summary>
+    /// Clase controlador que contiene todos los métodos de la entidad Actividad.
+    /// </summary>
     public class CtrActividad
     {
         Conexion conn = new Conexion();
@@ -22,9 +25,16 @@ namespace Control
         public DateTime FechaActual { get => fechaActual; set => fechaActual = value; }
         public static List<Actividad> ListaActividad { get => listaActividad; set => listaActividad = value; }
 
-        //
-        // INGRESAR LIST - BD
-        //
+        /// <summary>
+        /// Método que permite ingresar una nueva actividad.
+        /// </summary>
+        /// <param name="sNombre">Nombre de la actividad.</param>
+        /// <param name="sDescripcion">Descripción de la actividad.</param>
+        /// <param name="sFechaInicio">Fecha de inicio de la actividad.</param>
+        /// <param name="sFechaFin">Fecha de fin de la actividad.</param>
+        /// <param name="sHoraInicio">Hora de inicio de la actividad.</param>
+        /// <param name="sHoraFin">Hora de fin de la actividad.</param>
+        /// <returns>Mensaje con el resultado de la operación.</returns>
         public string IngresarActividad(string sNombre, string sDescripcion, string sFechaInicio, string sFechaFin, string sHoraInicio, string sHoraFin)
         {
             string msj = "ERROR: SE ESPERABA DATOS CORRECTOS.";
@@ -78,6 +88,10 @@ namespace Control
             return msj;
         }
 
+        /// <summary>
+        /// Método que permite ingresar una nueva actividad en la base de datos.
+        /// </summary>
+        /// <param name="act">Actividad a registrar.</param>
         public void IngresarActividadBD(Actividad act)
         {
             string msj = string.Empty;
@@ -100,9 +114,10 @@ namespace Control
             conn.CerrarConexion();
         }
 
-        //
-        // CONSULTAR LIST - BD
-        //
+        /// <summary>
+        /// Obtiene el total de actividades registradas en la base de datos.
+        /// </summary>
+        /// <returns>Total de actividades.</returns>
         public int GetTotal()
         {
             try 
@@ -118,6 +133,10 @@ namespace Control
 
         }
 
+        /// <summary>
+        /// Obtiene el total de actividades inactivas en la base de datos.
+        /// </summary>
+        /// <returns>Total de actividades inactivas.</returns>
         public int GetTotalInactivas()
         {
             try
@@ -132,6 +151,11 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Consulta las actividades en la base de datos según el estado especificado.
+        /// </summary>
+        /// <param name="estado">Estado de las actividades a consultar.</param>
+        /// <returns>Lista de actividades.</returns>
         public List<Actividad> TablaConsultarActividadBD(int estado)
         {
             try
@@ -158,9 +182,10 @@ namespace Control
             }
         }
 
-        //
-        // CAMBIAR ESTADO - BD
-        //
+        /// <summary>
+        /// Inactiva una actividad seleccionada de la lista de actividades.
+        /// </summary>
+        /// <param name="dgvActividad">DataGridView que contiene las actividades.</param>
         public void InactivarActividad(DataGridView dgvActividad)
         {
             try
@@ -201,6 +226,10 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Restaura una actividad seleccionada de la lista de actividades a su estado activo.
+        /// </summary>
+        /// <param name="dgvActividad">DataGridView que contiene las actividades.</param>
         public void RestaurarActividad(DataGridView dgvActividad)
         {
             try
@@ -241,6 +270,10 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Actualiza el estado de una actividad en la base de datos.
+        /// </summary>
+        /// <param name="act">Actividad cuyo estado se va a actualizar.</param>
         public void EstadoActividadBD(Actividad act)
         {
             string msj = string.Empty;
@@ -263,9 +296,17 @@ namespace Control
             conn.CerrarConexion();
         }
 
-        //
-        // EDITAR - BD
-        //
+        /// <summary>
+        /// Edita los detalles de una actividad existente en la lista y la base de datos.
+        /// </summary>
+        /// <param name="sNombreOriginal">Nombre original de la actividad a editar.</param>
+        /// <param name="sNombre">Nuevo nombre de la actividad.</param>
+        /// <param name="sDescripcion">Nueva descripción de la actividad.</param>
+        /// <param name="sFechaInicio">Nueva fecha de inicio de la actividad.</param>
+        /// <param name="sFechaFin">Nueva fecha de fin de la actividad.</param>
+        /// <param name="sHoraInicio">Nueva hora de inicio de la actividad.</param>
+        /// <param name="sHoraFin">Nueva hora de fin de la actividad.</param>
+        /// <returns>Mensaje indicando el resultado de la edición.</returns>
         public string EditarActividad(string sNombreOriginal, string sNombre, string sDescripcion, string sFechaInicio, string sFechaFin, string sHoraInicio, string sHoraFin)
         {
             string msj = "ERROR: SE ESPERABA DATOS CORRECTOS.";
@@ -337,6 +378,11 @@ namespace Control
             return msj;
         }
 
+        /// <summary>
+        /// Actualiza los detalles de una actividad en la base de datos.
+        /// </summary>
+        /// <param name="act">Objeto de la actividad con los nuevos detalles.</param>
+        /// <param name="sNombreOriginal">Nombre inicial de la actividad a actualizar.</param>
         public void EditarActividadBD(Actividad act, string sNombreOriginal)
         {
             string msj = string.Empty;
@@ -359,9 +405,10 @@ namespace Control
             conn.CerrarConexion();
         }
 
-        //
-        // REMOVER - BD
-        //
+        /// <summary>
+        /// Elimina una actividad seleccionada.
+        /// </summary>
+        /// <param name="dgvActividad">Control DataGridView que contiene las actividades.</param>
         public void RemoverActividad(DataGridView dgvActividad)
         {
             try
@@ -406,6 +453,10 @@ namespace Control
             }        
         }
 
+        /// <summary>
+        /// Elimina una actividad de la base de datos.
+        /// </summary>
+        /// <param name="act">Objeto de la actividad a eliminar.</param>
         public void RemoverActividadBD(Actividad act)
         {
             string msj = string.Empty;
@@ -428,9 +479,12 @@ namespace Control
             conn.CerrarConexion();
         }
 
-        //
-        // FILTROS DE BUSQUEDA
-        //
+        /// <summary>
+        /// Filtra y presenta las actividades activas en un DataGridView, buscando por nombre o descripción.
+        /// </summary>
+        /// <param name="dgvActividad">Control DataGridView donde se mostrarán las actividades.</param>
+        /// <param name="filtro">Texto para filtrar las actividades.</param>
+        /// <param name="buscarPorNombre">Indica si se debe filtrar por nombre o por descripción.</param>
         public void TablaConsultarActividadNombreDescripcion(DataGridView dgvActividad, string filtro = "", bool buscarPorNombre = true)
         {
             try
@@ -462,7 +516,13 @@ namespace Control
                 Log.Error("ERROR INESPERADO: {ex}", ex);
             }
         }
-      
+
+        /// <summary>
+        /// Filtra y presenta las actividades inactivas (papelera) en un DataGridView, buscando por nombre o descripción.
+        /// </summary>
+        /// <param name="dgvActividad">Control DataGridView donde se mostrarán las actividades.</param>
+        /// <param name="filtro">Texto para filtrar las actividades.</param>
+        /// <param name="buscarPorNombre">Indica si se debe filtrar por nombre o por descripción.</param>
         public void TablaConsultarActividadNombreDescripcionPapelera(DataGridView dgvActividad, string filtro = "", bool buscarPorNombre = true)
         {
             try
@@ -494,9 +554,11 @@ namespace Control
             }
         }
 
-        //
-        // OTROS METODOS
-        //
+        /// <summary>
+        /// Verifica si una actividad con el nombre dado ya existe en la lista.
+        /// </summary>
+        /// <param name="nombre">Nombre de la actividad a buscar.</param>
+        /// <returns>Devuelve true si la actividad existe, de lo contrario false.</returns>
         public bool ActividadExistente(string nombre)
         {
             foreach (Actividad act in ListaActividad)
@@ -509,6 +571,10 @@ namespace Control
             return false;
         }
 
+        /// <summary>
+        /// Consulta y presenta todas las actividades activas en un DataGridView.
+        /// </summary>
+        /// <param name="dgvActividad">Control DataGridView donde se mostrarán las actividades.</param>
         public void TablaConsultarActividad(DataGridView dgvActividad)
         {
             try
@@ -538,6 +604,10 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Consulta y presenta todas las actividades inactivas (papelera) en un DataGridView.
+        /// </summary>
+        /// <param name="dgvActividad">Control DataGridView donde se mostrarán las actividades.</param>
         public void TablaConsultarActividadPapelera(DataGridView dgvActividad)
         {
             try
@@ -567,6 +637,16 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Muestra los detalles de una actividad seleccionada en los controles correspondientes.
+        /// </summary>
+        /// <param name="textNombre">TextBox para mostrar el nombre de la actividad.</param>
+        /// <param name="textDescripcion">TextBox para mostrar la descripción de la actividad.</param>
+        /// <param name="dtpFechaInicio">DateTimePicker para mostrar la fecha de inicio.</param>
+        /// <param name="dtpFechaFin">DateTimePicker para mostrar la fecha de fin.</param>
+        /// <param name="dtpHoraInicio">DateTimePicker para mostrar la hora de inicio.</param>
+        /// <param name="dtpHoraFin">DateTimePicker para mostrar la hora de fin.</param>
+        /// <param name="nombreActividad">Nombre de la actividad a buscar y mostrar.</param>
         public void PresentarDatosActividad(TextBox textNombre, TextBox textDescripcion, DateTimePicker dtpFechaInicio, DateTimePicker dtpFechaFin, DateTimePicker dtpHoraInicio, DateTimePicker dtpHoraFin, string nombreActividad)
         {
             Actividad actividadSeleccionada = listaActividad.Find(a => a.Nombre == nombreActividad);
@@ -581,19 +661,27 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Obtiene la lista de actividades activas desde la base de datos.
+        /// </summary>
+        /// <returns>Lista de actividades activas.</returns>
         public List<Actividad> GetListaActividad()
         {
             return TablaConsultarActividadBD(1);
         }
 
+        /// <summary>
+        /// Obtiene la lista de actividades inactivas (papelera) desde la base de datos.
+        /// </summary>
+        /// <returns>Lista de actividades inactivas.</returns>
         public List<Actividad> GetListaActividadPapelera()
         {
             return TablaConsultarActividadBD(2);
         }
 
-        //
-        // GENERAR PDF
-        //
+        /// <summary>
+        /// Abre el archivo PDF generado para las actividades activas existententes.
+        /// </summary>
         public void AbrirPDF()
         {
             try
@@ -613,6 +701,9 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Genera un archivo PDF con un reporte de las actividades activas.
+        /// </summary>
         public void GenerarPDF()
         {
             FileStream stream = null;
@@ -694,6 +785,9 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Abre el archivo PDF generado para las actividades inactivas (papelera) existentes.
+        /// </summary>
         public void AbrirPDF_Off()
         {
             try
@@ -713,6 +807,9 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Genera un archivo PDF con un reporte de las actividades inactivas (papelera).
+        /// </summary>
         public void GenerarPDF_Off()
         {
             FileStream stream = null;

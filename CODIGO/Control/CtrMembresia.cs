@@ -11,6 +11,9 @@ using Serilog;
 
 namespace Control
 {
+    /// <summary>
+    /// Clase controlador que contiene todos los métodos de la entidad Membnresia.
+    /// </summary>
     public class CtrMembresia
     {
         Conexion conn = new Conexion();
@@ -26,6 +29,18 @@ namespace Control
         public DateTime FechaActual { get => fechaActual; set => fechaActual = value; }
         public static List<Membresia> ListaMembresiaInactivos { get => listaMembresiaInactivos; set => listaMembresiaInactivos = value; }
 
+        /// <summary>
+        /// Método para ingresar una nueva membresía en el sistema
+        /// </summary>
+        /// <param name="plan">El plan de membresía seleccionado</param>
+        /// <param name="SFInicio">Fecha de inicio de la membresía</param>
+        /// <param name="SFFin">Fecha de fin de la membresía</param>
+        /// <param name="promocion">Si aplica una promoción (SI/NO)</param>
+        /// <param name="Sdescuento">Descuento aplicado a la membresía</param>
+        /// <param name="detallePromocion">Detalle de la promoción</param>
+        /// <param name="cedulaCliente">Cédula del cliente asociado a la membresía</param>
+        /// <param name="Sprecio">Precio de la membresía</param>
+        /// <returns>Mensaje de resultado de la operación</returns>
         public string IngresarMembresia(string plan, string SFInicio, string SFFin, string promocion, string Sdescuento, string detallePromocion, string cedulaCliente, string Sprecio)
         {
             string msj = "ERROR: SE ESPERABA DATOS CORRECTOS.";
@@ -95,6 +110,10 @@ namespace Control
             return msj;
         }
 
+        /// <summary>
+        /// Método para insertar una nueva membresía en la base de datos
+        /// </summary>
+        /// <param name="mem">Objeto Membresia con los datos a insertar</param>
         public void IngresarMembresiaBD(Membresia mem)
         {
             string msj = string.Empty;
@@ -118,25 +137,40 @@ namespace Control
             conn.CerrarConexion();
         }
 
-        //
-        // CONSULTAR LIST - BD
-        //
+        /// <summary>
+        /// Obtiene el total de membresías activas
+        /// </summary>
+        /// <returns>El número total de membresías activas</returns>
         public int GetTotal()
         {
             ListaMembresia = TablaConsultarMembresiaBD(1); // BASE DE DATOS
             return ListaMembresia.Count;
         }
 
+        /// <summary>
+        /// Obtiene el total de membresías inactivas
+        /// </summary>
+        /// <returns>El número total de membresías inactivas</returns>
         public int GetTotalInactivas()
         {
             ListaMembresiaInactivos = TablaConsultarMembresiaBD(2); // BASE DE DATOS
             return ListaMembresiaInactivos.Count(mem => mem.Estado == 2);
         }
+
+        /// <summary>
+        /// Método para obtener la lista de todas las membresías activas desde la base de datos
+        /// </summary>
+        /// <returns>Lista de todas las membresías activas</returns>
         public List<Membresia> GetListaMembresia()
         {
             return TablaConsultarMembresiaBD(1);
         }
 
+        /// <summary>
+        /// Método para consultar todas las membresías de la base de datos filtrando por estado
+        /// </summary>
+        /// <param name="estado">Estado de la membresía</param>
+        /// <returns>Lista de membresías según el estado</returns>
         public List<Membresia> TablaConsultarMembresiaBD(int estado)
         {
             List<Membresia> membresias = new List<Membresia>();
@@ -154,7 +188,12 @@ namespace Control
             conn.CerrarConexion();
             return membresias;
         }
- 
+
+        /// <summary>
+        /// Verifica si un cliente ya tiene una membresía activa
+        /// </summary>
+        /// <param name="idCliente">ID del cliente</param>
+        /// <returns>True si la membresía ya existe, false si no</returns>
         public bool MembresiaExistente(string idCliente)
         {
             bool existe = false;
@@ -169,6 +208,11 @@ namespace Control
             return existe;
         }
 
+        /// <summary>
+        /// Busca un cliente en la base de datos usando su cédula
+        /// </summary>
+        /// <param name="cedulaCliente">Cédula del cliente</param>
+        /// <returns>El ID del cliente o un mensaje de error si no se encuentra</returns>
         public string SelectClienteBD(string cedulaCliente)
         {
             string msj = string.Empty;
@@ -210,6 +254,11 @@ namespace Control
             return msj;
         }
 
+        /// <summary>
+        /// Busca la cédula de un cliente en la base de datos a partir de su ID.
+        /// </summary>
+        /// <param name="idCliente">El ID del cliente cuya cédula se desea obtener.</param>
+        /// <returns>La cédula del cliente si se encuentra, o un mensaje de error si no se encuentra.</returns>
         public string SelectCedulaClienteBD(string idCliente)
         {
             string msj = string.Empty;
@@ -251,6 +300,10 @@ namespace Control
             return msj;
         }
 
+        /// <summary>
+        /// Llena un DataGridView con las membresías activas.
+        /// </summary>
+        /// <param name="dgvMembresia">El DataGridView que se llenará con la información de las membresías activas.</param>
         public void LlenarGrid(DataGridView dgvMembresia)
         {
             int i = 0;
@@ -278,6 +331,10 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Llena un DataGridView con las membresías inactivas.
+        /// </summary>
+        /// <param name="dgvMembresia">El DataGridView que se llenará con la información de las membresías inactivas.</param>
         public void LlenarGridInactivos(DataGridView dgvMembresia)
         {
             int i = 0;
@@ -305,6 +362,12 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Realiza una consulta de membresías activas filtradas por un filtro dado.
+        /// </summary>
+        /// <param name="dgvMembresia">El DataGridView que se llenará con las membresías filtradas.</param>
+        /// <param name="filtro">El filtro que se aplicará (por cédula o por plan).</param>
+        /// <param name="buscarPorCedula">Si es verdadero, el filtro buscará por cédula, de lo contrario, buscará por plan.</param>
         public void TablaConsultarMebresiaFiltro(DataGridView dgvMembresia, string filtro = "", bool buscarPorCedula = true)
         {
             int i = 0;
@@ -332,6 +395,18 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Edita una membresía existente con nuevos datos.
+        /// </summary>
+        /// <param name="nombrePlan">El nombre del plan original.</param>
+        /// <param name="planE">El nuevo nombre del plan.</param>
+        /// <param name="SFInicioE">La nueva fecha de inicio.</param>
+        /// <param name="SFFinE">La nueva fecha de fin.</param>
+        /// <param name="promocionE">La nueva opción de promoción (SI o NO).</param>
+        /// <param name="SdescuentoE">El nuevo porcentaje de descuento.</param>
+        /// <param name="detallePromocionE">El nuevo detalle de la promoción.</param>
+        /// <param name="SprecioE">El nuevo precio de la membresía.</param>
+        /// <returns>Un mensaje indicando si la membresía fue editada correctamente o si hubo un error.</returns>
         public string editarMembresia(string nombrePlan, string planE, string SFInicioE, string SFFinE, string promocionE, string SdescuentoE, string detallePromocionE, string SprecioE)
         {
             string msj = "ERROR: SE ESPERABA DATOS CORRECTOS.";
@@ -402,6 +477,11 @@ namespace Control
             return msj;
         }
 
+        /// <summary>
+        /// Actualiza los campos de una membresía en la base de datos.
+        /// </summary>
+        /// <param name="mem">La membresía con los nuevos datos a actualizar.</param>
+        /// <param name="nombrePlan">El nombre del plan original que se está actualizando.</param>
         public void EditarMembresiaBD(Membresia mem, string nombrePlan)
         {
             string msj = string.Empty;
@@ -425,6 +505,18 @@ namespace Control
             conn.CerrarConexion();
         }
 
+        /// <summary>
+        /// Presenta los datos de una membresía en los controles de la interfaz.
+        /// </summary>
+        /// <param name="txtBoxME">El cuadro de texto para mostrar el nombre del plan de membresía.</param>
+        /// <param name="dateTPFIE">El control DateTimePicker para mostrar la fecha de inicio.</param>
+        /// <param name="dateTPFFE">El control DateTimePicker para mostrar la fecha de fin.</param>
+        /// <param name="comboBoxPE">El ComboBox para mostrar la opción de promoción.</param>
+        /// <param name="txtBoxDPE">El cuadro de texto para mostrar los detalles de la promoción.</param>
+        /// <param name="txtBoxDE">El cuadro de texto para mostrar el descuento de la membresía.</param>
+        /// <param name="txtBoxPEM">El cuadro de texto para mostrar el precio de la membresía.</param>
+        /// <param name="lblCedulaM">La etiqueta para mostrar la cédula del cliente asociado.</param>
+        /// <param name="nombrePlan">El nombre del plan de la membresía a consultar.</param>
         public void PresentarDatosMembresia(TextBox txtBoxME, DateTimePicker dateTPFIE, DateTimePicker dateTPFFE, ComboBox comboBoxPE, TextBox txtBoxDPE, TextBox txtBoxDE, TextBox txtBoxPEM, Label lblCedulaM, string nombrePlan)
         {
             Membresia membresiaSeleccionada = ListaMembresia.Find(a => a.Plan == nombrePlan);
@@ -442,6 +534,10 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Inactiva una membresía seleccionada de un DataGridView.
+        /// </summary>
+        /// <param name="dgvMembresia">El DataGridView que contiene las membresías activas.</param>
         public void InactivarMembresia(DataGridView dgvMembresia)
         {
             if (dgvMembresia.SelectedRows.Count > 0)
@@ -473,6 +569,10 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Restaura una membresía seleccionada de un DataGridView, cambiando su estado a activo.
+        /// </summary>
+        /// <param name="dgvMembresia">El DataGridView que contiene las membresías inactivas.</param>
         public void RestaurarMembresia(DataGridView dgvMembresia)
         {
             if (dgvMembresia.SelectedRows.Count > 0)
@@ -505,6 +605,10 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Actualiza el estado de una membresía en la base de datos (activo o inactivo).
+        /// </summary>
+        /// <param name="mem">La membresía cuyo estado se actualizará.</param>
         public void EstadoMembresiaBD(Membresia mem)
         {
             string msj = string.Empty;
@@ -526,7 +630,19 @@ namespace Control
             }
             conn.CerrarConexion();
         }
-        
+
+        /// <summary>
+        /// Muestra los datos de un cliente relacionado con una membresía en los controles de la interfaz.
+        /// </summary>
+        /// <param name="cedulaCliente">La cédula del cliente cuya información se va a mostrar.</param>
+        /// <param name="lblCedulaM">La etiqueta para mostrar la cédula del cliente.</param>
+        /// <param name="lblNombreM">La etiqueta para mostrar el nombre del cliente.</param>
+        /// <param name="lblApellidoM">La etiqueta para mostrar el apellido del cliente.</param>
+        /// <param name="lblEstudianteM">La etiqueta para indicar si el cliente es estudiante.</param>
+        /// <param name="celularInvisible">Etiqueta para mostrar el número de celular del cliente (oculto).</param>
+        /// <param name="comprobanteInvisible">Etiqueta para mostrar el comprobante de estudiante (oculto).</param>
+        /// <param name="fechaNacInvisible">Etiqueta para mostrar la fecha de nacimiento del cliente (oculto).</param>
+        /// <param name="direccionInvisible">Etiqueta para mostrar la dirección del cliente (oculto).</param>
         public void MostrarDatosClienteMem(string cedulaCliente, Label lblCedulaM, Label lblNombreM, Label lblApellidoM, Label lblEstudianteM, Label celularInvisible, Label comprobanteInvisible, Label fechaNacInvisible, Label direccionInvisible)
         {
             Cliente clienteSeleccionado = ctrCliente.ConseguirDatosGrid(cedulaCliente);
@@ -554,6 +670,9 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Abre el archivo PDF generado con el reporte de membresías.
+        /// </summary>
         public void AbrirPDF()
         {
             if (File.Exists("Reporte-Membresia.pdf")) // Verificar si el archivo PDF existe antes de intentar abrirlo
@@ -566,6 +685,9 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Genera un archivo PDF con el reporte de las membresías activas.
+        /// </summary>
         public void GenerarPDF()
         {
             FileStream stream = null;

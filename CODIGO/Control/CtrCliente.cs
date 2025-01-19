@@ -11,6 +11,9 @@ using Serilog;
 
 namespace Control
 {
+    /// <summary>
+    /// Clase controlador que contiene todos los métodos de la entidad Cliente.
+    /// </summary>
     public class CtrCliente
     {
         private static List<Cliente> listaCli = new List<Cliente>();
@@ -18,13 +21,28 @@ namespace Control
         private DatoCliente dtCliente = new DatoCliente();
 
         public static List<Cliente> ListaCli { get => listaCli; set => listaCli = value; }
-        
+
+        /// <summary>
+        /// Obtiene el total de clientes almacenados en la lista.
+        /// </summary>
+        /// <returns>El número total de clientes.</returns>
         public int GetTotal()
         {
             ListaCli = ConsultarTablaCliBD();
             return listaCli.Count;
         }
 
+        /// <summary>
+        /// Ingresa un nuevo cliente en el sistema con los datos proporcionados.
+        /// </summary>
+        /// <param name="rCedula">Cédula del cliente.</param>
+        /// <param name="rNombre">Nombre del cliente.</param>
+        /// <param name="rApellido">Apellido del cliente.</param>
+        /// <param name="rFechaNacimiento">Fecha de nacimiento del cliente.</param>
+        /// <param name="rTelefono">Teléfono del cliente.</param>
+        /// <param name="rEstado">Estado del cliente (activo/inactivo).</param>
+        /// <param name="rDireccion">Dirección del cliente.</param>
+        /// <returns>Mensaje de éxito o error del proceso de registro.</returns>
         public string IngresarCli(string rCedula, string rNombre, string rApellido,string rFechaNacimiento, string rTelefono, string rEstado, string rDireccion)
         {           
             String msg = "ERROR: SE ESPERABA DATOS CORRECTOS!!";
@@ -40,6 +58,18 @@ namespace Control
             return msg;
         }
 
+        /// <summary>
+        /// Ingresa un nuevo cliente tipo estudiante en el sistema con los datos proporcionados.
+        /// </summary>
+        /// <param name="rCedula">Cédula del cliente.</param>
+        /// <param name="rNombre">Nombre del cliente.</param>
+        /// <param name="rApellido">Apellido del cliente.</param>
+        /// <param name="rFechaNacimiento">Fecha de nacimiento del cliente.</param>
+        /// <param name="rTelefono">Teléfono del cliente.</param>
+        /// <param name="rEstado">Estado del cliente (activo/inactivo).</param>
+        /// <param name="rDireccion">Dirección del cliente.</param>
+        /// <param name="comprobante">Comprobante del estudiante.</param>
+        /// <returns>Mensaje de éxito o error del proceso de registro.</returns>
         public string IngresarCliEst( string rCedula, string rNombre, string rApellido, string rFechaNacimiento, string rTelefono,string rEstado, string rDireccion, string comprobante)
         {
             String msg = "ERROR: SE ESPERABA DATOS CORRECTOS11";
@@ -55,6 +85,10 @@ namespace Control
             return msg;
         }
 
+        /// <summary>
+        /// Inserta un cliente en la base de datos.
+        /// </summary>
+        /// <param name="cliente">Cliente a insertar.</param>
         public void IngresarClienteBD(Cliente cliente)
         {
             string msg = string.Empty;
@@ -77,6 +111,11 @@ namespace Control
             conn.CerrarConexion();
         }
 
+        /// <summary>
+        /// Verifica si un cliente ya existe en la lista de clientes.
+        /// </summary>
+        /// <param name="cedula">Cédula del cliente a verificar.</param>
+        /// <returns>Devuelve true si el cliente existe, false en caso contrario.</returns>
         public bool ClienteExistente(string cedula)
         {
             foreach(Cliente cli in ListaCli)
@@ -89,6 +128,10 @@ namespace Control
             return false;
         }
 
+        /// <summary>
+        /// Consulta la base de datos y devuelve una lista de clientes.
+        /// </summary>
+        /// <returns>Lista de objetos Cliente obtenidos de la base de datos.</returns>
         public List<Cliente> ConsultarTablaCliBD()
         {
             List<Cliente> clientes = new List<Cliente>();
@@ -108,6 +151,10 @@ namespace Control
             return clientes;
         }
 
+        /// <summary>
+        /// Llenar el control DataGridView con los datos de la lista de clientes.
+        /// </summary>
+        /// <param name="dgvClientes">DataGridView donde se mostrarán los clientes.</param>
         public void LlenarGrid(DataGridView dgvClientes)
         {
             int i = 0;
@@ -134,6 +181,11 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Obtiene el comprobante actualizado de un cliente, si es estudiante.
+        /// </summary>
+        /// <param name="cedula">Cédula del cliente a consultar.</param>
+        /// <returns>El comprobante del cliente o un mensaje indicando que no tiene comprobante.</returns>
         public string ObtenerComprobanteActualizado(string cedula)
         {
             foreach (Cliente cliente in ListaCli)
@@ -150,6 +202,20 @@ namespace Control
             return "SIN COMPROBANTE";
         }
 
+        /// <summary>
+        /// Edita los datos de un cliente existente en la base de datos y en la lista.
+        /// </summary>
+        /// <param name="aCedulaOrg">Cédula original del cliente para buscarlo en la lista.</param>
+        /// <param name="aCedula">Nueva cédula del cliente.</param>
+        /// <param name="aNombre">Nuevo nombre del cliente.</param>
+        /// <param name="aApellido">Nuevo apellido del cliente.</param>
+        /// <param name="aFechaNacimiento">Nueva fecha de nacimiento del cliente.</param>
+        /// <param name="aTelefono">Nuevo teléfono del cliente.</param>
+        /// <param name="aDireccion">Nueva dirección del cliente.</param>
+        /// <param name="aEstado">Nuevo estado del cliente (activo/inactivo).</param>
+        /// <param name="esEstudiante">Indica si el cliente es estudiante.</param>
+        /// <param name="aComprobante">Comprobante del cliente, si es estudiante.</param>
+        /// <returns>Mensaje indicando el resultado de la edición.</returns>
         public string EditarCliente(string aCedulaOrg, string aCedula, string aNombre, string aApellido, string aFechaNacimiento, string aTelefono, string aDireccion, string aEstado, bool esEstudiante, string aComprobante = null)
         {
             string msg = "ERROR: SE ESPERABA DATOS CORRECTOS!!";
@@ -226,7 +292,12 @@ namespace Control
             EditarCliBD(clienteExistente, aCedulaOrg);
             return "CLIENTE EDITADO CORRECTAMENTE";
         }
-   
+
+        /// <summary>
+        /// Actualiza los datos de un cliente en la base de datos.
+        /// </summary>
+        /// <param name="cli">El objeto Cliente con los datos actualizados.</param>
+        /// <param name="CedulaOrg">La cédula original del cliente que se desea actualizar.</param>
         public void EditarCliBD(Cliente cli, string CedulaOrg)
         {
             string msj = string.Empty;
@@ -249,6 +320,12 @@ namespace Control
             conn.CerrarConexion();
         }
 
+        /// <summary>
+        /// Realiza una búsqueda de clientes en la lista filtrando por cédula o nombre.
+        /// </summary>
+        /// <param name="dgvClientes">DataGridView donde se mostrarán los resultados.</param>
+        /// <param name="filtroPorCedula">Cédula del cliente para filtrar.</param>
+        /// <param name="filtroPorNombre">Nombre del cliente para filtrar.</param>
         public void BuscarCliente(DataGridView dgvClientes, string filtroPorCedula = "", string filtroPorNombre = "")
         {
             if (string.IsNullOrEmpty(filtroPorCedula) && string.IsNullOrEmpty(filtroPorNombre))
@@ -293,6 +370,11 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Inactiva un cliente cambiando su estado a "INACTIVO" y actualiza en la base de datos.
+        /// </summary>
+        /// <param name="cedula">Cédula del cliente a inactivar.</param>
+        /// <param name="dgvCliente">DataGridView donde se muestra la lista de clientes.</param>
         public void InactivarCliente(string cedula, DataGridView dgvCliente)
         {
             DialogResult resultado = MessageBox.Show("¿DESEA INACTIVAR A ESTE CLIENTE?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -309,6 +391,10 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Actualiza el estado de un cliente a "INACTIVO" en la base de datos.
+        /// </summary>
+        /// <param name="cli">El objeto Cliente cuyo estado se actualizará.</param>
         public void InactivarClienteBD(Cliente cli)
         {
             string msg = string.Empty;
@@ -332,6 +418,19 @@ namespace Control
             conn.CerrarConexion();
         }
 
+        /// <summary>
+        /// Muestra los datos de un cliente en los controles correspondientes de un formulario.
+        /// </summary>
+        /// <param name="cedulaCliente">Cédula del cliente cuyo dato se desea mostrar.</param>
+        /// <param name="txtCedula">Campo de texto para mostrar la cédula del cliente.</param>
+        /// <param name="txtNombre">Campo de texto para mostrar el nombre del cliente.</param>
+        /// <param name="txtApellido">Campo de texto para mostrar el apellido del cliente.</param>
+        /// <param name="dtpDate">Campo de fecha para mostrar la fecha de nacimiento del cliente.</param>
+        /// <param name="txtTelefono">Campo de texto para mostrar el teléfono del cliente.</param>
+        /// <param name="txtDireccion">Campo de texto para mostrar la dirección del cliente.</param>
+        /// <param name="txtComprobante">Campo de texto para mostrar el comprobante (si es estudiante).</param>
+        /// <param name="cmbEstado">ComboBox para mostrar el estado del cliente (activo/inactivo).</param>
+        /// <param name="cmbEstudiante">ComboBox para indicar si el cliente es estudiante o no.</param>
         public void MostrarDatosCliente(string cedulaCliente, TextBox txtCedula, TextBox txtNombre, TextBox txtApellido, DateTimePicker dtpDate, TextBox txtTelefono, TextBox txtDireccion, TextBox txtComprobante, ComboBox cmbEstado, ComboBox cmbEstudiante)
         {
             Cliente clienteSeleccionado = ConseguirDatosGrid(cedulaCliente);
@@ -359,14 +458,19 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Busca un cliente en la lista utilizando su cédula.
+        /// </summary>
+        /// <param name="cedulaCliente">Cédula del cliente a buscar.</param>
+        /// <returns>El cliente encontrado o null si no se encuentra.</returns>
         public Cliente ConseguirDatosGrid(string cedulaCliente)
         {
             return ListaCli.Find(cli => cli.Cedula == cedulaCliente);
         }
 
-        //
-        //CONTROL PDF
-        //
+        /// <summary>
+        /// Abre el archivo PDF de reporte de clientes.
+        /// </summary>
         public void AbrirPDF()
         {
             if (File.Exists("reporteCliente.pdf"))
@@ -379,6 +483,10 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Genera un archivo PDF con los datos de los clientes registrados.
+        /// </summary>
+        /// <param name="dgvEstudiantes">DataGridView con los datos de los estudiantes.</param>
         public void GenerarPDF(DataGridView dgvEstudiantes)
         {
             FileStream stream = null;

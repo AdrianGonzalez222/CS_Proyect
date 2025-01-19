@@ -12,6 +12,9 @@ using System.Windows.Forms;
 
 namespace Control
 {
+    /// <summary>
+    /// Clase controlador que contiene todos los métodos de la entidad Factura.
+    /// </summary>
     public class CtrFactura
     {
         Conexion conn = new Conexion();
@@ -22,13 +25,20 @@ namespace Control
 
         public static List<Factura> ListaFact { get => listaFact; set => listaFact = value; }
 
-        //Mostrar tabla BD
+        /// <summary>
+        /// Obtiene el total de facturas registradas en la base de datos.
+        /// </summary>
+        /// <returns>El número total de facturas.</returns>
         public int GetTotal()
         {
             ListaFact = TablaConsultarFacturaBD(); // BASE DE DATOS
             return ListaFact.Count;
         }
 
+        /// <summary>
+        /// Consulta las facturas de la base de datos y las devuelve como una lista.
+        /// </summary>
+        /// <returns>Una lista de objetos <see cref="Factura"/>.</returns>
         public List<Factura> TablaConsultarFacturaBD()
         {
             List<Factura> facturas = new List<Factura>();
@@ -48,12 +58,19 @@ namespace Control
             return facturas;
         }
 
-        //Generar código de la factura
+        /// <summary>
+        /// Genera un código único para una nueva factura.
+        /// </summary>
+        /// <returns>El código generado para la factura.</returns>
         public string GenerarFactura()
         {
             return generarCodigoUnico();
         }
 
+        /// <summary>
+        /// Genera un código aleatorio único para la factura.
+        /// </summary>
+        /// <returns>El código único generado para la factura.</returns>
         private string generarCodigoUnico()
         {
             const string caracteresPermitidos = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -69,7 +86,12 @@ namespace Control
             return Serie.ToString();
         }
 
-        //Método para calcular datos ingresados
+        /// <summary>
+        /// Calcula el total de la factura aplicando descuentos y el IVA si es necesario.
+        /// </summary>
+        /// <param name="precioFact">El precio original de la factura.</param>
+        /// <param name="descuentoFact">El descuento aplicado a la factura.</param>
+        /// <returns>El total calculado de la factura como cadena de texto.</returns>
         public string CalcularTotal(double precioFact, double descuentoFact)
         {
             double totalFact;
@@ -86,7 +108,17 @@ namespace Control
             return totalFact.ToString();
         }
 
-        //Guardar datos
+        /// <summary>
+        /// Ingresa una nueva factura en la base de datos con los datos proporcionados.
+        /// </summary>
+        /// <param name="numfactura">El número de la factura.</param>
+        /// <param name="preciofact">El precio de la factura.</param>
+        /// <param name="descuentofact">El descuento aplicado a la factura.</param>
+        /// <param name="iva">El valor del IVA aplicado a la factura.</param>
+        /// <param name="serie">La serie de la factura.</param>
+        /// <param name="cedula">La cédula del cliente asociado a la factura.</param>
+        /// <param name="planMembresia">El plan de membresía asociado a la factura.</param>
+        /// <returns>Un mensaje que indica si el registro de la factura fue exitoso o hubo un error.</returns>
         public string IngresarFact(int numfactura, string preciofact, string descuentofact, string iva, string serie, string cedula, string planMembresia)
         {
             string msg;
@@ -135,7 +167,11 @@ namespace Control
             return msg;
         }
 
-        //PARA CLIENTE
+        /// <summary>
+        /// Consulta el cliente en la base de datos mediante su cédula.
+        /// </summary>
+        /// <param name="cedulaCliente">La cédula del cliente a buscar.</param>
+        /// <returns>El ID del cliente si se encuentra, o un mensaje de error si no se encuentra.</returns>
         public string SelectClienteBD(string cedulaCliente)
         {
             string msj = string.Empty;
@@ -177,7 +213,11 @@ namespace Control
             return msj;
         }
 
-        //PARA MEMBRESIA
+        /// <summary>
+        /// Consulta la membresía en la base de datos mediante el nombre del plan.
+        /// </summary>
+        /// <param name="planMembresia">El nombre del plan de membresía a buscar.</param>
+        /// <returns>El ID de la membresía si se encuentra, o un mensaje de error si no se encuentra.</returns>
         public string SelectMembresiaBD(string planMembresia)
         {
             string msj = string.Empty;
@@ -219,7 +259,10 @@ namespace Control
             return msj;
         }
 
-        //Ingresar-Guardar en el BD
+        /// <summary>
+        /// Ingresa una nueva factura en la base de datos.
+        /// </summary>
+        /// <param name="fact">El objeto <see cref="Factura"/> que contiene los datos de la factura a registrar.</param>
         public void IngresarFacturaBD(Factura fact)
         {
             string msj = string.Empty;
@@ -242,7 +285,10 @@ namespace Control
             conn.CerrarConexion();
         }
 
-        //LLenar la tabla
+        /// <summary>
+        /// Llena un DataGridView con los registros de las facturas almacenadas en la lista de facturas.
+        /// </summary>
+        /// <param name="dgvRegistroFact">El <see cref="DataGridView"/> donde se mostrarán los registros de las facturas.</param>
         public void LlenarDataFact(DataGridView dgvRegistroFact)
         {
             int i;
@@ -273,7 +319,12 @@ namespace Control
             }
         }
 
-        //BUSCAR POR NOMBRE O APELLDIO
+        /// <summary>
+        /// Realiza una búsqueda de las facturas en el DataGridView basado en un filtro específico, como nombre del cliente o precio de la factura.
+        /// </summary>
+        /// <param name="dgvRegistroFact">El <see cref="DataGridView"/> donde se mostrarán los resultados de la búsqueda.</param>
+        /// <param name="filtro">El filtro de búsqueda (nombre del cliente o precio de la factura).</param>
+        /// <param name="buscarPorNombreCliente">Indica si la búsqueda se realiza por nombre del cliente o por precio de la factura.</param>
         public void TablaConsultarNombreDescripcion(DataGridView dgvRegistroFact, string filtro = "", bool buscarPorNombreCliente = true)
         {
             int i;
@@ -311,6 +362,10 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Actualiza el estado de la factura en la base de datos.
+        /// </summary>
+        /// <param name="fact">El objeto <see cref="Factura"/> que contiene la factura cuya estado debe ser actualizado.</param>
         public void EstadoFacturaBD(Factura fact)
         {
             string msj = string.Empty;
@@ -333,7 +388,12 @@ namespace Control
             conn.CerrarConexion();
         }
 
-        //INACTIVAR FACTURA
+        /// <summary>
+        /// Inactiva una factura específica cambiando su estado a "INACTIVO" y agregando un motivo de inactivación.
+        /// </summary>
+        /// <param name="serie">El número de serie de la factura a inactivar.</param>
+        /// <param name="filaSeleccionada">La fila seleccionada en el DataGridView que contiene la factura.</param>
+        /// <param name="dgvRegistroFact">El <see cref="DataGridView"/> donde se actualizarán los registros después de la inactivación.</param>
         public void InactivarFactura(string serie, DataGridViewRow filaSeleccionada, DataGridView dgvRegistroFact)
         {
             DialogResult resultado = MessageBox.Show("¿DESEA INACTIVAR LA FACTURA SELECCIONADA?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -355,32 +415,13 @@ namespace Control
             }
         }
 
-        //RE-ACTIVAR FACTURA
-        public void ActivarFactura(string serie, DataGridViewRow filaSeleccionada, DataGridView dgvRegistroFact)
-        {
-            var factura = listaFact.FirstOrDefault(facto => facto.Serie == serie);
-            
-            if (factura != null)
-            {
-                if (factura.estadofact == "ACTIVO")
-                {
-                    MessageBox.Show("LA FACTURA YA ESTÁ ACTIVA.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else if (factura.estadofact == "INACTIVO")
-                {
-                    factura.estadofact = "ACTIVO"; //Pone el estado Activo a la factura                   
-                    factura.motivoinactivacion = "NO APLICA";
-                    EstadoFacturaBD(factura);
-                    LlenarDataFact(dgvRegistroFact);
-                    MessageBox.Show("LA FACTURA AHORA ESTÁ ACTIVA.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-        }
-
-        //
-        //INFORME
-        //
-        //LLENAR EL INFORME DE PRECIO
+        /// <summary>
+        /// Llena un DataGridView con los registros de las facturas filtradas por un rango de fechas y estado específico.
+        /// </summary>
+        /// <param name="dgvRegistroPrecio">El <see cref="DataGridView"/> donde se mostrarán los registros filtrados de las facturas.</param>
+        /// <param name="dtInicioInforme">La fecha de inicio del rango para el informe.</param>
+        /// <param name="dtFinInforme">La fecha de fin del rango para el informe.</param>
+        /// <param name="estadoSeleccionado">El estado de las facturas a filtrar.</param>
         public void LlenarRegistroPrecioPorFecha(DataGridView dgvRegistroPrecio, DateTime dtInicioInforme, DateTime dtFinInforme, string estadoSeleccionado)
         {
             int i;
@@ -438,7 +479,11 @@ namespace Control
             }
         }
 
-        //MOSTRAR EL TOTAL DE FACTURAS MOSTRADAS
+        /// <summary>
+        /// Muestra el total de las facturas que están actualmente mostradas en el <see cref="DataGridView"/>.
+        /// </summary>
+        /// <param name="dgv">El <see cref="DataGridView"/> que contiene las facturas mostradas.</param>
+        /// <param name="txtTotalFacturas">El <see cref="TextBox"/> donde se mostrará el total de las facturas.</param>
         public void MostrarTotalFacturas(DataGridView dgv, TextBox txtTotalFacturas)
         {
             int totalFacturas = 0;
@@ -454,8 +499,12 @@ namespace Control
             txtTotalFacturas.Text = totalFacturas.ToString();
         }
 
-
-        //MOSTRAR EL TOTAL DE LAS FACTURAS CON Y SIN DESCUENTO
+        /// <summary>
+        /// Muestra el total de las facturas con descuento y sin descuento en los respectivos TextBox.
+        /// </summary>
+        /// <param name="dgv">El <see cref="DataGridView"/> que contiene las facturas.</param>
+        /// <param name="txtTotalConDescuento">El <see cref="TextBox"/> donde se mostrará el total de las facturas con descuento.</param>
+        /// <param name="txtTotalSinDescuento">El <see cref="TextBox"/> donde se mostrará el total de las facturas sin descuento.</param>
         public void MostrarTotalFacturasConDescuento(DataGridView dgv, TextBox txtTotalConDescuento, TextBox txtTotalSinDescuento)
         {
             int totalFacturasConDescuento = 0;
@@ -485,8 +534,11 @@ namespace Control
             txtTotalSinDescuento.Text = totalFacturasSinDescuento.ToString();
         }
 
-
-        //CALCULAR MONTO TOTAL DE TODAS LAS FACTURAS DE INFORME
+        /// <summary>
+        /// Calcula el monto total de todas las facturas mostradas en el <see cref="DataGridView"/> y lo muestra en un TextBox.
+        /// </summary>
+        /// <param name="dgv">El <see cref="DataGridView"/> que contiene las facturas.</param>
+        /// <param name="txtMontoTotal">El <see cref="TextBox"/> donde se mostrará el monto total calculado.</param>
         public void MostrarMontoTotalInforme(DataGridView dgv, TextBox txtMontoTotal)
         {
             decimal totalFacturas = 0;
@@ -511,15 +563,18 @@ namespace Control
             txtMontoTotal.Text = "$ " + totalFacturas.ToString("N2");
         }
 
-        //
-        // PDF
-        //
-        //Creación del PDF de factura normal
+        /// <summary>
+        /// Obtiene la lista de facturas desde la base de datos.
+        /// </summary>
+        /// <returns>Una lista de objetos <see cref="Factura"/>.</returns>
         public List<Factura> GetListaFactura()
         {
             return TablaConsultarFacturaBD();
         }
 
+        /// <summary>
+        /// Abre el archivo PDF de las facturas si existe, o muestra un mensaje de error si no se encuentra el archivo.
+        /// </summary>
         public void AbrirPDF()
         {
             if (File.Exists("REPORTE-PDF-FACTURAS.pdf")) // Verificar si el archivo PDF existe antes de intentar abrirlo
@@ -532,6 +587,9 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Genera un archivo PDF con los detalles de las facturas almacenadas, incluyendo datos del cliente, membresía, y monto de la factura.
+        /// </summary>
         public void GenerarPDF()
         {
             FileStream stream = null;
@@ -642,8 +700,13 @@ namespace Control
             }
         }
 
-        //CREACION DE PDF PARA INFORME
-        //GENERAR PDF DE INFORME
+        /// <summary>
+        /// Obtiene una lista de facturas basadas en el estado y el rango de fechas proporcionados.
+        /// </summary>
+        /// <param name="estado">El estado de la factura (ACTIVO o INACTIVO) para filtrar los resultados.</param>
+        /// <param name="dtInicio">La fecha de inicio del rango para filtrar las facturas.</param>
+        /// <param name="dtFin">La fecha de fin del rango para filtrar las facturas.</param>
+        /// <returns>Una lista de facturas que cumplen con los criterios de estado y fechas.</returns>
         public List<Factura> GetListaInformeFactura(string estado, DateTime dtInicio, DateTime dtFin)
         {
             if (estado == "ACTIVO")
@@ -660,6 +723,9 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Abre el archivo PDF generado previamente para el informe de facturas, si el archivo existe.
+        /// </summary>
         public void AbrirInformePDF()
         {
             if (File.Exists("REPORTE-PDF-INFORME-FACTURAS.pdf")) // Verificar si el archivo PDF existe antes de intentar abrirlo
@@ -672,6 +738,12 @@ namespace Control
             }
         }
 
+        /// <summary>
+        /// Genera un archivo PDF con un informe de facturas filtradas por estado y rango de fechas, incluyendo detalles del cliente, membresía, monto y motivo.
+        /// </summary>
+        /// <param name="estado">El estado de las facturas a incluir en el informe (ACTIVO o INACTIVO).</param>
+        /// <param name="dtInicio">La fecha de inicio del rango de fechas para filtrar las facturas.</param>
+        /// <param name="dtFin">La fecha de fin del rango de fechas para filtrar las facturas.</param>
         public void GenerarInformePDF(string estado, DateTime dtInicio, DateTime dtFin)
         {
             FileStream stream = null;

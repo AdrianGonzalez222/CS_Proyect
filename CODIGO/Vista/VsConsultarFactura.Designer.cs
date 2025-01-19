@@ -51,7 +51,6 @@
             this.txtingresarbuscar = new System.Windows.Forms.TextBox();
             this.btnVolverFact = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnActivarFact = new System.Windows.Forms.Button();
             this.buttonGenerarPDF = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistroFact)).BeginInit();
             this.SuspendLayout();
@@ -76,7 +75,7 @@
             this.EstadoDataFact,
             this.MotivoDataFact});
             this.dgvRegistroFact.Location = new System.Drawing.Point(54, 98);
-            this.dgvRegistroFact.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvRegistroFact.Margin = new System.Windows.Forms.Padding(2);
             this.dgvRegistroFact.Name = "dgvRegistroFact";
             this.dgvRegistroFact.RowHeadersWidth = 51;
             this.dgvRegistroFact.RowTemplate.Height = 24;
@@ -204,7 +203,7 @@
             this.btnBuscarFact.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscarFact.ForeColor = System.Drawing.Color.White;
             this.btnBuscarFact.Location = new System.Drawing.Point(54, 33);
-            this.btnBuscarFact.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscarFact.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscarFact.Name = "btnBuscarFact";
             this.btnBuscarFact.Size = new System.Drawing.Size(166, 24);
             this.btnBuscarFact.TabIndex = 11;
@@ -214,7 +213,7 @@
             // richTextBox1
             // 
             this.richTextBox1.Location = new System.Drawing.Point(268, 327);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(470, 79);
             this.richTextBox1.TabIndex = 8;
@@ -243,7 +242,7 @@
             this.btnInactivarFact.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInactivarFact.ForeColor = System.Drawing.Color.White;
             this.btnInactivarFact.Location = new System.Drawing.Point(268, 430);
-            this.btnInactivarFact.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnInactivarFact.Margin = new System.Windows.Forms.Padding(2);
             this.btnInactivarFact.Name = "btnInactivarFact";
             this.btnInactivarFact.Size = new System.Drawing.Size(186, 24);
             this.btnInactivarFact.TabIndex = 7;
@@ -254,7 +253,7 @@
             // txtingresarbuscar
             // 
             this.txtingresarbuscar.Location = new System.Drawing.Point(268, 37);
-            this.txtingresarbuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtingresarbuscar.Margin = new System.Windows.Forms.Padding(2);
             this.txtingresarbuscar.Name = "txtingresarbuscar";
             this.txtingresarbuscar.Size = new System.Drawing.Size(161, 20);
             this.txtingresarbuscar.TabIndex = 12;
@@ -270,7 +269,7 @@
             this.btnVolverFact.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVolverFact.ForeColor = System.Drawing.Color.White;
             this.btnVolverFact.Location = new System.Drawing.Point(54, 430);
-            this.btnVolverFact.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnVolverFact.Margin = new System.Windows.Forms.Padding(2);
             this.btnVolverFact.Name = "btnVolverFact";
             this.btnVolverFact.Size = new System.Drawing.Size(75, 24);
             this.btnVolverFact.TabIndex = 13;
@@ -281,31 +280,13 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(843, 364);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(144, 31);
             this.button1.TabIndex = 14;
             this.button1.Text = "VER INFORME";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // btnActivarFact
-            // 
-            this.btnActivarFact.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnActivarFact.FlatAppearance.BorderSize = 2;
-            this.btnActivarFact.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnActivarFact.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(111)))), ((int)(((byte)(111)))));
-            this.btnActivarFact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActivarFact.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActivarFact.ForeColor = System.Drawing.Color.White;
-            this.btnActivarFact.Location = new System.Drawing.Point(514, 430);
-            this.btnActivarFact.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnActivarFact.Name = "btnActivarFact";
-            this.btnActivarFact.Size = new System.Drawing.Size(186, 24);
-            this.btnActivarFact.TabIndex = 15;
-            this.btnActivarFact.Text = "Activar Factura Seleccionada";
-            this.btnActivarFact.UseVisualStyleBackColor = true;
-            this.btnActivarFact.Click += new System.EventHandler(this.btnActivarFact_Click);
             // 
             // buttonGenerarPDF
             // 
@@ -317,7 +298,7 @@
             this.buttonGenerarPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonGenerarPDF.ForeColor = System.Drawing.Color.White;
             this.buttonGenerarPDF.Location = new System.Drawing.Point(741, 430);
-            this.buttonGenerarPDF.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonGenerarPDF.Margin = new System.Windows.Forms.Padding(2);
             this.buttonGenerarPDF.Name = "buttonGenerarPDF";
             this.buttonGenerarPDF.Size = new System.Drawing.Size(140, 24);
             this.buttonGenerarPDF.TabIndex = 17;
@@ -332,7 +313,6 @@
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1028, 485);
             this.Controls.Add(this.buttonGenerarPDF);
-            this.Controls.Add(this.btnActivarFact);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnVolverFact);
             this.Controls.Add(this.btnInactivarFact);
@@ -341,7 +321,7 @@
             this.Controls.Add(this.btnBuscarFact);
             this.Controls.Add(this.dgvRegistroFact);
             this.Controls.Add(this.txtingresarbuscar);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "VsConsultarFactura";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VsConsultarFactura";
@@ -361,7 +341,6 @@
         private System.Windows.Forms.TextBox txtingresarbuscar;
         private System.Windows.Forms.Button btnVolverFact;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnActivarFact;
         private System.Windows.Forms.Button buttonGenerarPDF;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClmCedulaCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn FacturaRegistroFact;
