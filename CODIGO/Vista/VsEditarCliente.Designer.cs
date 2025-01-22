@@ -59,7 +59,7 @@
             this.btnGuardarCambios.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
             this.btnGuardarCambios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(111)))), ((int)(((byte)(111)))));
             this.btnGuardarCambios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardarCambios.Font = new System.Drawing.Font("Bernard MT Condensed", 9F);
+            this.btnGuardarCambios.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnGuardarCambios.ForeColor = System.Drawing.Color.White;
             this.btnGuardarCambios.Location = new System.Drawing.Point(137, 376);
             this.btnGuardarCambios.Name = "btnGuardarCambios";
@@ -72,25 +72,27 @@
             // lblEstado
             // 
             this.lblEstado.AutoSize = true;
-            this.lblEstado.Font = new System.Drawing.Font("Bernard MT Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEstado.ForeColor = System.Drawing.Color.White;
             this.lblEstado.Location = new System.Drawing.Point(87, 331);
             this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(53, 19);
+            this.lblEstado.Size = new System.Drawing.Size(64, 20);
             this.lblEstado.TabIndex = 56;
             this.lblEstado.Text = "Estado:";
+            this.lblEstado.Visible = false;
             // 
             // cmbEstado
             // 
-            this.cmbEstado.Font = new System.Drawing.Font("Bernard MT Condensed", 12F);
+            this.cmbEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cmbEstado.FormattingEnabled = true;
             this.cmbEstado.Items.AddRange(new object[] {
             "ACTIVO",
             "INACTIVO"});
             this.cmbEstado.Location = new System.Drawing.Point(261, 323);
             this.cmbEstado.Name = "cmbEstado";
-            this.cmbEstado.Size = new System.Drawing.Size(121, 27);
+            this.cmbEstado.Size = new System.Drawing.Size(121, 28);
             this.cmbEstado.TabIndex = 55;
+            this.cmbEstado.Visible = false;
             // 
             // btnExit
             // 
@@ -99,7 +101,7 @@
             this.btnExit.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
             this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(111)))), ((int)(((byte)(111)))));
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Font = new System.Drawing.Font("Bernard MT Condensed", 9F);
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnExit.ForeColor = System.Drawing.Color.White;
             this.btnExit.Location = new System.Drawing.Point(313, 376);
             this.btnExit.Name = "btnExit";
@@ -113,7 +115,7 @@
             // 
             this.txtTelefono.BackColor = System.Drawing.SystemColors.InfoText;
             this.txtTelefono.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTelefono.Font = new System.Drawing.Font("Bernard MT Condensed", 12F);
+            this.txtTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtTelefono.ForeColor = System.Drawing.Color.White;
             this.txtTelefono.Location = new System.Drawing.Point(261, 199);
             this.txtTelefono.MaxLength = 10;
@@ -126,7 +128,7 @@
             // 
             this.txtDireccion.BackColor = System.Drawing.SystemColors.InfoText;
             this.txtDireccion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDireccion.Font = new System.Drawing.Font("Bernard MT Condensed", 12F);
+            this.txtDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtDireccion.ForeColor = System.Drawing.Color.White;
             this.txtDireccion.Location = new System.Drawing.Point(261, 229);
             this.txtDireccion.MaxLength = 20;
@@ -137,21 +139,21 @@
             // 
             // cmbEstudiante
             // 
-            this.cmbEstudiante.Font = new System.Drawing.Font("Bernard MT Condensed", 12F);
+            this.cmbEstudiante.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cmbEstudiante.FormattingEnabled = true;
             this.cmbEstudiante.Items.AddRange(new object[] {
             "SI",
             "NO"});
             this.cmbEstudiante.Location = new System.Drawing.Point(261, 258);
             this.cmbEstudiante.Name = "cmbEstudiante";
-            this.cmbEstudiante.Size = new System.Drawing.Size(84, 27);
+            this.cmbEstudiante.Size = new System.Drawing.Size(84, 28);
             this.cmbEstudiante.TabIndex = 50;
             // 
             // txtApellido
             // 
             this.txtApellido.BackColor = System.Drawing.SystemColors.InfoText;
             this.txtApellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtApellido.Font = new System.Drawing.Font("Bernard MT Condensed", 12F);
+            this.txtApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtApellido.ForeColor = System.Drawing.Color.White;
             this.txtApellido.Location = new System.Drawing.Point(261, 138);
             this.txtApellido.MaxLength = 20;
@@ -165,7 +167,7 @@
             // 
             this.txtNombre.BackColor = System.Drawing.SystemColors.InfoText;
             this.txtNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNombre.Font = new System.Drawing.Font("Bernard MT Condensed", 12F);
+            this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtNombre.ForeColor = System.Drawing.Color.White;
             this.txtNombre.Location = new System.Drawing.Point(261, 106);
             this.txtNombre.MaxLength = 20;
@@ -179,7 +181,7 @@
             // 
             this.txtCedula.BackColor = System.Drawing.SystemColors.InfoText;
             this.txtCedula.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCedula.Font = new System.Drawing.Font("Bernard MT Condensed", 12F);
+            this.txtCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtCedula.ForeColor = System.Drawing.Color.White;
             this.txtCedula.Location = new System.Drawing.Point(261, 75);
             this.txtCedula.MaxLength = 10;
@@ -191,88 +193,88 @@
             // lblEstudiante
             // 
             this.lblEstudiante.AutoSize = true;
-            this.lblEstudiante.Font = new System.Drawing.Font("Bernard MT Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstudiante.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEstudiante.ForeColor = System.Drawing.Color.White;
             this.lblEstudiante.Location = new System.Drawing.Point(87, 266);
             this.lblEstudiante.Name = "lblEstudiante";
-            this.lblEstudiante.Size = new System.Drawing.Size(76, 19);
+            this.lblEstudiante.Size = new System.Drawing.Size(90, 20);
             this.lblEstudiante.TabIndex = 46;
             this.lblEstudiante.Text = "Estudiante:";
             // 
             // lblDireccion
             // 
             this.lblDireccion.AutoSize = true;
-            this.lblDireccion.Font = new System.Drawing.Font("Bernard MT Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDireccion.ForeColor = System.Drawing.Color.White;
             this.lblDireccion.Location = new System.Drawing.Point(87, 236);
             this.lblDireccion.Name = "lblDireccion";
-            this.lblDireccion.Size = new System.Drawing.Size(71, 19);
+            this.lblDireccion.Size = new System.Drawing.Size(79, 20);
             this.lblDireccion.TabIndex = 45;
             this.lblDireccion.Text = "Dirección:";
             // 
             // lblTelefono
             // 
             this.lblTelefono.AutoSize = true;
-            this.lblTelefono.Font = new System.Drawing.Font("Bernard MT Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTelefono.ForeColor = System.Drawing.Color.White;
             this.lblTelefono.Location = new System.Drawing.Point(87, 206);
             this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(67, 19);
+            this.lblTelefono.Size = new System.Drawing.Size(75, 20);
             this.lblTelefono.TabIndex = 44;
             this.lblTelefono.Text = "Telefono:";
             // 
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Font = new System.Drawing.Font("Bernard MT Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate.ForeColor = System.Drawing.Color.White;
             this.lblDate.Location = new System.Drawing.Point(87, 174);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(140, 19);
+            this.lblDate.Size = new System.Drawing.Size(163, 20);
             this.lblDate.TabIndex = 43;
             this.lblDate.Text = "Fecha de Nacimiento:";
             // 
             // lblApellido
             // 
             this.lblApellido.AutoSize = true;
-            this.lblApellido.Font = new System.Drawing.Font("Bernard MT Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblApellido.ForeColor = System.Drawing.Color.White;
             this.lblApellido.Location = new System.Drawing.Point(87, 145);
             this.lblApellido.Name = "lblApellido";
-            this.lblApellido.Size = new System.Drawing.Size(64, 19);
+            this.lblApellido.Size = new System.Drawing.Size(69, 20);
             this.lblApellido.TabIndex = 42;
             this.lblApellido.Text = "Apellido:";
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Bernard MT Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.Color.White;
             this.lblName.Location = new System.Drawing.Point(87, 113);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(61, 19);
+            this.lblName.Size = new System.Drawing.Size(69, 20);
             this.lblName.TabIndex = 41;
             this.lblName.Text = "Nombre:";
             // 
             // lblCedula
             // 
             this.lblCedula.AutoSize = true;
-            this.lblCedula.Font = new System.Drawing.Font("Bernard MT Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCedula.ForeColor = System.Drawing.Color.White;
             this.lblCedula.Location = new System.Drawing.Point(87, 82);
             this.lblCedula.Name = "lblCedula";
-            this.lblCedula.Size = new System.Drawing.Size(55, 19);
+            this.lblCedula.Size = new System.Drawing.Size(63, 20);
             this.lblCedula.TabIndex = 40;
             this.lblCedula.Text = "Cedula:";
             // 
             // lblActualizar
             // 
             this.lblActualizar.AutoSize = true;
-            this.lblActualizar.Font = new System.Drawing.Font("Bernard MT Condensed", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActualizar.ForeColor = System.Drawing.Color.White;
             this.lblActualizar.Location = new System.Drawing.Point(175, 9);
             this.lblActualizar.Name = "lblActualizar";
-            this.lblActualizar.Size = new System.Drawing.Size(207, 31);
+            this.lblActualizar.Size = new System.Drawing.Size(244, 31);
             this.lblActualizar.TabIndex = 58;
             this.lblActualizar.Text = "Actualizar Cliente";
             // 
@@ -280,7 +282,7 @@
             // 
             this.txtComprobante.BackColor = System.Drawing.SystemColors.InfoText;
             this.txtComprobante.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtComprobante.Font = new System.Drawing.Font("Bernard MT Condensed", 12F);
+            this.txtComprobante.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtComprobante.ForeColor = System.Drawing.Color.White;
             this.txtComprobante.Location = new System.Drawing.Point(261, 291);
             this.txtComprobante.MaxLength = 25;
@@ -292,17 +294,17 @@
             // lblComprobante
             // 
             this.lblComprobante.AutoSize = true;
-            this.lblComprobante.Font = new System.Drawing.Font("Bernard MT Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComprobante.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblComprobante.ForeColor = System.Drawing.Color.White;
             this.lblComprobante.Location = new System.Drawing.Point(87, 298);
             this.lblComprobante.Name = "lblComprobante";
-            this.lblComprobante.Size = new System.Drawing.Size(101, 19);
+            this.lblComprobante.Size = new System.Drawing.Size(114, 20);
             this.lblComprobante.TabIndex = 59;
             this.lblComprobante.Text = "Comprobante: ";
             // 
             // dtpDate
             // 
-            this.dtpDate.Font = new System.Drawing.Font("Bernard MT Condensed", 12F);
+            this.dtpDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDate.Location = new System.Drawing.Point(261, 167);
             this.dtpDate.Name = "dtpDate";
@@ -314,7 +316,7 @@
             // 
             this.txtCedulaOriginal.BackColor = System.Drawing.SystemColors.InfoText;
             this.txtCedulaOriginal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCedulaOriginal.Font = new System.Drawing.Font("Bernard MT Condensed", 12F);
+            this.txtCedulaOriginal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtCedulaOriginal.ForeColor = System.Drawing.Color.White;
             this.txtCedulaOriginal.Location = new System.Drawing.Point(261, 43);
             this.txtCedulaOriginal.Name = "txtCedulaOriginal";

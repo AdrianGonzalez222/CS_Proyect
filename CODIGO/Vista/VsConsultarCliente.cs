@@ -129,5 +129,21 @@ namespace Vista
             ctrCli.AbrirPDF();
         }
 
+        private void btnReactivar_Click(object sender, EventArgs e)
+        {
+            if (dgvClientes.SelectedRows.Count > 0)
+            {
+                var filaSeleccionada = dgvClientes.SelectedRows[0];
+                var cedula = (string)filaSeleccionada.Cells["clmCedula"].Value;
+
+                ctrCli.ReactivarCliente(cedula, dgvClientes);
+                ctrCli.LlenarGrid(dgvClientes);
+            }
+            else
+            {
+                MessageBox.Show("ERROR: SELECCIONA UNA FILA ANTES DE REACTIVAR A UN CLIENTE", "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
     }
 }

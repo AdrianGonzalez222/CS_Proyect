@@ -18,6 +18,8 @@ namespace Vista
         {
             InitializeComponent();
             ctrMen.MostrarDatosClienteMem(cedulaCliente, lblCedulaM, lblNombreM, lblApellidoM, lblEstudianteM, CelularInvisible, ComprobanteInvisible, FechaNacInvisible, DireccionInvisible);
+            lblPorcentaje.Visible = false;
+            comboBoxP.SelectedItem = "NO";
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -29,6 +31,7 @@ namespace Vista
                 txtBoxDP.Visible = true;
                 labelD.Visible = true;
                 txtBoxD.Visible = true;
+                lblPorcentaje.Visible = true;
             }
             else
             {
@@ -36,6 +39,7 @@ namespace Vista
                 txtBoxDP.Visible = false;
                 labelD.Visible = false;
                 txtBoxD.Visible = false;
+                lblPorcentaje.Visible = false;
             }
         }
 

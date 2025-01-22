@@ -34,6 +34,7 @@ namespace Vista
                 DataGridViewRow filaSeleccionada = dgvActividad.SelectedRows[0]; // OBTIENE FILA SELECCIONADA
                 string nombreActividad = filaSeleccionada.Cells["ClmNombre"].Value.ToString(); // EXTRAE NOMBRE DE FILA SELECCIONADA
                 VsEditarActividad editarActividad = new VsEditarActividad(nombreActividad); editarActividad.ShowDialog();
+
                 if (editarActividad.CambiosGuardados)
                 {
                     ctrActividad.TablaConsultarActividad(dgvActividad);

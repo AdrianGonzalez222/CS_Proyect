@@ -81,11 +81,12 @@
             this.ClmTotalRegistro,
             this.ClmEstadoRegistro,
             this.ClmMotivoRegistro});
-            this.dgvRegistroPrecio.Location = new System.Drawing.Point(50, 213);
+            this.dgvRegistroPrecio.Location = new System.Drawing.Point(38, 173);
+            this.dgvRegistroPrecio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvRegistroPrecio.Name = "dgvRegistroPrecio";
             this.dgvRegistroPrecio.RowHeadersWidth = 51;
             this.dgvRegistroPrecio.RowTemplate.Height = 24;
-            this.dgvRegistroPrecio.Size = new System.Drawing.Size(933, 227);
+            this.dgvRegistroPrecio.Size = new System.Drawing.Size(700, 184);
             this.dgvRegistroPrecio.TabIndex = 0;
             // 
             // clmNroFactRegistro
@@ -202,9 +203,10 @@
             // 
             // btnRegresar
             // 
-            this.btnRegresar.Location = new System.Drawing.Point(50, 512);
+            this.btnRegresar.Location = new System.Drawing.Point(38, 416);
+            this.btnRegresar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRegresar.Name = "btnRegresar";
-            this.btnRegresar.Size = new System.Drawing.Size(99, 32);
+            this.btnRegresar.Size = new System.Drawing.Size(74, 26);
             this.btnRegresar.TabIndex = 3;
             this.btnRegresar.Text = "VOLVER";
             this.btnRegresar.UseVisualStyleBackColor = true;
@@ -216,103 +218,114 @@
             this.cmbiNFORME.Items.AddRange(new object[] {
             "ACTIVO",
             "INACTIVO"});
-            this.cmbiNFORME.Location = new System.Drawing.Point(305, 9);
+            this.cmbiNFORME.Location = new System.Drawing.Point(229, 7);
+            this.cmbiNFORME.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbiNFORME.Name = "cmbiNFORME";
-            this.cmbiNFORME.Size = new System.Drawing.Size(121, 24);
+            this.cmbiNFORME.Size = new System.Drawing.Size(92, 21);
             this.cmbiNFORME.TabIndex = 4;
             // 
             // txtTotalFacturas
             // 
-            this.txtTotalFacturas.Location = new System.Drawing.Point(791, 63);
+            this.txtTotalFacturas.Location = new System.Drawing.Point(593, 51);
+            this.txtTotalFacturas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtTotalFacturas.Name = "txtTotalFacturas";
-            this.txtTotalFacturas.ReadOnly = true;
-            this.txtTotalFacturas.Size = new System.Drawing.Size(100, 22);
+            this.txtTotalFacturas.Size = new System.Drawing.Size(76, 20);
             this.txtTotalFacturas.TabIndex = 9;
+            this.txtTotalFacturas.Text = "0";
             // 
             // txtTotalConDescuento
             // 
-            this.txtTotalConDescuento.Location = new System.Drawing.Point(791, 108);
+            this.txtTotalConDescuento.Location = new System.Drawing.Point(593, 88);
+            this.txtTotalConDescuento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtTotalConDescuento.Name = "txtTotalConDescuento";
-            this.txtTotalConDescuento.ReadOnly = true;
-            this.txtTotalConDescuento.Size = new System.Drawing.Size(100, 22);
+            this.txtTotalConDescuento.Size = new System.Drawing.Size(76, 20);
             this.txtTotalConDescuento.TabIndex = 10;
+            this.txtTotalConDescuento.Text = "0";
             // 
             // txtTotalSinDescuento
             // 
-            this.txtTotalSinDescuento.Location = new System.Drawing.Point(791, 159);
+            this.txtTotalSinDescuento.Location = new System.Drawing.Point(593, 129);
+            this.txtTotalSinDescuento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtTotalSinDescuento.Name = "txtTotalSinDescuento";
-            this.txtTotalSinDescuento.ReadOnly = true;
-            this.txtTotalSinDescuento.Size = new System.Drawing.Size(100, 22);
+            this.txtTotalSinDescuento.Size = new System.Drawing.Size(76, 20);
             this.txtTotalSinDescuento.TabIndex = 11;
+            this.txtTotalSinDescuento.Text = "0";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(47, 11);
+            this.label6.Location = new System.Drawing.Point(35, 9);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(184, 17);
+            this.label6.Size = new System.Drawing.Size(194, 13);
             this.label6.TabIndex = 12;
             this.label6.Text = "MOSTRAR INFORME DE FACTURAS:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(601, 65);
+            this.label2.Location = new System.Drawing.Point(451, 53);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 17);
+            this.label2.Size = new System.Drawing.Size(123, 13);
             this.label2.TabIndex = 13;
             this.label2.Text = "TOTAL DE FACTURAS:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(601, 110);
+            this.label3.Location = new System.Drawing.Point(426, 91);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(148, 17);
+            this.label3.Size = new System.Drawing.Size(163, 13);
             this.label3.TabIndex = 14;
             this.label3.Text = "FACTURAS CON DESCUENTO:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(601, 161);
+            this.label4.Location = new System.Drawing.Point(426, 132);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(143, 17);
+            this.label4.Size = new System.Drawing.Size(158, 13);
             this.label4.TabIndex = 15;
             this.label4.Text = "FACTURAS SIN DESCUENTO:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(575, 526);
+            this.label5.Location = new System.Drawing.Point(431, 427);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 17);
+            this.label5.Size = new System.Drawing.Size(88, 13);
             this.label5.TabIndex = 16;
             this.label5.Text = "MONTO TOTAL:";
             // 
             // txtMontoTotal
             // 
-            this.txtMontoTotal.Location = new System.Drawing.Point(690, 524);
+            this.txtMontoTotal.Location = new System.Drawing.Point(518, 426);
+            this.txtMontoTotal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtMontoTotal.Name = "txtMontoTotal";
-            this.txtMontoTotal.ReadOnly = true;
-            this.txtMontoTotal.Size = new System.Drawing.Size(132, 22);
+            this.txtMontoTotal.Size = new System.Drawing.Size(100, 20);
             this.txtMontoTotal.TabIndex = 17;
+            this.txtMontoTotal.Text = "0";
             // 
             // btnInformePDF
             // 
-            this.btnInformePDF.Location = new System.Drawing.Point(246, 512);
+            this.btnInformePDF.Location = new System.Drawing.Point(184, 416);
+            this.btnInformePDF.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnInformePDF.Name = "btnInformePDF";
-            this.btnInformePDF.Size = new System.Drawing.Size(150, 34);
+            this.btnInformePDF.Size = new System.Drawing.Size(112, 28);
             this.btnInformePDF.TabIndex = 18;
             this.btnInformePDF.Text = "GENERAR PDF";
             this.btnInformePDF.UseVisualStyleBackColor = true;
@@ -321,46 +334,51 @@
             // dtInicoInforme
             // 
             this.dtInicoInforme.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtInicoInforme.Location = new System.Drawing.Point(184, 57);
+            this.dtInicoInforme.Location = new System.Drawing.Point(138, 46);
+            this.dtInicoInforme.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtInicoInforme.Name = "dtInicoInforme";
-            this.dtInicoInforme.Size = new System.Drawing.Size(140, 22);
+            this.dtInicoInforme.Size = new System.Drawing.Size(106, 20);
             this.dtInicoInforme.TabIndex = 19;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(47, 62);
+            this.label1.Location = new System.Drawing.Point(35, 50);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 17);
+            this.label1.Size = new System.Drawing.Size(80, 13);
             this.label1.TabIndex = 20;
             this.label1.Text = "FECHA INICIO:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(47, 109);
+            this.label7.Location = new System.Drawing.Point(35, 89);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(64, 17);
+            this.label7.Size = new System.Drawing.Size(65, 13);
             this.label7.TabIndex = 21;
             this.label7.Text = "FECHA FIN:";
             // 
             // dtFinInforme
             // 
             this.dtFinInforme.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFinInforme.Location = new System.Drawing.Point(184, 105);
+            this.dtFinInforme.Location = new System.Drawing.Point(138, 85);
+            this.dtFinInforme.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtFinInforme.Name = "dtFinInforme";
-            this.dtFinInforme.Size = new System.Drawing.Size(140, 22);
+            this.dtFinInforme.Size = new System.Drawing.Size(106, 20);
             this.dtFinInforme.TabIndex = 22;
             // 
             // btnMostrarInforme
             // 
-            this.btnMostrarInforme.Location = new System.Drawing.Point(50, 159);
+            this.btnMostrarInforme.Location = new System.Drawing.Point(38, 129);
+            this.btnMostrarInforme.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnMostrarInforme.Name = "btnMostrarInforme";
-            this.btnMostrarInforme.Size = new System.Drawing.Size(323, 25);
+            this.btnMostrarInforme.Size = new System.Drawing.Size(242, 20);
             this.btnMostrarInforme.TabIndex = 23;
             this.btnMostrarInforme.Text = "MOSTRAR SEGÚN PARÁMETROS";
             this.btnMostrarInforme.UseVisualStyleBackColor = true;
@@ -368,10 +386,10 @@
             // 
             // VsRegistroPrecio
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1023, 590);
+            this.ClientSize = new System.Drawing.Size(767, 479);
             this.Controls.Add(this.btnMostrarInforme);
             this.Controls.Add(this.dtFinInforme);
             this.Controls.Add(this.label7);
@@ -390,6 +408,7 @@
             this.Controls.Add(this.cmbiNFORME);
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.dgvRegistroPrecio);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "VsRegistroPrecio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VsRegistroPrecio";

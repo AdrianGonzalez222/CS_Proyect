@@ -11,6 +11,14 @@ namespace Vista
         public VsRegistroPrecio()
         {
             InitializeComponent();
+
+            cmbiNFORME.SelectedItem = "ACTIVO";
+            cmbiNFORME.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            txtTotalFacturas.Enabled = false;
+            txtTotalConDescuento.Enabled = false;
+            txtTotalSinDescuento.Enabled = false;
+            txtMontoTotal.Enabled = false;
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)

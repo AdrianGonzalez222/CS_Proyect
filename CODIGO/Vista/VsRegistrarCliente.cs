@@ -12,6 +12,7 @@ namespace Vista
         public VsRegistrarCliente()
         {
             InitializeComponent();
+            cmbEstudiante.SelectedItem = "NO";
             lblEstado.Visible = false;
             cmbEstado.Visible = false;
             lblComprobante.Visible = false;

@@ -29,12 +29,20 @@ namespace Dato
 
         public void ImprimirSQL(string sentencia)
         {
-            string sqlWithValues = sentencia;
-            foreach (SqlParameter param in cmd.Parameters)
+            try
             {
-                sqlWithValues = sqlWithValues.Replace(param.ParameterName, param.Value.ToString());
+                string sqlWithValues = sentencia;
+                foreach (SqlParameter param in cmd.Parameters)
+                {
+                    sqlWithValues = sqlWithValues.Replace(param.ParameterName, param.Value.ToString());
+                }
+                Console.WriteLine("COMANDO SQL: " + sqlWithValues);
+            } 
+            catch (Exception ex)
+            {
+                Log.Warning("ERROR: " + ex.Message);
+                Console.WriteLine(ex.Message);
             }
-            Console.WriteLine("COMANDO SQL: " + sqlWithValues);
         }
 
         /// <summary>
@@ -201,8 +209,8 @@ namespace Dato
                 }
 
                 ImprimirSQL(comando);
-                int rowsAffected = cmd.ExecuteNonQuery();
-                x = rowsAffected > 0 ? "1" : "ERROR: NO SE PUDO ACTUALIZAR EL CLIENTE";
+                cmd.ExecuteNonQuery();
+                x = "1";
 
             }
             catch (SqlException ex)

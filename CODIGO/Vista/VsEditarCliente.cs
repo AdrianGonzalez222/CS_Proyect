@@ -14,7 +14,9 @@ namespace Vista
         public VsEditarCliente(string cedulaCliente)
         {
             InitializeComponent();
-            ctrCli.MostrarDatosCliente(cedulaCliente, txtCedula, txtNombre, txtApellido, dtpDate, txtTelefono, txtDireccion, txtComprobante, cmbEstado, cmbEstudiante);    
+            ctrCli.MostrarDatosCliente(cedulaCliente, txtCedula, txtNombre, txtApellido, dtpDate, txtTelefono, txtDireccion, txtComprobante, cmbEstado, cmbEstudiante);
+            txtCedulaOriginal.Text = txtCedula.Text;
+            cmbEstado.SelectedItem = "ACTIVO";
         }
 
         private void btnExit_Click(object sender, EventArgs e)

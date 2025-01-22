@@ -221,40 +221,36 @@ namespace Control
             string msg = "ERROR: SE ESPERABA DATOS CORRECTOS!!";
             Validacion v = new Validacion();
             DateTime fechaNac = v.ConvertirDateTime(aFechaNacimiento);
-            DateTime fechaLimite = new DateTime(2014, 12, 31); // Fecha límite: 1 de enero de 2014
             DateTime fechaActual = DateTime.Now;
 
             // Validaciones
             if (string.IsNullOrEmpty(aCedula) || string.IsNullOrEmpty(aNombre) || string.IsNullOrEmpty(aApellido) ||
                 string.IsNullOrEmpty(aFechaNacimiento) || string.IsNullOrEmpty(aTelefono) || string.IsNullOrEmpty(aDireccion))
             {
-                Log.Warning("ERROR: NO PUEDEN EXISTIR CAMPOS VACIOS");
-                return "ERROR: NO PUEDEN EXISTIR CAMPOS VACIOS";
+                Log.Warning("NO PUEDEN EXISTIR CAMPOS VACIOS.");
+                return "ERROR: NO PUEDEN EXISTIR CAMPOS VACIOS.";
             }
             else if (fechaNac >= fechaActual)
             {
-                Log.Warning("ERROR: INGRESE FECHA DE NACIMIENTO VALIDA");
-                return "ERROR: INGRESE FECHA DE NACIMIENTO VALIDA";
-            }
-            else if (fechaNac >= fechaLimite)
-            {
-                Log.Warning("ERROR: LA FECHA DE NACIMIENTO INVALIDA");
-                return "ERROR: LA FECHA DE NACIMIENTO INVALIDA";
+                Log.Warning("FECHA DE NACIMIENTO NO PUEDE SER IGUAL O MAYOR A LA FECHA ACTUAL.");
+                return "ERROR: INGRESE FECHA DE NACIMIENTO VALIDA.";
             }
 
-            Cliente clienteExistente = ListaCli.FirstOrDefault(c => c.Cedula == aCedulaOrg);
+            Cliente clienteExistente = ListaCli.Find(c => c.Cedula == aCedulaOrg);
             if (clienteExistente == null)
             {
-                Log.Warning("ERROR: NO SE ENCONTRO EL CLIENTE");
-                return "ERROR: NO SE ENCONTRO EL CLIENTE";
+                Log.Warning("NO SE ENCONTRÓ EL CLIENTE A EDITAR.");
+                return "ERROR: NO SE ENCONTRÓ EL CLIENTE.";
             }
 
+            // Validar si ya existe otro cliente con la misma cédula
             if (ListaCli.Any(cli => cli.Cedula == aCedula && cli.Cedula != aCedulaOrg))
             {
-                Log.Warning("ERROR: YA EXISTE UN CLIENTE CON ESA CEDULA");
+                Log.Warning("YA EXISTE UN CLIENTE CON ESA CEDULA.");
                 return "ERROR: YA EXISTE UN CLIENTE CON ESA CEDULA.";
             }
 
+            // Actualiza los datos del cliente
             clienteExistente.Cedula = aCedula;
             clienteExistente.Nombre = aNombre;
             clienteExistente.Apellido = aApellido;
@@ -263,7 +259,7 @@ namespace Control
             clienteExistente.Direccion = aDireccion;
             clienteExistente.Estado = aEstado;
 
-            // Manejo de tipo y comprobante
+            // Manejo de cliente estudiante
             if (esEstudiante)
             {
                 if (clienteExistente is ClienteEstudiante cliEst)
@@ -289,8 +285,19 @@ namespace Control
                 }
             }
 
-            EditarCliBD(clienteExistente, aCedulaOrg);
-            return "CLIENTE EDITADO CORRECTAMENTE";
+            try
+            {
+                EditarCliBD(clienteExistente, aCedulaOrg); // Actualiza la base de datos
+                msg = "CLIENTE EDITADO CORRECTAMENTE";
+                Log.Information("CLIENTE EDITADO CORRECTAMENTE: {clienteExistente}", clienteExistente);
+            }
+            catch (Exception ex)
+            {
+                msg = "ERROR INESPERADO AL EDITAR CLIENTE.";
+                Log.Error("ERROR INESPERADO: {ex}", ex);
+            }
+
+            return msg;
         }
 
         /// <summary>
@@ -386,7 +393,28 @@ namespace Control
                 if (cliente != null)
                 {
                     cliente.Estado = "INACTIVO";
-                    InactivarClienteBD(cliente);
+                    EstadoClienteBD(cliente);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Inactiva un cliente cambiando su estado a "ACTIVO" y actualiza en la base de datos.
+        /// </summary>
+        /// <param name="cedula">Cédula del cliente a reactivar.</param>
+        /// <param name="dgvCliente">DataGridView donde se muestra la lista de clientes.</param>
+        public void ReactivarCliente(string cedula, DataGridView dgvCliente)
+        {
+            DialogResult resultado = MessageBox.Show("¿DESEA REACTIVAR A ESTE CLIENTE?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (resultado == DialogResult.Yes)
+            {
+                var cliente = ListaCli.FirstOrDefault(cli => cli.Cedula == cedula);
+
+                if (cliente != null)
+                {
+                    cliente.Estado = "ACTIVO";
+                    EstadoClienteBD(cliente);
                 }
             }
         }
@@ -395,7 +423,7 @@ namespace Control
         /// Actualiza el estado de un cliente a "INACTIVO" en la base de datos.
         /// </summary>
         /// <param name="cli">El objeto Cliente cuyo estado se actualizará.</param>
-        public void InactivarClienteBD(Cliente cli)
+        public void EstadoClienteBD(Cliente cli)
         {
             string msg = string.Empty;
             string msgBD = conn.AbrirConexion();

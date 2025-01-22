@@ -1,6 +1,7 @@
 ﻿using Control;
 using System;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Vista
 {
@@ -17,6 +18,8 @@ namespace Vista
             InitializeComponent();
             ctrMem.PresentarDatosMembresia(txtBoxME, dateTPFIE, dateTPFFE, comboBoxPE, txtBoxDPE, txtBoxDE, txtBoxPME, lblCME, nombrePlan);
             lblPMA.Text = txtBoxME.Text;
+            lblPorcentajeE.Visible = false;
+            comboBoxPE.SelectedItem = "NO";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -65,6 +68,7 @@ namespace Vista
                 txtBoxDPE.Visible = true;
                 labelDE.Visible = true;
                 txtBoxDE.Visible = true;
+                lblPorcentajeE.Visible = true;
             }
             else
             {
@@ -72,6 +76,7 @@ namespace Vista
                 txtBoxDPE.Visible = false;
                 labelDE.Visible = false;
                 txtBoxDE.Visible = false;
+                lblPorcentajeE.Visible = false;
             }
         }
 

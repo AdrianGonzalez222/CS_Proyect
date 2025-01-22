@@ -74,12 +74,12 @@
             this.TotalDataFact,
             this.EstadoDataFact,
             this.MotivoDataFact});
-            this.dgvRegistroFact.Location = new System.Drawing.Point(54, 98);
+            this.dgvRegistroFact.Location = new System.Drawing.Point(54, 99);
             this.dgvRegistroFact.Margin = new System.Windows.Forms.Padding(2);
             this.dgvRegistroFact.Name = "dgvRegistroFact";
             this.dgvRegistroFact.RowHeadersWidth = 51;
             this.dgvRegistroFact.RowTemplate.Height = 24;
-            this.dgvRegistroFact.Size = new System.Drawing.Size(1015, 200);
+            this.dgvRegistroFact.Size = new System.Drawing.Size(933, 200);
             this.dgvRegistroFact.TabIndex = 0;
             // 
             // ClmCedulaCliente
@@ -205,7 +205,7 @@
             this.btnBuscarFact.Location = new System.Drawing.Point(54, 33);
             this.btnBuscarFact.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscarFact.Name = "btnBuscarFact";
-            this.btnBuscarFact.Size = new System.Drawing.Size(166, 24);
+            this.btnBuscarFact.Size = new System.Drawing.Size(128, 39);
             this.btnBuscarFact.TabIndex = 11;
             this.btnBuscarFact.Text = "BUSCAR POR NOMBRE/APELLIDO";
             this.btnBuscarFact.Click += new System.EventHandler(this.button1_Click);
@@ -252,7 +252,7 @@
             // 
             // txtingresarbuscar
             // 
-            this.txtingresarbuscar.Location = new System.Drawing.Point(268, 37);
+            this.txtingresarbuscar.Location = new System.Drawing.Point(208, 33);
             this.txtingresarbuscar.Margin = new System.Windows.Forms.Padding(2);
             this.txtingresarbuscar.Name = "txtingresarbuscar";
             this.txtingresarbuscar.Size = new System.Drawing.Size(161, 20);

@@ -53,17 +53,18 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnRegistrarMem = new System.Windows.Forms.Button();
             this.btnGenerarPDF = new System.Windows.Forms.Button();
+            this.btnReactivar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // lblGestionCliente
             // 
             this.lblGestionCliente.AutoSize = true;
-            this.lblGestionCliente.Font = new System.Drawing.Font("Bernard MT Condensed", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGestionCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGestionCliente.ForeColor = System.Drawing.Color.White;
             this.lblGestionCliente.Location = new System.Drawing.Point(416, 9);
             this.lblGestionCliente.Name = "lblGestionCliente";
-            this.lblGestionCliente.Size = new System.Drawing.Size(213, 31);
+            this.lblGestionCliente.Size = new System.Drawing.Size(255, 31);
             this.lblGestionCliente.TabIndex = 1;
             this.lblGestionCliente.Text = "Gestión de Cliente";
             // 
@@ -74,7 +75,7 @@
             this.dgvClientes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(16)))));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(12)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Bernard MT Condensed", 9F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.MenuBar;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
@@ -170,12 +171,12 @@
             // 
             this.txtCedula.BackColor = System.Drawing.Color.Black;
             this.txtCedula.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCedula.Font = new System.Drawing.Font("Bernard MT Condensed", 9F);
+            this.txtCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.txtCedula.ForeColor = System.Drawing.Color.White;
             this.txtCedula.Location = new System.Drawing.Point(41, 111);
             this.txtCedula.MaxLength = 10;
             this.txtCedula.Name = "txtCedula";
-            this.txtCedula.Size = new System.Drawing.Size(189, 22);
+            this.txtCedula.Size = new System.Drawing.Size(189, 21);
             this.txtCedula.TabIndex = 4;
             this.txtCedula.TextChanged += new System.EventHandler(this.txtCedula_TextChanged);
             // 
@@ -183,12 +184,12 @@
             // 
             this.txtNombre.BackColor = System.Drawing.Color.Black;
             this.txtNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNombre.Font = new System.Drawing.Font("Bernard MT Condensed", 9F);
+            this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.txtNombre.ForeColor = System.Drawing.Color.White;
             this.txtNombre.Location = new System.Drawing.Point(236, 112);
             this.txtNombre.MaxLength = 20;
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(189, 22);
+            this.txtNombre.Size = new System.Drawing.Size(189, 21);
             this.txtNombre.TabIndex = 13;
             this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
@@ -196,22 +197,22 @@
             // lblCedula
             // 
             this.lblCedula.AutoSize = true;
-            this.lblCedula.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCedula.ForeColor = System.Drawing.Color.White;
             this.lblCedula.Location = new System.Drawing.Point(38, 91);
             this.lblCedula.Name = "lblCedula";
-            this.lblCedula.Size = new System.Drawing.Size(34, 13);
+            this.lblCedula.Size = new System.Drawing.Size(40, 13);
             this.lblCedula.TabIndex = 14;
             this.lblCedula.Text = "Cedula";
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre.ForeColor = System.Drawing.Color.White;
             this.lblNombre.Location = new System.Drawing.Point(233, 91);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(39, 13);
+            this.lblNombre.Size = new System.Drawing.Size(44, 13);
             this.lblNombre.TabIndex = 15;
             this.lblNombre.Text = "Nombre";
             // 
@@ -223,7 +224,7 @@
             this.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(111)))), ((int)(((byte)(111)))));
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrar.Font = new System.Drawing.Font("Bernard MT Condensed", 9F);
+            this.btnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnCerrar.ForeColor = System.Drawing.Color.White;
             this.btnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrar.Image")));
             this.btnCerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -244,7 +245,7 @@
             this.btnMostrarTodos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnMostrarTodos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(111)))), ((int)(((byte)(111)))));
             this.btnMostrarTodos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMostrarTodos.Font = new System.Drawing.Font("Bernard MT Condensed", 9F);
+            this.btnMostrarTodos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnMostrarTodos.ForeColor = System.Drawing.Color.White;
             this.btnMostrarTodos.Image = global::Vista.Properties.Resources.Img_RegistroUser;
             this.btnMostrarTodos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -265,7 +266,7 @@
             this.btnDarBaja.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnDarBaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(111)))), ((int)(((byte)(111)))));
             this.btnDarBaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDarBaja.Font = new System.Drawing.Font("Bernard MT Condensed", 9F);
+            this.btnDarBaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnDarBaja.ForeColor = System.Drawing.Color.White;
             this.btnDarBaja.Image = ((System.Drawing.Image)(resources.GetObject("btnDarBaja.Image")));
             this.btnDarBaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -286,7 +287,7 @@
             this.btnActualizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnActualizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(111)))), ((int)(((byte)(111)))));
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizar.Font = new System.Drawing.Font("Bernard MT Condensed", 10F);
+            this.btnActualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnActualizar.ForeColor = System.Drawing.Color.White;
             this.btnActualizar.Image = ((System.Drawing.Image)(resources.GetObject("btnActualizar.Image")));
             this.btnActualizar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -307,7 +308,7 @@
             this.btnBuscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnBuscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(111)))), ((int)(((byte)(111)))));
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Font = new System.Drawing.Font("Bernard MT Condensed", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -327,7 +328,7 @@
             this.btnRegistrarMem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnRegistrarMem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(111)))), ((int)(((byte)(111)))));
             this.btnRegistrarMem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegistrarMem.Font = new System.Drawing.Font("Bernard MT Condensed", 9F);
+            this.btnRegistrarMem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnRegistrarMem.ForeColor = System.Drawing.Color.White;
             this.btnRegistrarMem.Location = new System.Drawing.Point(932, 91);
             this.btnRegistrarMem.Name = "btnRegistrarMem";
@@ -344,7 +345,7 @@
             this.btnGenerarPDF.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnGenerarPDF.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(111)))), ((int)(((byte)(111)))));
             this.btnGenerarPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerarPDF.Font = new System.Drawing.Font("Bernard MT Condensed", 9F);
+            this.btnGenerarPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnGenerarPDF.ForeColor = System.Drawing.Color.White;
             this.btnGenerarPDF.Location = new System.Drawing.Point(295, 441);
             this.btnGenerarPDF.Name = "btnGenerarPDF";
@@ -354,12 +355,34 @@
             this.btnGenerarPDF.UseVisualStyleBackColor = true;
             this.btnGenerarPDF.Click += new System.EventHandler(this.btnGenerarPDF_Click);
             // 
+            // btnReactivar
+            // 
+            this.btnReactivar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReactivar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnReactivar.FlatAppearance.BorderSize = 2;
+            this.btnReactivar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnReactivar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(111)))), ((int)(((byte)(111)))));
+            this.btnReactivar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReactivar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnReactivar.ForeColor = System.Drawing.Color.White;
+            this.btnReactivar.Image = ((System.Drawing.Image)(resources.GetObject("btnReactivar.Image")));
+            this.btnReactivar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReactivar.Location = new System.Drawing.Point(419, 442);
+            this.btnReactivar.Name = "btnReactivar";
+            this.btnReactivar.Size = new System.Drawing.Size(144, 41);
+            this.btnReactivar.TabIndex = 20;
+            this.btnReactivar.Text = "Reactivar Cliente";
+            this.btnReactivar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReactivar.UseVisualStyleBackColor = true;
+            this.btnReactivar.Click += new System.EventHandler(this.btnReactivar_Click);
+            // 
             // VsConsultarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1069, 513);
+            this.Controls.Add(this.btnReactivar);
             this.Controls.Add(this.btnGenerarPDF);
             this.Controls.Add(this.btnRegistrarMem);
             this.Controls.Add(this.btnCerrar);
@@ -404,5 +427,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmEstado;
         private System.Windows.Forms.Button btnRegistrarMem;
         private System.Windows.Forms.Button btnGenerarPDF;
+        private System.Windows.Forms.Button btnReactivar;
     }
 }
