@@ -461,6 +461,7 @@
             this.Controls.Add(this.lblNombreMT);
             this.Controls.Add(this.labelTitulo);
             this.Name = "VsMembresia";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modulo Membresia";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

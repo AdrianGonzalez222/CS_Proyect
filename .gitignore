@@ -1,0 +1,6 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+/CODIGO/Dato/ProyectoDB.mdf
+/CODIGO/Dato/ProyectoDB_log.ldf
