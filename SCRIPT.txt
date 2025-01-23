@@ -1,0 +1,82 @@
+--- ERASE
+DROP TABLE Actividad;
+DROP TABLE Cliente;
+DROP TABLE Membresia;
+DROP TABLE Factura;
+
+--- TABLAS
+--- 1
+CREATE TABLE [dbo].[Actividad] (
+    [IdActividad] INT           IDENTITY (1, 1) NOT NULL,
+    [Estado]      INT           NOT NULL,
+    [Nombre]      VARCHAR (MAX) NOT NULL,
+    [Descripcion] VARCHAR (MAX) NOT NULL,
+    [FechaInicio] DATE          NOT NULL,
+    [FechaFin]    DATE          NOT NULL,
+    [HoraInicio]  TIME (0)      NOT NULL,
+    [HoraFin]     TIME (0)      NOT NULL,
+    PRIMARY KEY CLUSTERED ([IdActividad] ASC)
+);
+
+--- 2
+CREATE TABLE [dbo].[Cliente] (
+    [Id_Cliente]      INT          IDENTITY (1, 1) NOT NULL,
+    [Cedula]          NCHAR (10)   NOT NULL,
+    [Nombre]          VARCHAR (50) NOT NULL,
+    [Apellido]        VARCHAR (50) NOT NULL,
+    [FechaNacimiento] DATE         NOT NULL,
+    [Telefono]        NCHAR (10)   NOT NULL,
+    [Direccion]       VARCHAR (50) NOT NULL,
+    [Estado]          NCHAR (10)   NOT NULL,
+    [Tipo]            VARCHAR (50) NOT NULL,
+    [Comprobante]     VARCHAR (50) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id_Cliente] ASC)
+);
+
+--- 3
+CREATE TABLE [dbo].[Membresia] (
+    [idMembresia]      INT             IDENTITY (1, 1) NOT NULL,
+    [planMembresia]    VARCHAR (50)    NOT NULL,
+    [fechaInicio]      DATETIME        NOT NULL,
+    [fechaFin]         DATETIME        NOT NULL,
+    [promocion ]       VARCHAR (50)    NOT NULL,
+    [descuento]        INT             NOT NULL,
+    [detallePromocion] VARCHAR (50)    NOT NULL,
+    [precio]           NUMERIC (18, 2) NOT NULL,
+    [idCliente]        INT             NOT NULL,
+    [estado]           INT             NOT NULL,
+    PRIMARY KEY CLUSTERED ([idMembresia] ASC)
+);
+
+--- 4
+CREATE TABLE [dbo].[Factura] (
+    [idFactura]          INT          IDENTITY (1, 1) NOT NULL,
+    [numFactura]         INT          NOT NULL,
+    [serie]              VARCHAR (15) NOT NULL,
+    [precioFact]         VARCHAR (10) NOT NULL,
+    [descuentoFact]      VARCHAR (10) NULL,
+    [iva]                VARCHAR (10) NOT NULL,
+    [total]              VARCHAR (10) NOT NULL,
+    [estadoFact]         VARCHAR (10) NOT NULL,
+    [motivoInactivacion] VARCHAR (40) NULL,
+    [idCliente]          INT          DEFAULT ((0)) NOT NULL,
+    [idMembresia]        INT          DEFAULT ((0)) NOT NULL,
+    PRIMARY KEY CLUSTERED ([idFactura] ASC)
+);
+
+--- INSERTS OPCIONALES
+--- 1
+INSERT INTO [dbo].[Actividad] (Estado, Nombre, Descripcion, FechaInicio, FechaFin, HoraInicio, HoraFin)   VALUES (1, 'ACTIVIDADES 1', '1. PESAS  2. CAMINATA  3. FLEXIONES', '2025-01-01', '2025-02-01', '08:00:00', '14:00:00');
+INSERT INTO [dbo].[Actividad] (Estado, Nombre, Descripcion, FechaInicio, FechaFin, HoraInicio, HoraFin)   VALUES (1, 'ACTIVIDAD 2', '1. SENTADILLAS  2. ABDOMINALES  3. TROTE', '2025-02-01', '2025-03-01', '09:00:00', '15:00:00');
+INSERT INTO [dbo].[Actividad] (Estado, Nombre, Descripcion, FechaInicio, FechaFin, HoraInicio, HoraFin)   VALUES (1, 'ACTIVIDAD 3', '1. BARRAS  2. MANCUERNAS  3. CALISTENIA', '2025-03-01', '2025-04-01', '10:00:00', '16:00:00');
+
+--- 2
+INSERT INTO [dbo].[Cliente] (Cedula, Nombre, Apellido, FechaNacimiento, Telefono, Direccion, Estado, Tipo, Comprobante)   VALUES ('0943315854', 'ADRIAN', 'GONZALEZ', '2003-02-02', '0993232046', '43 AVA', 'ACTIVO    ', 'ESTANDAR', 'SIN COMPROBANTE');
+INSERT INTO [dbo].[Cliente] (Cedula, Nombre, Apellido, FechaNacimiento, Telefono, Direccion, Estado, Tipo, Comprobante)   VALUES ('0943315894', 'DAN', 'BALLEJO', '2007-06-05', '0993333459', '45 AVA', 'ACTIVO    ', 'ESTANDAR', 'SIN COMPROBANTE');
+INSERT INTO [dbo].[Cliente] (Cedula, Nombre, Apellido, FechaNacimiento, Telefono, Direccion, Estado, Tipo, Comprobante)   VALUES ('0994233049', 'NOEL', 'RIVERA', '2004-08-01', '0943315789', '38 AVA', 'ACTIVO    ', 'ESTANDAR', 'SIN COMPROBANTE');
+
+--- 3
+INSERT INTO [dbo].[Membresia] (planMembresia, fechaInicio, fechaFin, promocion, descuento, detallePromocion, precio, idCliente, estado)   VALUES ('MEMBRESIA 1', 'Jan 22 2025 12:00AM', 'Jan 31 2025 12:00AM', 'NO', '0', 'No aplica', '20.00', '1', '1');
+
+--- 4
+INSERT INTO [dbo].[Factura] (numFactura, serie, precioFact, descuentoFact, iva, total, estadoFact, motivoInactivacion, idCliente, idMembresia)   VALUES (0, '4X97OSF20HI0', '20', 'NO APLICA', '0.15', '23', 'ACTIVO', 'NO APLICA', '1', '1');
