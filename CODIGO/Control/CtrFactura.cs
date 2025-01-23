@@ -429,7 +429,10 @@ namespace Control
 
             foreach (Factura f in ListaFact)
             {
-                if (f.Membresia.FechaInicio >= dtInicioInforme && f.Membresia.FechaFin <= dtFinInforme && f.Estadofact == estadoSeleccionado) // Agregar condición para filtrar por fecha y estado
+                if (f.Membresia.FechaInicio <= dtFinInforme &&
+                    f.Membresia.FechaFin >= dtInicioInforme &&
+                    f.Estadofact == estadoSeleccionado)
+                // Agregar condición para filtrar por fecha y estado
                 {
                     if (string.IsNullOrEmpty(f.Descuentofact) || f.Descuentofact == "NO APLICA")  // Si el descuento es "NO APLICA"
                     {                     

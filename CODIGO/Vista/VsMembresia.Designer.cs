@@ -178,6 +178,7 @@
             this.txtBoxM.Name = "txtBoxM";
             this.txtBoxM.Size = new System.Drawing.Size(199, 20);
             this.txtBoxM.TabIndex = 11;
+            this.txtBoxM.TextChanged += new System.EventHandler(this.txtBoxM_TextChanged);
             // 
             // dateTPFI
             // 
@@ -218,6 +219,7 @@
             this.txtBoxDP.Size = new System.Drawing.Size(200, 58);
             this.txtBoxDP.TabIndex = 15;
             this.txtBoxDP.Visible = false;
+            this.txtBoxDP.TextChanged += new System.EventHandler(this.txtBoxDP_TextChanged);
             this.txtBoxDP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxDP_KeyPress);
             // 
             // txtBoxD

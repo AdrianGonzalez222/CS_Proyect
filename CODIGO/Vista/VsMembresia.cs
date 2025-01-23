@@ -115,5 +115,16 @@ namespace Vista
             v.ValidarNumeroPrecio(sender, e);
         }
 
+        private void txtBoxM_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            v.ConvertirMayuscula(textBox);
+        }
+
+        private void txtBoxDP_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            v.ConvertirMayuscula(textBox);
+        }
     }
 }

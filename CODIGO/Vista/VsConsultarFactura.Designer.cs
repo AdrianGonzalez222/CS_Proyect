@@ -57,6 +57,7 @@
             // 
             // dgvRegistroFact
             // 
+            this.dgvRegistroFact.AllowUserToAddRows = false;
             this.dgvRegistroFact.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRegistroFact.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ClmCedulaCliente,

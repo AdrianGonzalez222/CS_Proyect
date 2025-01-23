@@ -60,11 +60,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.dtFinInforme = new System.Windows.Forms.DateTimePicker();
             this.btnMostrarInforme = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistroPrecio)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvRegistroPrecio
             // 
+            this.dgvRegistroPrecio.AllowUserToAddRows = false;
             this.dgvRegistroPrecio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRegistroPrecio.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmNroFactRegistro,
@@ -82,7 +84,7 @@
             this.ClmEstadoRegistro,
             this.ClmMotivoRegistro});
             this.dgvRegistroPrecio.Location = new System.Drawing.Point(38, 173);
-            this.dgvRegistroPrecio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvRegistroPrecio.Margin = new System.Windows.Forms.Padding(2);
             this.dgvRegistroPrecio.Name = "dgvRegistroPrecio";
             this.dgvRegistroPrecio.RowHeadersWidth = 51;
             this.dgvRegistroPrecio.RowTemplate.Height = 24;
@@ -204,7 +206,7 @@
             // btnRegresar
             // 
             this.btnRegresar.Location = new System.Drawing.Point(38, 416);
-            this.btnRegresar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRegresar.Margin = new System.Windows.Forms.Padding(2);
             this.btnRegresar.Name = "btnRegresar";
             this.btnRegresar.Size = new System.Drawing.Size(74, 26);
             this.btnRegresar.TabIndex = 3;
@@ -219,7 +221,7 @@
             "ACTIVO",
             "INACTIVO"});
             this.cmbiNFORME.Location = new System.Drawing.Point(229, 7);
-            this.cmbiNFORME.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbiNFORME.Margin = new System.Windows.Forms.Padding(2);
             this.cmbiNFORME.Name = "cmbiNFORME";
             this.cmbiNFORME.Size = new System.Drawing.Size(92, 21);
             this.cmbiNFORME.TabIndex = 4;
@@ -227,7 +229,7 @@
             // txtTotalFacturas
             // 
             this.txtTotalFacturas.Location = new System.Drawing.Point(593, 51);
-            this.txtTotalFacturas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTotalFacturas.Margin = new System.Windows.Forms.Padding(2);
             this.txtTotalFacturas.Name = "txtTotalFacturas";
             this.txtTotalFacturas.Size = new System.Drawing.Size(76, 20);
             this.txtTotalFacturas.TabIndex = 9;
@@ -236,7 +238,7 @@
             // txtTotalConDescuento
             // 
             this.txtTotalConDescuento.Location = new System.Drawing.Point(593, 88);
-            this.txtTotalConDescuento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTotalConDescuento.Margin = new System.Windows.Forms.Padding(2);
             this.txtTotalConDescuento.Name = "txtTotalConDescuento";
             this.txtTotalConDescuento.Size = new System.Drawing.Size(76, 20);
             this.txtTotalConDescuento.TabIndex = 10;
@@ -245,7 +247,7 @@
             // txtTotalSinDescuento
             // 
             this.txtTotalSinDescuento.Location = new System.Drawing.Point(593, 129);
-            this.txtTotalSinDescuento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTotalSinDescuento.Margin = new System.Windows.Forms.Padding(2);
             this.txtTotalSinDescuento.Name = "txtTotalSinDescuento";
             this.txtTotalSinDescuento.Size = new System.Drawing.Size(76, 20);
             this.txtTotalSinDescuento.TabIndex = 11;
@@ -314,7 +316,7 @@
             // txtMontoTotal
             // 
             this.txtMontoTotal.Location = new System.Drawing.Point(518, 426);
-            this.txtMontoTotal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMontoTotal.Margin = new System.Windows.Forms.Padding(2);
             this.txtMontoTotal.Name = "txtMontoTotal";
             this.txtMontoTotal.Size = new System.Drawing.Size(100, 20);
             this.txtMontoTotal.TabIndex = 17;
@@ -323,7 +325,7 @@
             // btnInformePDF
             // 
             this.btnInformePDF.Location = new System.Drawing.Point(184, 416);
-            this.btnInformePDF.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnInformePDF.Margin = new System.Windows.Forms.Padding(2);
             this.btnInformePDF.Name = "btnInformePDF";
             this.btnInformePDF.Size = new System.Drawing.Size(112, 28);
             this.btnInformePDF.TabIndex = 18;
@@ -335,7 +337,7 @@
             // 
             this.dtInicoInforme.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtInicoInforme.Location = new System.Drawing.Point(138, 46);
-            this.dtInicoInforme.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtInicoInforme.Margin = new System.Windows.Forms.Padding(2);
             this.dtInicoInforme.Name = "dtInicoInforme";
             this.dtInicoInforme.Size = new System.Drawing.Size(106, 20);
             this.dtInicoInforme.TabIndex = 19;
@@ -368,7 +370,7 @@
             // 
             this.dtFinInforme.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFinInforme.Location = new System.Drawing.Point(138, 85);
-            this.dtFinInforme.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtFinInforme.Margin = new System.Windows.Forms.Padding(2);
             this.dtFinInforme.Name = "dtFinInforme";
             this.dtFinInforme.Size = new System.Drawing.Size(106, 20);
             this.dtFinInforme.TabIndex = 22;
@@ -376,7 +378,7 @@
             // btnMostrarInforme
             // 
             this.btnMostrarInforme.Location = new System.Drawing.Point(38, 129);
-            this.btnMostrarInforme.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMostrarInforme.Margin = new System.Windows.Forms.Padding(2);
             this.btnMostrarInforme.Name = "btnMostrarInforme";
             this.btnMostrarInforme.Size = new System.Drawing.Size(242, 20);
             this.btnMostrarInforme.TabIndex = 23;
@@ -384,12 +386,25 @@
             this.btnMostrarInforme.UseVisualStyleBackColor = true;
             this.btnMostrarInforme.Click += new System.EventHandler(this.btnMostrarInforme_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(98, 380);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(520, 13);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "INFORME DE FACTURAS BASADO EN EL RANGO DE FECHA QUE SE ASIGNARON LAS MEMBRESIAS";
+            // 
             // VsRegistroPrecio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(767, 479);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.btnMostrarInforme);
             this.Controls.Add(this.dtFinInforme);
             this.Controls.Add(this.label7);
@@ -408,7 +423,7 @@
             this.Controls.Add(this.cmbiNFORME);
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.dgvRegistroPrecio);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "VsRegistroPrecio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VsRegistroPrecio";
@@ -452,5 +467,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker dtFinInforme;
         private System.Windows.Forms.Button btnMostrarInforme;
+        private System.Windows.Forms.Label label8;
     }
 }
