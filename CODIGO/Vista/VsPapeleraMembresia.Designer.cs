@@ -61,7 +61,7 @@
             this.dgvMembresia.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(16)))));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(16)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
@@ -83,7 +83,7 @@
             this.dgvMembresia.Cursor = System.Windows.Forms.Cursors.IBeam;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(16)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
@@ -95,7 +95,7 @@
             this.dgvMembresia.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(12)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
@@ -174,11 +174,11 @@
             // 
             this.radioBCM.AutoSize = true;
             this.radioBCM.Checked = true;
-            this.radioBCM.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioBCM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioBCM.ForeColor = System.Drawing.Color.White;
             this.radioBCM.Location = new System.Drawing.Point(64, 125);
             this.radioBCM.Name = "radioBCM";
-            this.radioBCM.Size = new System.Drawing.Size(52, 17);
+            this.radioBCM.Size = new System.Drawing.Size(58, 17);
             this.radioBCM.TabIndex = 17;
             this.radioBCM.TabStop = true;
             this.radioBCM.Text = "Cedula";
@@ -187,11 +187,11 @@
             // radioBDP
             // 
             this.radioBDP.AutoSize = true;
-            this.radioBDP.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioBDP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioBDP.ForeColor = System.Drawing.Color.White;
             this.radioBDP.Location = new System.Drawing.Point(171, 125);
             this.radioBDP.Name = "radioBDP";
-            this.radioBDP.Size = new System.Drawing.Size(94, 17);
+            this.radioBDP.Size = new System.Drawing.Size(99, 17);
             this.radioBDP.TabIndex = 18;
             this.radioBDP.TabStop = true;
             this.radioBDP.Text = "Plan membresia";
@@ -199,20 +199,20 @@
             // 
             // txtBoxBM
             // 
-            this.txtBoxBM.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxBM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxBM.Location = new System.Drawing.Point(64, 148);
             this.txtBoxBM.Name = "txtBoxBM";
-            this.txtBoxBM.Size = new System.Drawing.Size(201, 21);
+            this.txtBoxBM.Size = new System.Drawing.Size(201, 20);
             this.txtBoxBM.TabIndex = 19;
             // 
             // lblTPM
             // 
             this.lblTPM.AutoSize = true;
-            this.lblTPM.Font = new System.Drawing.Font("Bernard MT Condensed", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTPM.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTPM.ForeColor = System.Drawing.Color.White;
             this.lblTPM.Location = new System.Drawing.Point(391, 49);
             this.lblTPM.Name = "lblTPM";
-            this.lblTPM.Size = new System.Drawing.Size(292, 34);
+            this.lblTPM.Size = new System.Drawing.Size(394, 33);
             this.lblTPM.TabIndex = 22;
             this.lblTPM.Text = "PAPELERA DE MEMBRESIA";
             // 
@@ -223,7 +223,7 @@
             this.btnActivarM.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnActivarM.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(111)))), ((int)(((byte)(111)))));
             this.btnActivarM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActivarM.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActivarM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActivarM.ForeColor = System.Drawing.Color.White;
             this.btnActivarM.Image = global::Vista.Properties.Resources.restaurar_png;
             this.btnActivarM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -244,7 +244,7 @@
             this.btnCerrarMembresia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnCerrarMembresia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(111)))), ((int)(((byte)(111)))));
             this.btnCerrarMembresia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrarMembresia.Font = new System.Drawing.Font("Bernard MT Condensed", 9F);
+            this.btnCerrarMembresia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnCerrarMembresia.ForeColor = System.Drawing.Color.White;
             this.btnCerrarMembresia.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarMembresia.Image")));
             this.btnCerrarMembresia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -264,7 +264,7 @@
             this.btnBM.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnBM.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(111)))), ((int)(((byte)(111)))));
             this.btnBM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBM.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBM.ForeColor = System.Drawing.Color.White;
             this.btnBM.Image = global::Vista.Properties.Resources.buscar;
             this.btnBM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -291,6 +291,7 @@
             this.Controls.Add(this.radioBCM);
             this.Controls.Add(this.dgvMembresia);
             this.Name = "VsPapeleraMembresia";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VsPapeleraMembresia";
             ((System.ComponentModel.ISupportInitialize)(this.dgvMembresia)).EndInit();
             this.ResumeLayout(false);

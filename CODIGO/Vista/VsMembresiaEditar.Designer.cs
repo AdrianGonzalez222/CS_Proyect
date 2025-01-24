@@ -64,77 +64,77 @@
             // labelTituloEditar
             // 
             this.labelTituloEditar.AutoSize = true;
-            this.labelTituloEditar.Font = new System.Drawing.Font("Bernard MT Condensed", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTituloEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTituloEditar.ForeColor = System.Drawing.Color.White;
             this.labelTituloEditar.Location = new System.Drawing.Point(258, 9);
             this.labelTituloEditar.Name = "labelTituloEditar";
-            this.labelTituloEditar.Size = new System.Drawing.Size(267, 41);
+            this.labelTituloEditar.Size = new System.Drawing.Size(306, 39);
             this.labelTituloEditar.TabIndex = 1;
             this.labelTituloEditar.Text = "Membresía Editar";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(135, 107);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 13);
+            this.label2.Size = new System.Drawing.Size(99, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Plan de membresia:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(135, 132);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 13);
+            this.label3.Size = new System.Drawing.Size(69, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Ultima fecha:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(135, 159);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 13);
+            this.label4.Size = new System.Drawing.Size(101, 13);
             this.label4.TabIndex = 5;
             this.label4.Text = "Nueva fecha de fin:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(135, 186);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.Size = new System.Drawing.Size(60, 13);
             this.label5.TabIndex = 6;
             this.label5.Text = "Promocion;";
             // 
             // labelDPE
             // 
             this.labelDPE.AutoSize = true;
-            this.labelDPE.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDPE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDPE.ForeColor = System.Drawing.Color.White;
             this.labelDPE.Location = new System.Drawing.Point(135, 208);
             this.labelDPE.Name = "labelDPE";
-            this.labelDPE.Size = new System.Drawing.Size(104, 13);
+            this.labelDPE.Size = new System.Drawing.Size(115, 13);
             this.labelDPE.TabIndex = 7;
             this.labelDPE.Text = "Detalles de promocion:";
             // 
             // labelDE
             // 
             this.labelDE.AutoSize = true;
-            this.labelDE.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDE.ForeColor = System.Drawing.Color.White;
             this.labelDE.Location = new System.Drawing.Point(133, 292);
             this.labelDE.Name = "labelDE";
-            this.labelDE.Size = new System.Drawing.Size(52, 13);
+            this.labelDE.Size = new System.Drawing.Size(62, 13);
             this.labelDE.TabIndex = 8;
             this.labelDE.Text = "Descuento:";
             // 
@@ -145,7 +145,7 @@
             this.btnAME.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnAME.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(111)))), ((int)(((byte)(111)))));
             this.btnAME.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAME.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAME.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAME.ForeColor = System.Drawing.Color.White;
             this.btnAME.Location = new System.Drawing.Point(422, 360);
             this.btnAME.Name = "btnAME";
@@ -195,11 +195,11 @@
             // lblPEM
             // 
             this.lblPEM.AutoSize = true;
-            this.lblPEM.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPEM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPEM.ForeColor = System.Drawing.Color.White;
             this.lblPEM.Location = new System.Drawing.Point(135, 318);
             this.lblPEM.Name = "lblPEM";
-            this.lblPEM.Size = new System.Drawing.Size(37, 13);
+            this.lblPEM.Size = new System.Drawing.Size(40, 13);
             this.lblPEM.TabIndex = 22;
             this.lblPEM.Text = "Precio:";
             // 
@@ -238,11 +238,11 @@
             // lblPAM
             // 
             this.lblPAM.AutoSize = true;
-            this.lblPAM.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPAM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPAM.ForeColor = System.Drawing.Color.White;
             this.lblPAM.Location = new System.Drawing.Point(584, 30);
             this.lblPAM.Name = "lblPAM";
-            this.lblPAM.Size = new System.Drawing.Size(63, 13);
+            this.lblPAM.Size = new System.Drawing.Size(69, 13);
             this.lblPAM.TabIndex = 33;
             this.lblPAM.Text = "Plan antiguo:";
             this.lblPAM.Visible = false;
@@ -255,7 +255,7 @@
             this.btnCME.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnCME.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(111)))), ((int)(((byte)(111)))));
             this.btnCME.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCME.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCME.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCME.ForeColor = System.Drawing.Color.White;
             this.btnCME.Location = new System.Drawing.Point(297, 360);
             this.btnCME.Name = "btnCME";
@@ -338,11 +338,11 @@
             // lblCEM
             // 
             this.lblCEM.AutoSize = true;
-            this.lblCEM.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCEM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCEM.ForeColor = System.Drawing.Color.White;
             this.lblCEM.Location = new System.Drawing.Point(135, 81);
             this.lblCEM.Name = "lblCEM";
-            this.lblCEM.Size = new System.Drawing.Size(37, 13);
+            this.lblCEM.Size = new System.Drawing.Size(43, 13);
             this.lblCEM.TabIndex = 24;
             this.lblCEM.Text = "Cédula:";
             // 
@@ -359,7 +359,7 @@
             // lblPorcentajeE
             // 
             this.lblPorcentajeE.AutoSize = true;
-            this.lblPorcentajeE.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPorcentajeE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPorcentajeE.ForeColor = System.Drawing.Color.White;
             this.lblPorcentajeE.Location = new System.Drawing.Point(378, 288);
             this.lblPorcentajeE.Name = "lblPorcentajeE";
@@ -370,7 +370,7 @@
             // lblDineroE
             // 
             this.lblDineroE.AutoSize = true;
-            this.lblDineroE.Font = new System.Drawing.Font("Bernard MT Condensed", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDineroE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDineroE.ForeColor = System.Drawing.Color.White;
             this.lblDineroE.Location = new System.Drawing.Point(380, 314);
             this.lblDineroE.Name = "lblDineroE";
@@ -415,6 +415,7 @@
             this.Controls.Add(this.lblNEM);
             this.Controls.Add(this.labelTituloEditar);
             this.Name = "VsMembresiaEditar";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VsMembresiaEditar";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

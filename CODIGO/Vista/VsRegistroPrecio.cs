@@ -19,6 +19,8 @@ namespace Vista
             txtTotalConDescuento.Enabled = false;
             txtTotalSinDescuento.Enabled = false;
             txtMontoTotal.Enabled = false;
+
+            btnInformePDF.Visible = false;
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
