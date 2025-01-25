@@ -5,8 +5,8 @@ Proyecto Final de Construccion de Software.
 VIDEO DE YOUTUBE EXPLICANDO LAS FUNCIONES DEL PROYECTO:
 
 https://youtu.be/uajRxVF7TYs
-
 <br>
+
 Integrantes:
 > BALLESTEROS HOLGUIN DIANA ANDREA.
 > 
